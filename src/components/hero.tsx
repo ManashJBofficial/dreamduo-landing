@@ -25,9 +25,9 @@ export function Hero() {
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Content — extra top padding to clear the sticky navbar */}
-      <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-20 sm:px-6 sm:pb-16 sm:pt-24 md:pb-20 lg:px-8 lg:pb-28">
-        <div className="grid items-center gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16">
+      {/* Content — vertically and horizontally centered */}
+      <div className="relative flex min-h-screen items-center px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left content */}
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             {/* Waitlist badge */}

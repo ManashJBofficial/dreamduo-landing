@@ -25,8 +25,8 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 flex justify-center">
-      <div className="flex items-center gap-6 rounded-b-2xl bg-white px-6 pb-3 pt-5 sm:gap-8 sm:rounded-b-3xl sm:px-8 sm:pb-3.5 sm:pt-6 lg:pt-7">
-        {/* Desktop nav links */}
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center rounded-b-2xl bg-white px-8 pb-3 pt-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] sm:rounded-b-3xl sm:px-10 sm:pb-3.5 sm:pt-6 lg:px-12 lg:pt-7">
+        {/* Left — Desktop nav links */}
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <a
@@ -40,20 +40,22 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-900 md:hidden"
-        >
-          {mobileOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Menu className="h-5 w-5" />
-          )}
-        </button>
+        {/* Mobile hamburger (left column on mobile) */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:text-slate-900"
+          >
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </button>
+        </div>
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        {/* Center — Logo */}
+        <Link href="/" className="flex items-center gap-2 px-8 sm:px-10">
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-pink-400 to-rose-500">
             <Heart className="h-4 w-4 fill-white text-white" />
           </div>
@@ -62,19 +64,21 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* CTA */}
-        <a
-          href="#download"
-          onClick={(e) => smoothScroll(e, "#download")}
-          className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-800 transition-all hover:border-slate-300 hover:bg-slate-50 sm:px-5 sm:py-2 sm:text-sm"
-        >
-          Join Waitlist
-        </a>
+        {/* Right — CTA */}
+        <div className="flex justify-end">
+          <a
+            href="#download"
+            onClick={(e) => smoothScroll(e, "#download")}
+            className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-800 transition-all hover:border-slate-300 hover:bg-slate-50 sm:px-5 sm:py-2 sm:text-sm"
+          >
+            Join Waitlist
+          </a>
+        </div>
       </div>
 
       {/* Mobile nav dropdown */}
       {mobileOpen && (
-        <div className="mx-auto max-w-sm px-4 pb-4 pt-1 md:hidden">
+        <div className="absolute top-full mt-2 w-48 rounded-xl border border-slate-100 bg-white px-3 pb-3 pt-2 shadow-lg md:hidden">
           {navLinks.map((link) => (
             <a
               key={link.href}
