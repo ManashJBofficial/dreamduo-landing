@@ -1,26 +1,113 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-input: var(--input);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: #fff9f9;
+  --foreground: #1e293b;
+  --primary: #e91e7b;
+  --primary-foreground: #ffffff;
+  --secondary: #f8b4c8;
+  --secondary-foreground: #1e293b;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --card: #ffffff;
+  --card-foreground: #1e293b;
+  --border: #f1e8ec;
+  --input: #f1e8ec;
+  --ring: #e91e7b;
+  --accent: #fff0f5;
+  --accent-foreground: #1e293b;
+  --destructive: #ef4444;
+  --popover: #ffffff;
+  --popover-foreground: #1e293b;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
+
+/* Gradient animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Float animation for phone mockup */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(233, 30, 123, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(233, 30, 123, 0.3); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Soft dark modal backgrounds — muted, easy on the eyes */
+.modal-emerald   { background-color: #1a2e2a; }
+.modal-emerald-d { background-color: #152623; }
+.modal-sky       { background-color: #1a2635; }
+.modal-sky-d     { background-color: #15202e; }
+.modal-amber     { background-color: #2a2418; }
+.modal-amber-d   { background-color: #231e14; }
+.modal-pink      { background-color: #2e1a28; }
+.modal-pink-d    { background-color: #261522; }
+.modal-rose      { background-color: #2e1a1e; }
+.modal-rose-d    { background-color: #26151a; }
+.modal-violet    { background-color: #221a30; }
+.modal-violet-d  { background-color: #1c1528; }
