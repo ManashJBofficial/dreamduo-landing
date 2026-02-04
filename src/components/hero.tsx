@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Mail, CheckCircle } from "lucide-react";
-import { PhoneMockup } from "@/components/phone-mockup";
+import Image from "next/image";
 
 export function Hero() {
   const [email, setEmail] = useState("");
@@ -93,9 +93,31 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right - Phone mockup */}
+          {/* Right - Mobile mockups */}
           <div className="flex justify-center lg:justify-end">
-            <PhoneMockup />
+            <div className="relative mx-auto h-[420px] w-[320px] sm:h-[500px] sm:w-[380px] md:h-[560px] md:w-[420px] lg:h-[620px] lg:w-[480px]">
+              {/* Back phone — behind, peeking right */}
+              <div className="absolute right-0 top-0 z-0 rotate-[10deg]">
+                <Image
+                  src="/mobile-mockeup.png"
+                  alt="DreamDuo app screen 2"
+                  width={400}
+                  height={800}
+                  className="h-auto w-44 rounded-[2.5rem] border-[6px] border-gray-900 shadow-2xl sm:w-52 md:w-56 lg:w-64"
+                />
+              </div>
+              {/* Front phone — overlapping in front */}
+              <div className="absolute left-0 top-20 z-10 -rotate-[10deg]">
+                <Image
+                  src="/mobile-mockeup.png"
+                  alt="DreamDuo app screen 1"
+                  width={400}
+                  height={800}
+                  className="h-auto w-48 rounded-[2.5rem] border-[6px] border-gray-900 shadow-2xl sm:w-56 md:w-60 lg:w-72"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
