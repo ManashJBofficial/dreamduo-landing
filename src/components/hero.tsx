@@ -25,7 +25,7 @@ export function Hero() {
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Content — vertically and horizontally centered */}
+      {/* Content â€” vertically and horizontally centered */}
       <div className="relative flex min-h-screen items-center px-4 sm:px-6 lg:px-8">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-10 md:gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left content */}
@@ -94,35 +94,39 @@ export function Hero() {
           </div>
 
           {/* Right - Mobile mockups */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex items-center justify-center lg:justify-end">
             <div className="relative mx-auto h-[420px] w-[320px] sm:h-[500px] sm:w-[380px] md:h-[560px] md:w-[420px] lg:h-[620px] lg:w-[480px]">
-              {/* Back phone — behind, peeking right */}
-              <div className="absolute right-0 top-0 z-0 rotate-[10deg]">
-                <Image
-                  src="/mobile-mockeup.png"
-                  alt="DreamDuo app screen 2"
-                  width={400}
-                  height={800}
-                  className="h-auto w-44 rounded-[2.5rem] border-[6px] border-gray-900 shadow-2xl sm:w-52 md:w-56 lg:w-64"
-                />
-              </div>
-              {/* Front phone — overlapping in front */}
-              <div className="absolute left-0 top-20 z-10 -rotate-[10deg]">
-                <Image
-                  src="/mobile-mockeup.png"
-                  alt="DreamDuo app screen 1"
-                  width={400}
-                  height={800}
-                  className="h-auto w-48 rounded-[2.5rem] border-[6px] border-gray-900 shadow-2xl sm:w-56 md:w-60 lg:w-72"
-                  priority
-                />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative h-[340px] w-[260px] sm:h-[420px] sm:w-[320px] md:h-[460px] md:w-[350px] lg:h-[520px] lg:w-[400px]">
+                  {/* Back phone â€” behind, peeking right */}
+                  <div className="absolute right-0 top-6 z-0 translate-x-6 rotate-[10deg]">
+                    <Image
+                      src="/mobile-mockeup.png"
+                      alt="DreamDuo app screen 2"
+                      width={400}
+                      height={800}
+                      className="h-auto w-44 rounded-[2.5rem] shadow-2xl sm:w-52 md:w-56 lg:w-64"
+                    />
+                  </div>
+                  {/* Front phone â€” overlapping in front */}
+                  <div className="absolute left-0 top-6 z-10 -translate-x-6 -rotate-[10deg]">
+                    <Image
+                      src="/mobile-mockeup.png"
+                      alt="DreamDuo app screen 1"
+                      width={400}
+                      height={800}
+                      className="h-auto w-44 rounded-[2.5rem] shadow-2xl sm:w-52 md:w-56 lg:w-64"
+                      priority
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* COMMENTED OUT: Original app store buttons — restore when app is live
+      {/* COMMENTED OUT: Original app store buttons â€” restore when app is live
       <div className="mt-5 flex flex-wrap justify-center gap-3 sm:mt-6 sm:gap-4 lg:justify-start">
         <Link
           href="#download"
