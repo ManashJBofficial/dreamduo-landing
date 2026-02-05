@@ -12,7 +12,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is DreamDuo free?",
     answer:
-      "Yes! DreamDuo is free to download and use. You can create goals, track streaks, and use daily connections at no cost. We offer a premium plan with advanced features like hidden surprises, future letters, and detailed analytics.",
+      "Yes. The free plan includes 3 active goals, 3 collections, 50MB storage per user, 5 hidden messages (lifetime), basic analytics, and basic notification sounds. Pro unlocks unlimited goals and collections, more storage, advanced analytics, and premium sounds.",
   },
   {
     question: "What if my partner doesn't have the app yet?",
@@ -22,22 +22,22 @@ const faqs: FAQItem[] = [
   {
     question: "Is our data private and secure?",
     answer:
-      "Absolutely. Your data is encrypted end-to-end. Daily connection answers are hidden until both partners submit. Hidden surprises are fully invisible to your partner until the reveal date. We never sell your data.",
+      "Yes. Sensitive data is encrypted at rest on our servers, and we never sell your data.",
   },
   {
     question: "Can we track different types of goals?",
     answer:
-      "Yes — savings goals, fitness targets, travel plans, habit streaks, weight loss, and anything else you dream up. Each goal has its own milestones, progress tracking, and celebration moments.",
+      "Yes. You can track 4 goal types: amount/number, checklist, habit, and time.",
   },
   {
-    question: "What is the Commitment Ceremony?",
+    question: "Can we keep some goals private?",
     answer:
-      "When one partner creates a goal, the other must review and commit to it before it becomes active. Both partners share their personal \"why\" for the goal, making it a meaningful shared commitment rather than a one-sided plan.",
+      "Yes. Goals can be shared or private, and you can toggle privacy anytime. Private goals are visible only to you.",
   },
   {
-    question: "How do Hidden Surprises work?",
+    question: "How do Hidden Surprises and Milestone Messages work?",
     answer:
-      "You can secretly add a contribution (like money toward a savings goal) that your partner can't see. Set a reveal date — a birthday, anniversary, or milestone — and the surprise is revealed automatically. Your partner sees the total jump instantly.",
+      "Hidden Surprises let you add secret contributions that reveal on a date or milestone. Milestone Messages unlock at 25%, 50%, 75%, or 100% and can include notes or photos.",
   },
 ];
 
@@ -76,7 +76,10 @@ function FAQAccordionItem({ item }: { item: FAQItem }) {
 
 export function FAQ() {
   return (
-    <section id="faq" className="scroll-mt-16 bg-white py-16 sm:py-20 md:py-24 lg:py-32">
+    <section
+      id="faq"
+      className="scroll-mt-16 bg-white py-16 sm:py-20 md:py-24 lg:py-32"
+    >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center">

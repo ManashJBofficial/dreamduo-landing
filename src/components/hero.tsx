@@ -23,7 +23,7 @@ export function Hero() {
         style={{ backgroundImage: "url('/bg.png')" }}
       />
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/45" />
 
       {/* Content â€” vertically and horizontally centered */}
       <div className="relative flex min-h-screen items-center px-4 sm:px-6 lg:px-8">
@@ -31,17 +31,17 @@ export function Hero() {
           {/* Left content */}
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             {/* Waitlist badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 backdrop-blur-sm sm:mb-8 sm:px-4 sm:py-2">
-              <span className="h-2 w-2 rounded-full bg-rose-400 shadow-sm shadow-rose-400/50 sm:h-2.5 sm:w-2.5" />
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 backdrop-blur-sm sm:mb-8 sm:px-4 sm:py-2">
+              <span className="h-2 w-2 rounded-full bg-amber-300 shadow-sm shadow-amber-300/60 sm:h-2.5 sm:w-2.5" />
               <span className="text-xs font-semibold text-white sm:text-sm">
-                Launching Soon &mdash; Join the Waitlist
+                Founders Passes Limited &mdash; Claim Your Spot
               </span>
             </div>
 
             {/* Heading */}
             <h1 className="font-serif text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
               Build Your{" "}
-              <span className="bg-gradient-to-r from-rose-300 via-pink-300 to-orange-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-rose-200 via-fuchsia-200 to-amber-200 bg-clip-text text-transparent">
                 Dreams Together
               </span>
             </h1>
@@ -98,26 +98,35 @@ export function Hero() {
             <div className="relative mx-auto h-[420px] w-[320px] sm:h-[500px] sm:w-[380px] md:h-[560px] md:w-[420px] lg:h-[620px] lg:w-[480px]">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative h-[340px] w-[260px] sm:h-[420px] sm:w-[320px] md:h-[460px] md:w-[350px] lg:h-[520px] lg:w-[400px]">
-                  {/* Back phone â€” behind, peeking right */}
+                  {/* Back phone */}
                   <div className="absolute right-0 top-6 z-0 translate-x-6 rotate-[10deg]">
-                    <Image
-                      src="/mobile-mockeup.png"
-                      alt="DreamDuo app screen 2"
-                      width={400}
-                      height={800}
-                      className="h-auto w-44 rounded-[2.5rem] shadow-2xl sm:w-52 md:w-56 lg:w-64"
-                    />
+                    {/* 1. Wrapper Div handles the Shape & Shadow */}
+                    <div className="overflow-hidden rounded-[2.5rem] shadow-2xl border-[1px] border-transparent transform-gpu">
+                      <Image
+                      src="/mockeup.png"
+                        alt="DreamDuo app screen 2"
+                        width={400}
+                        height={800}
+                        // 2. Image just fits inside
+                        className="h-auto w-44 sm:w-52 md:w-56 lg:w-64"
+                      />
+                    </div>
                   </div>
-                  {/* Front phone â€” overlapping in front */}
+
+                  {/* Front phone */}
                   <div className="absolute left-0 top-6 z-10 -translate-x-6 -rotate-[10deg]">
-                    <Image
-                      src="/mobile-mockeup.png"
-                      alt="DreamDuo app screen 1"
-                      width={400}
-                      height={800}
-                      className="h-auto w-44 rounded-[2.5rem] shadow-2xl sm:w-52 md:w-56 lg:w-64"
-                      priority
-                    />
+                    {/* 1. Wrapper Div handles the Shape & Shadow */}
+                    <div className="overflow-hidden rounded-[2.5rem] shadow-2xl border-[1px] border-transparent transform-gpu">
+                      <Image
+                      src="/mockeup.png"
+                        alt="DreamDuo app screen 1"
+                        width={400}
+                        height={800}
+                        priority
+                        // 2. Image just fits inside
+                        className="h-auto w-44 sm:w-52 md:w-56 lg:w-64"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
