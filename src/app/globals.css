@@ -6,8 +6,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-bricolage-grotesque);
+  --font-display: var(--font-bricolage-grotesque);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
@@ -33,6 +34,7 @@
 
 :root {
   --radius: 0.625rem;
+  --marquee-duration: 200s;
   --background: #fff9f9;
   --foreground: #1e293b;
   --primary: #e91e7b;
@@ -70,12 +72,24 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
 }
 
 /* Gradient animations */
 @keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .animate-gradient {
@@ -85,8 +99,13 @@ html {
 
 /* Float animation for phone mockup */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .animate-float {
@@ -95,24 +114,144 @@ html {
 
 /* Pulse glow */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(233, 30, 123, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(233, 30, 123, 0.3); }
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(233, 30, 123, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(233, 30, 123, 0.3);
+  }
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* Soft dark modal backgrounds — muted, easy on the eyes */
-.modal-emerald   { background-color: #1a2e2a; }
-.modal-emerald-d { background-color: #152623; }
-.modal-sky       { background-color: #1a2635; }
-.modal-sky-d     { background-color: #15202e; }
-.modal-amber     { background-color: #2a2418; }
-.modal-amber-d   { background-color: #231e14; }
-.modal-pink      { background-color: #2e1a28; }
-.modal-pink-d    { background-color: #261522; }
-.modal-rose      { background-color: #2e1a1e; }
-.modal-rose-d    { background-color: #26151a; }
-.modal-violet    { background-color: #221a30; }
-.modal-violet-d  { background-color: #1c1528; }
+/* Marquee bar */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-bar {
+  overflow: hidden;
+  white-space: nowrap;
+  background: linear-gradient(90deg, #facc15 0%, #fbbf24 100%);
+  color: #111827;
+  border-top: 1px solid rgba(15, 23, 42, 0.12);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration) linear infinite;
+  will-change: transform;
+}
+
+.marquee-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.05rem 2.6rem;
+  flex: 0 0 auto;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1;
+}
+
+.marquee-text {
+  display: inline-block;
+  color: #0f172a;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.marquee-dot {
+  display: inline-block;
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fb7185 0%, #e11d48 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  opacity: 0.95;
+  transform: translateY(-0.02em);
+}
+
+/* Soft dark modal backgrounds - muted, easy on the eyes */
+.modal-emerald {
+  background-color: #1a2e2a;
+}
+.modal-emerald-d {
+  background-color: #152623;
+}
+.modal-sky {
+  background-color: #1a2635;
+}
+.modal-sky-d {
+  background-color: #15202e;
+}
+.modal-amber {
+  background-color: #2a2418;
+}
+.modal-amber-d {
+  background-color: #231e14;
+}
+.modal-pink {
+  background-color: #2e1a28;
+}
+.modal-pink-d {
+  background-color: #261522;
+}
+.modal-rose {
+  background-color: #2e1a1e;
+}
+.modal-rose-d {
+  background-color: #26151a;
+}
+.modal-violet {
+  background-color: #221a30;
+}
+.modal-violet-d {
+  background-color: #1c1528;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track {
+    animation-duration: var(--marquee-duration) !important;
+    animation-iteration-count: infinite !important;
+  }
+}

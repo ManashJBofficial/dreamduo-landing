@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   ChevronRight,
   X,
-  Download,
   PiggyBank,
   Plane,
   Dumbbell,
@@ -79,7 +78,7 @@ const categories: Category[] = [
     modalBtnText: "text-emerald-950",
     headline: "Reach Your Savings Goals",
     description:
-      "Whether it's a house deposit, wedding fund, or emergency savings — track every dollar together and watch your future take shape.",
+      "Whether it's a house deposit, wedding fund, or emergency savings - track every dollar together and watch your future take shape.",
     features: [
       {
         icon: BarChart3,
@@ -118,7 +117,7 @@ const categories: Category[] = [
     modalBtnText: "text-sky-950",
     headline: "Dream Vacations, Planned Together",
     description:
-      "From Bali to Barcelona — plan your trips as a team with shared budgets, wishlists, and countdown timers.",
+      "From Bali to Barcelona - plan your trips as a team with shared budgets, wishlists, and countdown timers.",
     features: [
       {
         icon: Map,
@@ -157,7 +156,7 @@ const categories: Category[] = [
     modalBtnText: "text-amber-950",
     headline: "Build Healthy Habits as a Team",
     description:
-      "Lose weight, run a marathon, or just move more — accountability is easier when your partner is right beside you.",
+      "Lose weight, run a marathon, or just move more - accountability is easier when your partner is right beside you.",
     features: [
       {
         icon: Flame,
@@ -196,7 +195,7 @@ const categories: Category[] = [
     modalBtnText: "text-pink-950",
     headline: "Plan Your Perfect Day",
     description:
-      "Budget tracking, vendor milestones, and countdown to \"I do\" — all shared between both partners.",
+      "Budget tracking, vendor milestones, and countdown to \"I do\" - all shared between both partners.",
     features: [
       {
         icon: Church,
@@ -235,7 +234,7 @@ const categories: Category[] = [
     modalBtnText: "text-rose-950",
     headline: "Deepen Your Connection",
     description:
-      "Daily questions, weekly check-ins, and shared reflections — build emotional intimacy with simple daily rituals.",
+      "Daily questions, weekly check-ins, and shared reflections - build emotional intimacy with simple daily rituals.",
     features: [
       {
         icon: MessageCircle,
@@ -309,6 +308,9 @@ function CategoryModal({
   onClose: () => void;
 }) {
   const CategoryIcon = category.icon;
+  const modalTitleId = `goal-category-${category.label
+    .toLowerCase()
+    .replace(/\s+/g, "-")}-title`;
 
   return (
     <div
@@ -318,21 +320,26 @@ function CategoryModal({
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
-      {/* Modal — fully colored */}
+      {/* Modal - fully colored */}
       <div
-        className={`relative w-full max-w-lg overflow-hidden rounded-2xl ${category.modalBg} shadow-2xl sm:max-w-xl sm:rounded-3xl`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={modalTitleId}
+        className={`relative flex h-[min(86vh,38rem)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl ${category.modalBg} shadow-2xl sm:max-w-3xl sm:rounded-3xl`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
+          type="button"
           onClick={onClose}
+          aria-label="Close goal details"
           className={`absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full ${category.modalFeatureBg} ${category.modalText} transition-opacity hover:opacity-80 sm:right-4 sm:top-4 sm:h-9 sm:w-9`}
         >
           <X className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
 
         {/* Header */}
-        <div className="px-5 pb-5 pt-12 text-center sm:px-8 sm:pb-6 sm:pt-16">
+        <div className="shrink-0 px-5 pb-4 pt-10 text-center sm:px-8 sm:pb-5 sm:pt-12">
           <div
             className={`mx-auto flex h-14 w-14 items-center justify-center rounded-2xl ${category.modalFeatureBg} sm:h-16 sm:w-16`}
           >
@@ -341,6 +348,7 @@ function CategoryModal({
             />
           </div>
           <h3
+            id={modalTitleId}
             className={`mt-4 font-serif text-2xl font-bold ${category.modalText} sm:mt-5 sm:text-3xl`}
           >
             {category.headline}
@@ -352,40 +360,42 @@ function CategoryModal({
           </p>
         </div>
 
-        {/* Features grid — slightly darker tinted area */}
+        {/* Features grid - slightly darker tinted area */}
         <div
-          className={`mx-4 rounded-2xl ${category.modalBgDarker}/30 px-4 py-5 sm:mx-6 sm:rounded-3xl sm:px-6 sm:py-6`}
+          className={`mx-4 min-h-0 flex-1 overflow-y-auto rounded-2xl ${category.modalBgDarker}/30 px-4 py-5 sm:mx-6 sm:rounded-3xl sm:px-6 sm:py-6`}
         >
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
-            {category.features.map((feature) => {
-              const FeatureIcon = feature.icon;
-              return (
-                <div key={feature.title} className="flex items-start gap-3">
-                  <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${category.modalFeatureBg} sm:h-11 sm:w-11`}
-                  >
-                    <FeatureIcon
-                      className={`h-5 w-5 ${category.modalText} sm:h-5.5 sm:w-5.5`}
-                    />
-                  </div>
-                  <div>
-                    <div className={`text-sm font-bold ${category.modalText}`}>
-                      {feature.title}
-                    </div>
+          <div className="flex h-full items-start sm:items-center">
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+              {category.features.map((feature) => {
+                const FeatureIcon = feature.icon;
+                return (
+                  <div key={feature.title} className="flex items-start gap-3">
                     <div
-                      className={`mt-0.5 text-xs leading-relaxed ${category.modalTextMuted} sm:text-[13px]`}
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${category.modalFeatureBg} sm:h-11 sm:w-11`}
                     >
-                      {feature.description}
+                      <FeatureIcon
+                        className={`h-5 w-5 ${category.modalText} sm:h-5.5 sm:w-5.5`}
+                      />
+                    </div>
+                    <div>
+                      <div className={`text-sm font-bold ${category.modalText}`}>
+                        {feature.title}
+                      </div>
+                      <div
+                        className={`mt-0.5 text-xs leading-relaxed ${category.modalTextMuted} sm:text-[13px]`}
+                      >
+                        {feature.description}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="px-5 pb-8 pt-5 text-center sm:px-8 sm:pb-10 sm:pt-6">
+        <div className="shrink-0 border-t border-white/10 px-5 pb-7 pt-4 text-center sm:px-8 sm:pb-8 sm:pt-5">
           <Link
             href="#download"
             onClick={onClose}
@@ -401,7 +411,7 @@ function CategoryModal({
           </p>
         </div>
 
-        {/* COMMENTED OUT: Original download button — restore when app is live
+        {/* COMMENTED OUT: Original download button - restore when app is live
         <div className="px-5 pb-8 pt-5 text-center sm:px-8 sm:pb-10 sm:pt-6">
           <Link
             href="#download"
@@ -426,6 +436,25 @@ function CategoryModal({
 export function GoalCategories() {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
+  useEffect(() => {
+    if (!activeCategory) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveCategory(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, [activeCategory]);
+
   return (
     <>
       <section id="goals" className="scroll-mt-16 bg-slate-50/50 py-16 sm:py-20 md:py-24 lg:py-28">
@@ -435,20 +464,22 @@ export function GoalCategories() {
             <h2 className="font-serif text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl">
               What are you dreaming of?
             </h2>
-            <p className="mt-3 text-base text-slate-400 sm:mt-4 sm:text-lg">
-              Tap a goal to see how DreamDuo helps — completely{" "}
-              <span className="font-semibold text-rose-500">free</span>.
+            <p className="mt-3 text-base text-slate-500 sm:mt-4 sm:text-lg">
+              Tap a goal to preview the experience. Track progress with 4 goal
+              types: amount, checklist, habit, and time.
             </p>
           </div>
 
-          {/* Category grid — outline cards */}
+          {/* Category grid - outline cards */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-3 lg:gap-5">
             {categories.map((cat) => {
               const CatIcon = cat.icon;
               return (
                 <button
+                  type="button"
                   key={cat.label}
                   onClick={() => setActiveCategory(cat)}
+                  aria-label={`Open details for ${cat.label}`}
                   className={`group flex items-center justify-between rounded-xl border bg-white ${cat.color} px-4 py-3.5 text-left transition-all duration-200 ${cat.hoverBorder} hover:shadow-md sm:rounded-2xl sm:px-5 sm:py-4 md:px-6 md:py-5`}
                 >
                   <span className="text-sm font-semibold text-slate-700 sm:text-base md:text-lg">

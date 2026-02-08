@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 interface FAQItem {
@@ -15,19 +15,19 @@ const faqs: FAQItem[] = [
       "Yes. The free plan includes 3 active goals, 3 collections, 50MB storage per user, 5 hidden messages (lifetime), basic analytics, and basic notification sounds. Pro unlocks unlimited goals and collections, more storage, advanced analytics, and premium sounds.",
   },
   {
-    question: "What if my partner doesn't have the app yet?",
+    question: "What if my partner does not have the app yet?",
     answer:
-      "No problem! You can start using DreamDuo solo and invite your partner anytime with a simple link. Once they join, all your goals sync automatically and you can start building together.",
+      "You can start solo and invite your partner anytime with a simple link. Once they join, your shared goals sync automatically.",
   },
   {
     question: "Is our data private and secure?",
     answer:
-      "Yes. Sensitive data is encrypted at rest on our servers, and we never sell your data.",
+      "Sensitive data is encrypted at rest on our servers, and we never sell your data.",
   },
   {
     question: "Can we track different types of goals?",
     answer:
-      "Yes. You can track 4 goal types: amount/number, checklist, habit, and time.",
+      "Yes. You can track 4 goal types: amount or number, checklist, habit, and time.",
   },
   {
     question: "Can we keep some goals private?",
@@ -41,13 +41,25 @@ const faqs: FAQItem[] = [
   },
 ];
 
-function FAQAccordionItem({ item }: { item: FAQItem }) {
-  const [isOpen, setIsOpen] = useState(false);
+interface FAQAccordionItemProps {
+  item: FAQItem;
+  index: number;
+  isOpen: boolean;
+  onToggle: (index: number) => void;
+}
+
+function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemProps) {
+  const buttonId = `faq-button-${index}`;
+  const panelId = `faq-panel-${index}`;
 
   return (
     <div className="border-b border-slate-100 last:border-0">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        id={buttonId}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
+        onClick={() => onToggle(index)}
         className="flex w-full items-center justify-between py-4 text-left transition-colors hover:text-rose-500 sm:py-5"
       >
         <span className="pr-4 text-sm font-semibold text-slate-800 sm:text-base md:text-lg">
@@ -60,6 +72,9 @@ function FAQAccordionItem({ item }: { item: FAQItem }) {
         />
       </button>
       <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
         className={`grid transition-all duration-300 ease-in-out ${
           isOpen ? "grid-rows-[1fr] pb-4 sm:pb-5" : "grid-rows-[0fr]"
         }`}
@@ -75,11 +90,34 @@ function FAQAccordionItem({ item }: { item: FAQItem }) {
 }
 
 export function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number>(0);
+
+  const faqJsonLd = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    }),
+    []
+  );
+
   return (
     <section
       id="faq"
       className="scroll-mt-16 bg-white py-16 sm:py-20 md:py-24 lg:py-32"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center">
@@ -96,8 +134,16 @@ export function FAQ() {
 
         {/* FAQ list */}
         <div className="mt-10 rounded-2xl border border-slate-100 bg-white px-5 shadow-sm sm:mt-14 sm:rounded-3xl sm:px-7 md:px-8 lg:mt-16">
-          {faqs.map((faq) => (
-            <FAQAccordionItem key={faq.question} item={faq} />
+          {faqs.map((faq, index) => (
+            <FAQAccordionItem
+              key={faq.question}
+              item={faq}
+              index={index}
+              isOpen={openIndex === index}
+              onToggle={(nextIndex) =>
+                setOpenIndex((current) => (current === nextIndex ? -1 : nextIndex))
+              }
+            />
           ))}
         </div>
       </div>

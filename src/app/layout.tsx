@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage-grotesque",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const siteUrl = "https://dreamduo.app";
@@ -85,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${playfair.variable} font-sans antialiased`}
+        className={`${manrope.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
       >
         {children}
       </body>

@@ -6,12 +6,17 @@ import { Heart, Mail, CheckCircle } from "lucide-react";
 export function CTA() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    const cleanEmail = email.trim();
+    if (!cleanEmail || isSubmitting) return;
     // TODO: connect to your email service (Mailchimp, Resend, etc.)
+    setIsSubmitting(true);
     setSubmitted(true);
+    setEmail("");
+    setIsSubmitting(false);
   }
 
   return (
@@ -50,26 +55,35 @@ export function CTA() {
             {!submitted ? (
               <form
                 onSubmit={handleSubmit}
+                aria-label="Join the waitlist"
                 className="flex items-center rounded-full border-2 border-white/15 bg-white/10 shadow-lg backdrop-blur-sm"
               >
                 <Mail className="ml-4 h-4 w-4 shrink-0 text-slate-400 sm:ml-5 sm:h-5 sm:w-5" />
                 <input
                   type="email"
                   required
+                  maxLength={254}
+                  autoComplete="email"
+                  inputMode="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
+                  aria-label="Email address"
                   className="flex-1 bg-transparent px-3 py-3 text-sm text-white placeholder-slate-500 focus:outline-none sm:py-3.5 sm:text-base"
                 />
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="m-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2.5 text-xs font-bold text-white shadow-md transition-all hover:shadow-lg sm:px-6 sm:py-3 sm:text-sm"
                 >
-                  Join Waitlist
+                  {isSubmitting ? "Joining..." : "Join Waitlist"}
                 </button>
               </form>
             ) : (
-              <div className="flex items-center justify-center gap-2.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-6 py-3.5">
+              <div
+                aria-live="polite"
+                className="flex items-center justify-center gap-2.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-6 py-3.5"
+              >
                 <CheckCircle className="h-5 w-5 text-emerald-400" />
                 <span className="text-sm font-semibold text-emerald-400 sm:text-base">
                   You&apos;re on the list! We&apos;ll be in touch.

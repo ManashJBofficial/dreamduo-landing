@@ -481,10 +481,10 @@ const showcaseItems: ShowcaseItem[] = [
     badge: "Build Together",
     title: "Shared Goals, Private Dreams, One Beautiful Space",
     description:
-      "Create goals together as a couple — or keep personal goals completely private. Choose from 12 goal types (house, wedding, travel, health) and 7 tracking methods. Start in seconds with pre-built templates.",
+      "Create goals together as a couple, or keep personal goals private. Track with 4 goal types: amount, checklist, habit, and time. Start quickly with pre-built templates.",
     highlights: [
-      "12 goal types with tailored templates",
-      "7 tracking methods: numeric, tasks, habits, time, and more",
+      "4 goal types: amount, checklist, habit, and time",
+      "Pre-built templates to start faster",
       "Private goals your partner never knows exist",
     ],
     visual: <BuildTogetherVisual />,
@@ -531,10 +531,10 @@ const showcaseItems: ShowcaseItem[] = [
     badge: "Stay Organized",
     title: "Every Document, Encrypted & Beautifully Organized",
     description:
-      "Upload files and they auto-organize by goal type — House: Financial, Search, Closing. Wedding: Vendors, Planning, Guests. Everything encrypted with AES-256-GCM. Preview in-app, search by name, export anytime.",
+      "Upload files and they auto-organize by goal type, like House (Financial, Search, Closing) and Wedding (Vendors, Planning, Guests). Files are protected with server-side encryption at rest. Preview in app, search by name, and export anytime.",
     highlights: [
       "Auto-organized folders by goal type",
-      "AES-256-GCM encrypted storage",
+      "Server-side encryption at rest",
       "PDFs, photos, docs with in-app preview",
     ],
     visual: <OrganizedVisual />,
