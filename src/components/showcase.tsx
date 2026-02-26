@@ -25,6 +25,11 @@ import {
   CheckCircle,
   Users,
   Heart,
+  Layers,
+  ArrowLeft,
+  Clock,
+  ListTodo,
+  Repeat,
 } from "lucide-react";
 
 interface ShowcaseItem {
@@ -97,7 +102,158 @@ function BuildTogetherVisual() {
   );
 }
 
-/* ─── Visual 2: Surprise Each Other ─── */
+/* ─── Visual 2: Daily Deck ─── */
+function DailyDeckVisual() {
+  return (
+    <div className="relative mx-auto w-full max-w-sm">
+      {/* Background decorative cards (stack effect) */}
+      <div className="absolute inset-0 scale-[0.92] translate-y-6 rotate-2 rounded-[32px] border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 opacity-60" />
+      <div className="absolute inset-0 scale-[0.96] translate-y-3 rotate-1 rounded-[32px] border border-slate-100 bg-gradient-to-br from-slate-50 to-slate-100 opacity-80" />
+
+      {/* Main card stack */}
+      <div className="relative rounded-2xl border border-slate-100 bg-white p-4 shadow-xl shadow-indigo-100/20 sm:rounded-3xl sm:p-5">
+        {/* Header with mode toggle */}
+        <div className="mb-3 flex items-center justify-between sm:mb-4">
+          <div className="flex items-center gap-2">
+            <Layers className="h-4 w-4 text-indigo-500 sm:h-5 sm:w-5" />
+            <span className="text-xs font-bold text-slate-700 sm:text-sm">Daily Deck</span>
+          </div>
+          <div className="flex rounded-full bg-slate-100 p-1">
+            <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold text-slate-700 shadow-sm sm:text-xs">
+              Today
+            </span>
+            <span className="px-3 py-1 text-[10px] font-medium text-slate-400 sm:text-xs">
+              Anytime
+            </span>
+          </div>
+        </div>
+
+        {/* Active card - Matches actual DailyDeckCard design */}
+        <div className="relative overflow-hidden rounded-[28px] border border-slate-100 bg-white shadow-lg sm:rounded-[32px]">
+          {/* Hero Header Section (36% height with gradient) */}
+          <div className="relative h-36 overflow-hidden bg-gradient-to-br from-sky-400 via-blue-500 to-blue-600 sm:h-40">
+            {/* Animated texture lines */}
+            {[0, 1, 2, 3, 4].map((line) => (
+              <div
+                key={line}
+                className="absolute left-[-40px] right-[-40px] h-px bg-white/[0.08]"
+                style={{ 
+                  top: `${12 + line * 16}px`,
+                  transform: 'rotate(-6deg)'
+                }}
+              />
+            ))}
+
+            {/* Watermark icon */}
+            <div className="absolute -bottom-8 -right-6 opacity-15">
+              <span className="text-[100px]">🏠</span>
+            </div>
+
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/10 via-slate-900/40 to-slate-900/85" />
+
+            {/* Top controls */}
+            <div className="absolute left-3 right-3 top-3 flex items-center justify-between">
+              {/* Type pill */}
+              <div className="flex items-center gap-1 rounded-full border border-white/30 bg-slate-900/50 px-2.5 py-1 backdrop-blur-sm">
+                <Zap className="h-3 w-3 text-white" />
+                <span className="text-[10px] font-bold uppercase tracking-wider text-white">
+                  Money Goal
+                </span>
+              </div>
+
+              {/* Action buttons */}
+              <div className="flex gap-1.5">
+                <div className="flex h-7 w-7 items-center justify-center rounded-xl border border-white/30 bg-slate-900/45">
+                  <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+                <div className="flex h-7 w-7 items-center justify-center rounded-xl border border-white/30 bg-slate-900/45">
+                  <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Title section */}
+            <div className="absolute bottom-3 left-4 right-4">
+              <h4 className="text-xl font-black text-white" style={{ textShadow: '0 2px 8px rgba(2,6,23,0.8)' }}>
+                House Deposit
+              </h4>
+              <p className="mt-0.5 text-xs font-bold text-white/85" style={{ textShadow: '0 1px 4px rgba(2,6,23,0.7)' }}>
+                Target $63,000
+              </p>
+            </div>
+          </div>
+
+          {/* Card Body */}
+          <div className="bg-slate-50 p-3 sm:p-4">
+            {/* Progress section */}
+            <div className="mb-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-bold text-slate-700">$45,200</span>
+                <span className="text-slate-400">of $63,000</span>
+              </div>
+              <div className="mt-1.5 h-2 rounded-full bg-slate-200">
+                <div className="h-full w-[72%] rounded-full bg-sky-400 shadow-sm shadow-sky-200" />
+              </div>
+            </div>
+
+            {/* Input Section - Numeric Goal Style */}
+            <div className="rounded-xl border-2 border-sky-200 bg-gradient-to-br from-sky-50 to-blue-50 p-3">
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100">
+                  <TrendingUp className="h-3.5 w-3.5 text-sky-500" />
+                </div>
+                <span className="text-[10px] font-extrabold uppercase tracking-wide text-sky-600">
+                  Add amount
+                </span>
+              </div>
+
+              <div className="mt-2 flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+                <span className="text-xl font-black text-sky-400">$</span>
+                <span className="ml-2 text-xl font-black text-slate-400">0</span>
+              </div>
+
+              {/* Quick chips */}
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {["+$50", "+$100", "+$200"].map((amount) => (
+                  <span
+                    key={amount}
+                    className="rounded-full border border-sky-200 bg-white/80 px-2 py-1 text-[10px] font-bold text-sky-600 shadow-sm"
+                  >
+                    {amount}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Swipe hints */}
+        <div className="mt-3 flex items-center justify-center gap-4 text-slate-400">
+          <div className="flex items-center gap-1">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100">
+              <ArrowLeft className="h-3 w-3" />
+            </div>
+            <span className="text-[10px] font-medium">Skip</span>
+          </div>
+          <div className="h-px w-6 bg-slate-200" />
+          <div className="flex items-center gap-1">
+            <span className="text-[10px] font-medium">Save</span>
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
+              <CheckCircle className="h-3 w-3 text-emerald-500" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Visual 3: Surprise Each Other ─── */
 function SurpriseVisual() {
   return (
     <div className="relative mx-auto w-full max-w-sm">
@@ -204,10 +360,10 @@ function StayConnectedVisual() {
           <div className="mt-2 text-xs text-slate-600 sm:text-sm">&ldquo;Sushi or pizza tonight?&rdquo;</div>
           <div className="mt-2 flex gap-2">
             <div className="flex-1 rounded-lg bg-indigo-50 py-1.5 text-center text-[10px] font-bold text-indigo-500 sm:text-xs">
-              Sushi 65%
+              Yes
             </div>
-            <div className="flex-1 rounded-lg bg-slate-50 py-1.5 text-center text-[10px] font-bold text-slate-400 sm:text-xs">
-              Pizza 35%
+            <div className="flex-1 rounded-lg bg-rose-50 py-1.5 text-center text-[10px] font-bold text-rose-400 sm:text-xs">
+              No
             </div>
           </div>
         </div>
@@ -490,6 +646,20 @@ const showcaseItems: ShowcaseItem[] = [
     visual: <BuildTogetherVisual />,
   },
   {
+    badge: "Daily Deck",
+    title: "Swipe Through Your Goals, One Card at a Time",
+    description:
+      "A focused, distraction-free way to log daily progress. Your deck shows exactly what needs attention today — swipe right to save, left to skip. Toggle between Today's priorities and Anytime goals.",
+    highlights: [
+      "Swipeable cards for quick progress logging",
+      "Today vs Anytime views keep you focused",
+      "Quick-add chips for common amounts",
+      "Streaks and celebrations built in",
+    ],
+    visual: <DailyDeckVisual />,
+    reverse: true,
+  },
+  {
     badge: "Surprise Each Other",
     title: "Hidden Contributions & Locked Milestone Messages",
     description:
@@ -500,7 +670,6 @@ const showcaseItems: ShowcaseItem[] = [
       "Celebration animation on reveal with photos",
     ],
     visual: <SurpriseVisual />,
-    reverse: true,
   },
   {
     badge: "Stay Connected",
@@ -513,6 +682,7 @@ const showcaseItems: ShowcaseItem[] = [
       "Quick polls and mood tracking",
     ],
     visual: <StayConnectedVisual />,
+    reverse: true,
   },
   {
     badge: "Celebrate Progress",
@@ -525,7 +695,6 @@ const showcaseItems: ShowcaseItem[] = [
       "Real-time activity feed for both partners",
     ],
     visual: <CelebrateVisual />,
-    reverse: true,
   },
   {
     badge: "Stay Organized",
@@ -538,6 +707,7 @@ const showcaseItems: ShowcaseItem[] = [
       "PDFs, photos, docs with in-app preview",
     ],
     visual: <OrganizedVisual />,
+    reverse: true,
   },
   {
     badge: "Know Your Journey",
@@ -550,7 +720,6 @@ const showcaseItems: ShowcaseItem[] = [
       "Pro: mood trends, heatmaps, communication score",
     ],
     visual: <InsightsVisual />,
-    reverse: true,
   },
   {
     badge: "Streaks & Rewards",
@@ -563,6 +732,7 @@ const showcaseItems: ShowcaseItem[] = [
       "Streak shields and multipliers",
     ],
     visual: <StreaksVisual />,
+    reverse: true,
   },
 ];
 
