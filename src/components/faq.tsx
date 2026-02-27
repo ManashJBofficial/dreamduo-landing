@@ -12,7 +12,12 @@ const faqs: FAQItem[] = [
   {
     question: "Is DreamDuo free?",
     answer:
-      "Yes. The free plan includes 3 active goals, 3 collections, 50MB storage per user, 5 hidden messages (lifetime), basic analytics, and basic notification sounds. Pro unlocks unlimited goals and collections, more storage, advanced analytics, and premium sounds.",
+      "Yes. The free plan includes 3 active goals, 3 collections, 50MB storage per user, 5 hidden messages, basic analytics, and basic notification sounds. Pro unlocks unlimited goals and collections, more storage, advanced analytics, and premium sounds.",
+  },
+  {
+    question: "What is the launch offer?",
+    answer:
+      "The first 50 couples receive 2 one-year Pro coupon codes, one for each partner.",
   },
   {
     question: "What if my partner does not have the app yet?",

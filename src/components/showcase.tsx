@@ -27,6 +27,7 @@ import {
   Heart,
   Layers,
   ArrowLeft,
+  Home,
   Clock,
   ListTodo,
   Repeat,
@@ -105,146 +106,134 @@ function BuildTogetherVisual() {
 /* ─── Visual 2: Daily Deck ─── */
 function DailyDeckVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-sm">
-      {/* Background decorative cards (stack effect) */}
-      <div className="absolute inset-0 scale-[0.92] translate-y-6 rotate-2 rounded-[32px] border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200 opacity-60" />
-      <div className="absolute inset-0 scale-[0.96] translate-y-3 rotate-1 rounded-[32px] border border-slate-100 bg-gradient-to-br from-slate-50 to-slate-100 opacity-80" />
+    <div className="relative mx-auto w-full max-w-[320px] sm:max-w-sm">
+      {/* Floating Header above the deck */}
+      <div className="mb-6 flex items-center justify-between px-2 sm:mb-8">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-50 shadow-sm border border-indigo-100/50">
+            <Layers className="h-4 w-4 text-indigo-500" />
+          </div>
+          <span className="text-sm font-bold tracking-tight text-slate-700 sm:text-base">Daily Deck</span>
+        </div>
+        <div className="flex rounded-full bg-slate-100/80 p-1 ring-1 ring-slate-200/50 backdrop-blur-md">
+          <span className="rounded-full bg-white px-3 py-1.5 text-[10px] font-bold tracking-wide text-slate-800 shadow-sm sm:text-xs">
+            Today
+          </span>
+          <span className="px-3 py-1.5 text-[10px] font-medium tracking-wide text-slate-500 transition-colors hover:text-slate-700 sm:text-xs">
+            Anytime
+          </span>
+        </div>
+      </div>
 
-      {/* Main card stack */}
-      <div className="relative rounded-2xl border border-slate-100 bg-white p-4 shadow-xl shadow-indigo-100/20 sm:rounded-3xl sm:p-5">
-        {/* Header with mode toggle */}
-        <div className="mb-3 flex items-center justify-between sm:mb-4">
-          <div className="flex items-center gap-2">
-            <Layers className="h-4 w-4 text-indigo-500 sm:h-5 sm:w-5" />
-            <span className="text-xs font-bold text-slate-700 sm:text-sm">Daily Deck</span>
-          </div>
-          <div className="flex rounded-full bg-slate-100 p-1">
-            <span className="rounded-full bg-white px-3 py-1 text-[10px] font-bold text-slate-700 shadow-sm sm:text-xs">
-              Today
-            </span>
-            <span className="px-3 py-1 text-[10px] font-medium text-slate-400 sm:text-xs">
-              Anytime
-            </span>
-          </div>
+      {/* The Deck Stack */}
+      <div className="relative z-10">
+        {/* Background decorative cards */}
+        <div className="absolute inset-0 scale-[0.90] translate-y-8 rotate-3 rounded-[32px] border border-slate-200/60 bg-white/40 shadow-sm backdrop-blur-sm sm:translate-y-10 sm:rotate-[4deg]" />
+        <div className="absolute inset-0 scale-[0.95] translate-y-4 rotate-1 rounded-[32px] border border-slate-200/80 bg-white/80 shadow-sm backdrop-blur-md sm:translate-y-5 sm:rotate-[2deg]" />
+
+        {/* Swipe hint - Left: curved arrow + label */}
+        <div className="absolute -left-16 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-1 sm:-left-20">
+          <img src="/arrow-left.png" alt="Swipe Left" draggable={false} className="w-10 opacity-70 drop-shadow-sm select-none" />
+          <span className="text-[10px] font-bold text-slate-400 sm:text-[11px]">
+            Skip
+          </span>
         </div>
 
-        {/* Active card - Matches actual DailyDeckCard design */}
-        <div className="relative overflow-hidden rounded-[28px] border border-slate-100 bg-white shadow-lg sm:rounded-[32px]">
-          {/* Hero Header Section (36% height with gradient) */}
-          <div className="relative h-36 overflow-hidden bg-gradient-to-br from-sky-400 via-blue-500 to-blue-600 sm:h-40">
-            {/* Animated texture lines */}
-            {[0, 1, 2, 3, 4].map((line) => (
-              <div
-                key={line}
-                className="absolute left-[-40px] right-[-40px] h-px bg-white/[0.08]"
-                style={{ 
-                  top: `${12 + line * 16}px`,
-                  transform: 'rotate(-6deg)'
-                }}
-              />
-            ))}
+        {/* Swipe hint - Right: curved arrow + label */}
+        <div className="absolute -right-16 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-1 sm:-right-20">
+          {/* Flipped horizontally to point right */}
+          <img src="/arrow-left.png" alt="Swipe Right" draggable={false} className="w-10 scale-x-[-1] opacity-70 drop-shadow-sm select-none" />
+          <span className="text-[10px] font-bold text-slate-400 sm:text-[11px]">
+            Save
+          </span>
+        </div>
 
-            {/* Watermark icon */}
-            <div className="absolute -bottom-8 -right-6 opacity-15">
-              <span className="text-[100px]">🏠</span>
-            </div>
-
-            {/* Gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/10 via-slate-900/40 to-slate-900/85" />
+        {/* Active card - The top of the deck */}
+        <div className="relative z-10 overflow-hidden rounded-[32px] border border-slate-100 bg-white shadow-md">
+          {/* Hero Header Section */}
+          <div className="relative h-44 overflow-hidden bg-gradient-to-br from-blue-500 via-indigo-500 to-indigo-600 sm:h-48">
+            {/* Animated texture waves */}
+            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+            <div className="absolute -left-10 -top-10 h-40 w-[150%] -rotate-12 transform rounded-full bg-white/10 blur-3xl" />
+            <div className="absolute -bottom-20 -right-10 h-48 w-48 transform rounded-full bg-blue-400/30 blur-2xl" />
 
             {/* Top controls */}
-            <div className="absolute left-3 right-3 top-3 flex items-center justify-between">
+            <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
               {/* Type pill */}
-              <div className="flex items-center gap-1 rounded-full border border-white/30 bg-slate-900/50 px-2.5 py-1 backdrop-blur-sm">
-                <Zap className="h-3 w-3 text-white" />
-                <span className="text-[10px] font-bold uppercase tracking-wider text-white">
+              <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 backdrop-blur-md">
+                <Zap className="h-3.5 w-3.5 text-blue-200" />
+                <span className="text-[10px] font-bold uppercase tracking-wider text-white sm:text-[11px]">
                   Money Goal
                 </span>
               </div>
 
               {/* Action buttons */}
-              <div className="flex gap-1.5">
-                <div className="flex h-7 w-7 items-center justify-center rounded-xl border border-white/30 bg-slate-900/45">
-                  <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                </div>
-                <div className="flex h-7 w-7 items-center justify-center rounded-xl border border-white/30 bg-slate-900/45">
-                  <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                  </svg>
+              <div className="flex gap-2">
+                <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md transition-colors hover:bg-white/20">
+                  <Home className="h-4 w-4 text-white" />
                 </div>
               </div>
             </div>
 
             {/* Title section */}
-            <div className="absolute bottom-3 left-4 right-4">
-              <h4 className="text-xl font-black text-white" style={{ textShadow: '0 2px 8px rgba(2,6,23,0.8)' }}>
+            <div className="absolute bottom-5 left-5 right-5">
+              <h4 className="font-serif text-2xl font-black text-white sm:text-3xl" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.15)' }}>
                 House Deposit
               </h4>
-              <p className="mt-0.5 text-xs font-bold text-white/85" style={{ textShadow: '0 1px 4px rgba(2,6,23,0.7)' }}>
+              <p className="mt-1.5 flex items-center gap-2.5 text-xs font-medium text-blue-100 sm:text-sm">
                 Target $63,000
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-300"></span>
+                <span className="font-bold text-white">72%</span>
               </p>
             </div>
           </div>
 
           {/* Card Body */}
-          <div className="bg-slate-50 p-3 sm:p-4">
+          <div className="bg-white p-5 sm:p-6">
             {/* Progress section */}
-            <div className="mb-3">
-              <div className="flex items-center justify-between text-sm">
-                <span className="font-bold text-slate-700">$45,200</span>
-                <span className="text-slate-400">of $63,000</span>
+            <div className="mb-6">
+              <div className="h-2.5 overflow-hidden rounded-full bg-slate-100">
+                <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.4)]" />
               </div>
-              <div className="mt-1.5 h-2 rounded-full bg-slate-200">
-                <div className="h-full w-[72%] rounded-full bg-sky-400 shadow-sm shadow-sky-200" />
+              <div className="mt-2.5 flex items-center justify-between text-[11px] font-bold sm:text-xs">
+                <span className="text-indigo-600 text-sm">$45,200 <span className="font-medium text-slate-400">saved</span></span>
+                <span className="text-slate-400">$17,800 <span className="font-medium text-slate-300">left</span></span>
               </div>
             </div>
 
             {/* Input Section - Numeric Goal Style */}
-            <div className="rounded-xl border-2 border-sky-200 bg-gradient-to-br from-sky-50 to-blue-50 p-3">
-              <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-100">
-                  <TrendingUp className="h-3.5 w-3.5 text-sky-500" />
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-indigo-100 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 p-4 transition-colors hover:border-indigo-200 sm:p-5">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-100 shadow-sm">
+                  <TrendingUp className="h-4 w-4 text-indigo-500" />
                 </div>
-                <span className="text-[10px] font-extrabold uppercase tracking-wide text-sky-600">
-                  Add amount
+                <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600">
+                  Add Amount
                 </span>
               </div>
 
-              <div className="mt-2 flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-                <span className="text-xl font-black text-sky-400">$</span>
-                <span className="ml-2 text-xl font-black text-slate-400">0</span>
+              <div className="mt-3.5 flex items-center rounded-xl border border-slate-200/80 bg-white px-4 py-3 shadow-sm transition-shadow group-hover:shadow-md">
+                <span className="text-2xl font-black text-indigo-400">$</span>
+                <span className="ml-2 text-2xl font-black text-slate-300">0</span>
+                <div className="ml-auto h-6 w-[2px] animate-pulse bg-indigo-400 rounded-full" />
               </div>
 
               {/* Quick chips */}
-              <div className="mt-2 flex flex-wrap gap-1.5">
-                {["+$50", "+$100", "+$200"].map((amount) => (
+              <div className="mt-3.5 flex flex-wrap gap-2">
+                {[
+                  { text: "+$50", color: "text-indigo-600 bg-white border-indigo-100 hover:border-indigo-300" },
+                  { text: "+$100", color: "text-indigo-600 bg-white border-indigo-100 hover:border-indigo-300" },
+                  { text: "+$250", color: "text-indigo-600 bg-white border-indigo-100 hover:border-indigo-300" },
+                  { text: "Custom", color: "text-slate-500 bg-slate-100 border-transparent hover:bg-slate-200 hover:text-slate-700" }
+                ].map((chip) => (
                   <span
-                    key={amount}
-                    className="rounded-full border border-sky-200 bg-white/80 px-2 py-1 text-[10px] font-bold text-sky-600 shadow-sm"
+                    key={chip.text}
+                    className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-[11px] font-bold shadow-sm transition-all hover:scale-105 ${chip.color}`}
                   >
-                    {amount}
+                    {chip.text}
                   </span>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Swipe hints */}
-        <div className="mt-3 flex items-center justify-center gap-4 text-slate-400">
-          <div className="flex items-center gap-1">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100">
-              <ArrowLeft className="h-3 w-3" />
-            </div>
-            <span className="text-[10px] font-medium">Skip</span>
-          </div>
-          <div className="h-px w-6 bg-slate-200" />
-          <div className="flex items-center gap-1">
-            <span className="text-[10px] font-medium">Save</span>
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100">
-              <CheckCircle className="h-3 w-3 text-emerald-500" />
             </div>
           </div>
         </div>
@@ -582,11 +571,10 @@ function StreaksVisual() {
             <div key={day + i} className="flex flex-col items-center gap-1.5 sm:gap-2">
               <span className="text-[10px] font-medium text-slate-400 sm:text-xs">{day}</span>
               <div
-                className={`flex h-9 w-9 items-center justify-center rounded-xl text-sm sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base ${
-                  i <= 5
-                    ? "bg-gradient-to-br from-orange-400 to-amber-500 font-bold text-white shadow-md shadow-orange-200/50"
-                    : "border-2 border-dashed border-orange-200 text-orange-300"
-                }`}
+                className={`flex h-9 w-9 items-center justify-center rounded-xl text-sm sm:h-11 sm:w-11 sm:rounded-2xl sm:text-base ${i <= 5
+                  ? "bg-gradient-to-br from-orange-400 to-amber-500 font-bold text-white shadow-md shadow-orange-200/50"
+                  : "border-2 border-dashed border-orange-200 text-orange-300"
+                  }`}
               >
                 {i <= 5 ? "✓" : ""}
               </div>
@@ -759,15 +747,13 @@ export function Showcase() {
           {showcaseItems.map((item) => (
             <div
               key={item.title}
-              className={`grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16 ${
-                item.reverse ? "lg:[direction:rtl]" : ""
-              }`}
+              className={`grid items-center gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16 ${item.reverse ? "lg:[direction:rtl]" : ""
+                }`}
             >
               {/* Content */}
               <div
-                className={`mx-auto max-w-lg text-center lg:mx-0 lg:text-left ${
-                  item.reverse ? "lg:[direction:ltr]" : ""
-                }`}
+                className={`mx-auto max-w-lg text-center lg:mx-0 lg:text-left ${item.reverse ? "lg:[direction:ltr]" : ""
+                  }`}
               >
                 <span className="inline-block rounded-full bg-rose-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-rose-500 sm:px-4 sm:py-1.5 sm:text-xs">
                   {item.badge}

@@ -45,7 +45,7 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 backdrop-blur-sm sm:mb-8 sm:px-4 sm:py-2">
               <span className="h-2 w-2 rounded-full bg-amber-300 shadow-sm shadow-amber-300/60 sm:h-2.5 sm:w-2.5" />
               <span className="text-xs font-semibold text-white sm:text-sm">
-                First 100 couples get Lifetime Pro free
+                Founding offer: first 50 couples get 2 Pro codes (1 year)
               </span>
             </div>
 
@@ -105,9 +105,9 @@ export function Hero() {
               )}
 
               <p className="mt-3 text-sm font-bold text-white sm:text-base">
-                Limited launch.{" "}
+                First 50 couples only.{" "}
                 <span className="bg-gradient-to-r from-rose-300 to-pink-300 bg-clip-text text-transparent">
-                  Lifetime Pro included for early members.
+                  Get 2 one-year Pro codes, one per partner.
                 </span>
               </p>
               <p className="mt-1 text-xs text-white/70 sm:text-sm">

@@ -36,7 +36,7 @@ export function Testimonials() {
                     The DreamDuo Team
                   </div>
                   <div className="text-[11px] text-slate-400 sm:text-xs">
-                    Founders
+                    Creators
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export function Testimonials() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-widest text-rose-500">
-                      Founder promise
+                      Our promise
                     </div>
                     <div className="mt-1 text-sm font-semibold text-slate-800">
                       Designed for real couples, not dashboards.

@@ -2,7 +2,7 @@ import { Heart, Lock, Sparkles } from "lucide-react";
 
 const highlights = [
   { icon: Heart, text: "Built for Couples" },
-  { icon: Sparkles, text: "Free Forever" },
+  { icon: Sparkles, text: "First 50: 1-Year Pro" },
   { icon: Lock, text: "Encrypted & Secure" },
 ];
 

@@ -41,12 +41,12 @@ export function CTA() {
 
           {/* Subtext */}
           <p className="mt-4 max-w-md text-base leading-relaxed text-slate-400 sm:mt-5 sm:max-w-lg sm:text-lg">
-            Join the waitlist and be the first couple to experience DreamDuo.
+            Join the waitlist for early access to DreamDuo.
           </p>
           <p className="mt-3 text-base font-bold text-white sm:text-lg">
-            Only 100 Founders Passes available.{" "}
+            First 50 couples only.{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-300 bg-clip-text text-transparent">
-              Lifetime Pro. Completely free. Forever.
+              Get 2 one-year Pro codes, one per partner.
             </span>
           </p>
 

@@ -407,7 +407,7 @@ function CategoryModal({
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
           >
-            Launching soon. Free forever &mdash; no credit card required.
+            Launching soon. First 50 couples get 2 one-year Pro codes.
           </p>
         </div>
 
@@ -424,7 +424,7 @@ function CategoryModal({
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
           >
-            No credit card required. Free forever for core features.
+            No credit card required. First 50 couples get 2 one-year Pro codes.
           </p>
         </div>
         */}
