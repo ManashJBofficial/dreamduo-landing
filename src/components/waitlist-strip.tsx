@@ -113,26 +113,26 @@ export function WaitlistStrip() {
               >
                 {`${formattedCount}+`}
               </div>
-              <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
-                Couples on waitlist
+              <div className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-white/65">
+                Couples planning together
               </div>
             </div>
 
             <div className="flex flex-col items-center px-6 py-6 text-center sm:px-8 sm:py-7">
-              <div className="font-display text-3xl font-bold leading-none text-white sm:text-4xl">
+              <div className="font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
                 SYNCED
               </div>
-              <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
+              <div className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-white/65">
                 Money, habits, and plans in one place
               </div>
             </div>
 
             <div className="flex flex-col items-center px-6 py-6 text-center sm:px-8 sm:py-7">
-              <div className="font-display text-3xl font-bold leading-none text-white sm:text-4xl">
+              <div className="font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
                 PRIVATE
               </div>
-              <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
-                Keep personal goals private, share what matters
+              <div className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-white/65">
+                Private goals, shared dreams
               </div>
             </div>
           </div>
