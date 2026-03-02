@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Quote } from "@/components/quote";
 import { Showcase } from "@/components/showcase";
 import { Testimonials } from "@/components/testimonials";
+import { WaitlistStrip } from "@/components/waitlist-strip";
 
 export default function Home() {
   const jsonLd = [
@@ -63,6 +64,7 @@ export default function Home() {
         <Hero />
         <GoalCategories />
         <Quote />
+        <WaitlistStrip />
         <Showcase />
         <Testimonials />
         <FAQ />

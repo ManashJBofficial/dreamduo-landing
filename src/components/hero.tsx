@@ -3,22 +3,41 @@
 import { useState } from "react";
 import Image from "next/image";
 import { CheckCircle, Mail } from "lucide-react";
+import { joinWaitlist, type WaitlistStatus } from "@/lib/waitlist-api";
 
 export function Hero() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<WaitlistStatus | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const cleanEmail = email.trim();
+    const cleanEmail = email.trim().toLowerCase();
     if (!cleanEmail || isSubmitting) return;
 
-    // TODO: connect to your email service (Mailchimp, Resend, etc.)
     setIsSubmitting(true);
-    setSubmitted(true);
-    setEmail("");
-    setIsSubmitting(false);
+    setError(null);
+
+    try {
+      const nextStatus = await joinWaitlist({
+        email: cleanEmail,
+        source: "landing"
+      });
+
+      setStatus(nextStatus);
+      setEmail("");
+
+      if (nextStatus === "subscribed" || nextStatus === "pending") {
+        window.dispatchEvent(
+          new CustomEvent("waitlist:joined", { detail: { status: nextStatus } })
+        );
+      }
+    } catch {
+      setError("Unable to join right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -45,7 +64,7 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 backdrop-blur-sm sm:mb-8 sm:px-4 sm:py-2">
               <span className="h-2 w-2 rounded-full bg-amber-300 shadow-sm shadow-amber-300/60 sm:h-2.5 sm:w-2.5" />
               <span className="text-xs font-semibold text-white sm:text-sm">
-                Founding offer: first 50 couples get 2 Pro codes (1 year)
+                Android beta coming soon
               </span>
             </div>
 
@@ -59,13 +78,13 @@ export function Hero() {
 
             {/* Subheading */}
             <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-white/85 sm:mt-6 sm:text-lg md:text-xl lg:mx-0">
-              The goal tracker for couples who want aligned money, habits, and
-              milestones in one place.
+              A shared space for couples to plan goals, build habits, and stay
+              emotionally in sync.
             </p>
 
             {/* Waitlist input */}
             <div className="mx-auto mt-6 max-w-md sm:mt-8 lg:mx-0">
-              {!submitted ? (
+              {!status ? (
                 <form
                   onSubmit={handleSubmit}
                   className="flex items-center rounded-full border-2 border-white/15 bg-black/30 shadow-lg backdrop-blur-sm"
@@ -80,7 +99,7 @@ export function Hero() {
                     inputMode="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address"
+                    placeholder="Enter your email for beta access"
                     aria-label="Email address"
                     className="flex-1 bg-transparent px-3 py-3 text-sm text-white placeholder-white/50 focus:outline-none sm:py-3.5 sm:text-base"
                   />
@@ -89,7 +108,7 @@ export function Hero() {
                     disabled={isSubmitting}
                     className="m-1.5 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 px-5 py-2.5 text-xs font-bold text-white shadow-md transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:px-6 sm:py-3 sm:text-sm"
                   >
-                    {isSubmitting ? "Joining..." : "Join Waitlist"}
+                    {isSubmitting ? "Saving your spot..." : "Get beta invite"}
                   </button>
                 </form>
               ) : (
@@ -99,19 +118,25 @@ export function Hero() {
                 >
                   <CheckCircle className="h-5 w-5 text-emerald-400" />
                   <span className="text-sm font-semibold text-emerald-300 sm:text-base">
-                    You&apos;re on the list. We&apos;ll be in touch.
+                    {statusMessage(status)}
                   </span>
                 </div>
               )}
 
+              {error ? (
+                <p className="mt-2 text-xs font-semibold text-rose-300 sm:text-sm">
+                  {error}
+                </p>
+              ) : null}
+
               <p className="mt-3 text-sm font-bold text-white sm:text-base">
-                First 50 couples only.{" "}
+                Be first to try DreamDuo —{" "}
                 <span className="bg-gradient-to-r from-rose-300 to-pink-300 bg-clip-text text-transparent">
-                  Get 2 one-year Pro codes, one per partner.
+                  build goals and memories together.
                 </span>
               </p>
               <p className="mt-1 text-xs text-white/70 sm:text-sm">
-                No spam. Unsubscribe anytime.
+                We&apos;ll email you when beta opens. No spam.
               </p>
             </div>
           </div>
@@ -157,4 +182,16 @@ export function Hero() {
       </div>
     </section>
   );
+}
+
+function statusMessage(status: WaitlistStatus | null): string {
+  if (status === "already") {
+    return "You are already on the list. We will be in touch.";
+  }
+
+  if (status === "pending") {
+    return "Check your email to confirm your spot.";
+  }
+
+  return "You are on the list. We will be in touch.";
 }

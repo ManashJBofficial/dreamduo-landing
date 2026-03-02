@@ -2,21 +2,41 @@
 
 import { useState } from "react";
 import { Heart, Mail, CheckCircle } from "lucide-react";
+import { joinWaitlist, type WaitlistStatus } from "@/lib/waitlist-api";
 
 export function CTA() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<WaitlistStatus | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const cleanEmail = email.trim();
+    const cleanEmail = email.trim().toLowerCase();
     if (!cleanEmail || isSubmitting) return;
-    // TODO: connect to your email service (Mailchimp, Resend, etc.)
+
     setIsSubmitting(true);
-    setSubmitted(true);
-    setEmail("");
-    setIsSubmitting(false);
+    setError(null);
+
+    try {
+      const nextStatus = await joinWaitlist({
+        email: cleanEmail,
+        source: "landing"
+      });
+
+      setStatus(nextStatus);
+      setEmail("");
+
+      if (nextStatus === "subscribed" || nextStatus === "pending") {
+        window.dispatchEvent(
+          new CustomEvent("waitlist:joined", { detail: { status: nextStatus } })
+        );
+      }
+    } catch {
+      setError("Unable to join right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -43,16 +63,16 @@ export function CTA() {
           <p className="mt-4 max-w-md text-base leading-relaxed text-slate-400 sm:mt-5 sm:max-w-lg sm:text-lg">
             Join the waitlist for early access to DreamDuo.
           </p>
-          <p className="mt-3 text-base font-bold text-white sm:text-lg">
+          {/* <p className="mt-3 text-base font-bold text-white sm:text-lg">
             First 50 couples only.{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-300 bg-clip-text text-transparent">
               Get 2 one-year Pro codes, one per partner.
             </span>
-          </p>
+          </p> */}
 
           {/* Waitlist input */}
           <div className="mx-auto mt-8 w-full max-w-md sm:mt-10">
-            {!submitted ? (
+            {!status ? (
               <form
                 onSubmit={handleSubmit}
                 aria-label="Join the waitlist"
@@ -74,7 +94,7 @@ export function CTA() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="m-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2.5 text-xs font-bold text-white shadow-md transition-all hover:shadow-lg sm:px-6 sm:py-3 sm:text-sm"
+                  className="m-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2.5 text-xs font-bold text-white shadow-md transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:px-6 sm:py-3 sm:text-sm"
                 >
                   {isSubmitting ? "Joining..." : "Join Waitlist"}
                 </button>
@@ -86,13 +106,19 @@ export function CTA() {
               >
                 <CheckCircle className="h-5 w-5 text-emerald-400" />
                 <span className="text-sm font-semibold text-emerald-400 sm:text-base">
-                  You&apos;re on the list! We&apos;ll be in touch.
+                  {statusMessage(status)}
                 </span>
               </div>
             )}
 
+            {error ? (
+              <p className="mt-2 text-xs font-semibold text-rose-300 sm:text-sm">
+                {error}
+              </p>
+            ) : null}
+
             <p className="mt-3 text-xs text-slate-500 sm:text-sm">
-              No spam, ever. Unsubscribe anytime.
+              We&apos;ll email you when beta opens. No spam.
             </p>
           </div>
         </div>
@@ -132,4 +158,16 @@ export function CTA() {
       */}
     </section>
   );
+}
+
+function statusMessage(status: WaitlistStatus | null): string {
+  if (status === "already") {
+    return "You are already on the waitlist. We will be in touch.";
+  }
+
+  if (status === "pending") {
+    return "Check your email to confirm your spot.";
+  }
+
+  return "You are on the list. We will be in touch.";
 }

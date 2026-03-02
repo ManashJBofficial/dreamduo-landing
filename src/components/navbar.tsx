@@ -51,10 +51,7 @@ export function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <nav
-      aria-label="Primary"
-      className="sticky top-0 z-50 flex justify-center"
-    >
+    <nav aria-label="Primary" className="sticky top-0 z-50 flex justify-center">
       <div ref={navRef} className="relative w-full md:w-auto">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center rounded-2xl bg-white px-4 pb-3 pt-4 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] sm:px-10 sm:pb-3.5 sm:pt-6 md:rounded-b-3xl md:rounded-t-none lg:px-12 lg:pt-7">
           {/* Left - Desktop nav links */}
@@ -115,7 +112,7 @@ export function Navbar() {
               }}
               className="rounded-full border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-800 transition-all hover:border-slate-300 hover:bg-slate-50 sm:px-5 sm:py-2 sm:text-sm"
             >
-              Join Waitlist
+              Get beta invite
             </a>
           </div>
         </div>

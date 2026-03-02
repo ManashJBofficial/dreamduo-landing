@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) landing app for DreamDuo.
+
+## Waitlist API integration
+
+This frontend expects the waitlist wrapper API (`/v1/waitlist`, `/v1/waitlist/count`).
+
+1. Copy env template:
+
+```bash
+cp .env.example .env.local
+```
+
+2. Use one of:
+
+- `NEXT_PUBLIC_WAITLIST_API_BASE_URL=/api` when your reverse proxy forwards `/api/*` to the waitlist backend.
+- `NEXT_PUBLIC_WAITLIST_API_BASE_URL=http://127.0.0.1:9012` for local frontend dev against local backend.
 
 ## Getting Started
 
@@ -14,7 +29,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4100](http://localhost:4100) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

@@ -261,12 +261,12 @@ function SurpriseVisual() {
           </div>
           {/* Milestone markers */}
           <div className="absolute -top-1 left-[25%] -translate-x-1/2">
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400 text-[8px] font-bold text-white shadow-sm">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-500 text-[8px] font-bold text-white shadow-sm">
               <CheckCircle className="h-3 w-3" />
             </div>
           </div>
           <div className="absolute -top-1 left-[50%] -translate-x-1/2">
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400 text-[8px] font-bold text-white shadow-sm">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-violet-500 text-[8px] font-bold text-white shadow-sm">
               <CheckCircle className="h-3 w-3" />
             </div>
           </div>
@@ -278,10 +278,10 @@ function SurpriseVisual() {
         </div>
 
         {/* Unlocked milestone message */}
-        <div className="mt-5 rounded-xl border border-emerald-100 bg-emerald-50 p-3.5 sm:mt-6 sm:rounded-2xl sm:p-4">
+        <div className="mt-5 rounded-xl border border-violet-200 bg-violet-50/80 p-3.5 sm:mt-6 sm:rounded-2xl sm:p-4">
           <div className="flex items-center gap-2">
-            <Trophy className="h-4 w-4 text-emerald-500" />
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-500 sm:text-xs">
+            <Trophy className="h-4 w-4 text-violet-500" />
+            <span className="text-[10px] font-bold uppercase tracking-wider text-violet-500 sm:text-xs">
               50% Milestone Unlocked
             </span>
           </div>
