@@ -407,7 +407,7 @@ function CategoryModal({
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
           >
-            Launching soon. First 50 couples get 2 one-year Pro codes.
+            Built for real couples with synced goals, daily check-ins, and private shared planning.
           </p>
         </div>
 
@@ -424,7 +424,7 @@ function CategoryModal({
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
           >
-            No credit card required. First 50 couples get 2 one-year Pro codes.
+            Built for real couples with synced goals, daily check-ins, and private shared planning.
           </p>
         </div>
         */}

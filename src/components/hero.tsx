@@ -71,7 +71,7 @@ export function Hero() {
             {/* Heading */}
             <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-[-0.02em] text-white sm:text-5xl md:text-6xl lg:text-7xl">
               <span className="block">Build Your</span>
-              <span className="block bg-gradient-to-r from-rose-200 via-fuchsia-200 to-amber-200 bg-clip-text text-transparent sm:whitespace-nowrap">
+              <span className="block bg-gradient-to-r from-rose-200 via-fuchsia-200 to-amber-200 bg-clip-text text-transparent">
                 Dreams Together
               </span>
             </h1>

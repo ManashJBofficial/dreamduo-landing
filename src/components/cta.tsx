@@ -64,9 +64,9 @@ export function CTA() {
             Join the waitlist for early access to DreamDuo.
           </p>
           {/* <p className="mt-3 text-base font-bold text-white sm:text-lg">
-            First 50 couples only.{" "}
+            Built for real couples with{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-300 bg-clip-text text-transparent">
-              Get 2 one-year Pro codes, one per partner.
+              synced goals, daily check-ins, and private shared planning.
             </span>
           </p> */}
 
@@ -171,3 +171,4 @@ function statusMessage(status: WaitlistStatus | null): string {
 
   return "You are on the list. We will be in touch.";
 }
+

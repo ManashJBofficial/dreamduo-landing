@@ -132,17 +132,17 @@ function DailyDeckVisual() {
         <div className="absolute inset-0 scale-[0.95] translate-y-4 rotate-1 rounded-[32px] border border-slate-200/80 bg-white/80 shadow-sm backdrop-blur-md sm:translate-y-5 sm:rotate-[2deg]" />
 
         {/* Swipe hint - Left: curved arrow + label */}
-        <div className="absolute -left-16 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-1 sm:-left-20">
-          <img src="/arrow-left.png" alt="Swipe Left" draggable={false} className="w-10 opacity-70 drop-shadow-sm select-none" />
+        <div className="absolute -left-8 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-1 sm:-left-12 md:-left-16 lg:-left-20">
+          <img src="/arrow-left.png" alt="Swipe Left" draggable={false} className="w-8 opacity-70 drop-shadow-sm select-none sm:w-10" />
           <span className="text-[10px] font-bold text-slate-400 sm:text-[11px]">
             Skip
           </span>
         </div>
 
         {/* Swipe hint - Right: curved arrow + label */}
-        <div className="absolute -right-16 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-1 sm:-right-20">
+        <div className="absolute -right-8 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-1 sm:-right-12 md:-right-16 lg:-right-20">
           {/* Flipped horizontally to point right */}
-          <img src="/arrow-left.png" alt="Swipe Right" draggable={false} className="w-10 scale-x-[-1] opacity-70 drop-shadow-sm select-none" />
+          <img src="/arrow-left.png" alt="Swipe Right" draggable={false} className="w-8 scale-x-[-1] opacity-70 drop-shadow-sm select-none sm:w-10" />
           <span className="text-[10px] font-bold text-slate-400 sm:text-[11px]">
             Save
           </span>

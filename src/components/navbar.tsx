@@ -110,9 +110,11 @@ export function Navbar() {
                 smoothScroll(e, "#download");
                 setMobileOpen(false);
               }}
-              className="rounded-full border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-800 transition-all hover:border-slate-300 hover:bg-slate-50 sm:px-5 sm:py-2 sm:text-sm"
+              className="relative z-0 rounded-full p-[2px] before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-r before:from-rose-400 before:via-pink-400 before:via-amber-300 before:to-rose-400 before:bg-[length:200%_200%] before:animate-[gradient-rotate_3s_linear_infinite] after:absolute after:inset-[2px] after:-z-10 after:rounded-full after:bg-white"
             >
-              Get beta invite
+              <span className="block rounded-full px-3 py-1.5 text-[11px] font-semibold text-slate-800 transition-colors hover:text-rose-600 sm:px-5 sm:py-2 sm:text-sm">
+                Get beta invite
+              </span>
             </a>
           </div>
         </div>

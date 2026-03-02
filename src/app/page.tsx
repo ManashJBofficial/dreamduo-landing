@@ -53,9 +53,12 @@ export default function Home() {
       {/* Fixed rounded frame overlay */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
+        className="pointer-events-none fixed inset-0 z-40"
       >
-        <div className="absolute inset-2 rounded-2xl shadow-[0_0_0_9999px_white] sm:inset-3 sm:rounded-3xl lg:inset-4" />
+        <div 
+          className="absolute inset-2 rounded-2xl sm:inset-3 sm:rounded-3xl lg:inset-4" 
+          style={{ boxShadow: '0 0 0 9999px white' }}
+        />
       </div>
 
       {/* Scrollable page content - padding matches frame inset */}

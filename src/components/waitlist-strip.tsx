@@ -109,29 +109,29 @@ export function WaitlistStrip() {
             <div className="flex flex-col items-center px-6 py-6 text-center sm:px-8 sm:py-7">
               <div
                 aria-live="polite"
-                className="font-display text-4xl font-extrabold leading-none tabular-nums text-transparent bg-gradient-to-r from-rose-200 via-pink-200 to-amber-200 bg-clip-text sm:text-5xl"
+                className="font-display text-3xl font-bold leading-none tabular-nums text-transparent bg-gradient-to-r from-rose-200 via-pink-200 to-amber-200 bg-clip-text sm:text-4xl"
               >
                 {`${formattedCount}+`}
               </div>
-              <div className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-white/65">
+              <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
                 Couples planning together
               </div>
             </div>
 
             <div className="flex flex-col items-center px-6 py-6 text-center sm:px-8 sm:py-7">
-              <div className="font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
+              <div className="font-display text-3xl font-bold leading-none text-white sm:text-4xl">
                 SYNCED
               </div>
-              <div className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-white/65">
+              <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
                 Money, habits, and plans in one place
               </div>
             </div>
 
             <div className="flex flex-col items-center px-6 py-6 text-center sm:px-8 sm:py-7">
-              <div className="font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
+              <div className="font-display text-3xl font-bold leading-none text-white sm:text-4xl">
                 PRIVATE
               </div>
-              <div className="mt-3 text-[11px] font-semibold uppercase tracking-widest text-white/65">
+              <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
                 Private goals, shared dreams
               </div>
             </div>
