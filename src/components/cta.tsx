@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Mail, CheckCircle } from "lucide-react";
+import { Mail, CheckCircle } from "lucide-react";
 import { joinWaitlist, type WaitlistStatus } from "@/lib/waitlist-api";
+import { WAITLIST_ENABLED } from "@/lib/feature-flags";
+import { PlayStoreCTA } from "@/components/playstore-cta";
+import { BrandMark } from "@/components/brand-mark";
 
 export function CTA() {
   const [email, setEmail] = useState("");
@@ -50,18 +53,22 @@ export function CTA() {
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:py-24 lg:px-8 lg:py-32">
         <div className="flex flex-col items-center text-center">
           {/* Icon */}
-          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-400 to-orange-400 shadow-lg shadow-pink-500/25 animate-pulse-glow sm:mb-8 sm:h-16 sm:w-16">
-            <Heart className="h-7 w-7 fill-white text-white sm:h-8 sm:w-8" />
-          </div>
+          <BrandMark
+            glow
+            className="mb-6 h-14 w-14 sm:mb-8 sm:h-16 sm:w-16"
+            iconClassName="h-7 w-7 sm:h-8 sm:w-8"
+          />
 
           {/* Heading */}
           <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl">
-            Start the Journey
+            {WAITLIST_ENABLED ? "Start the Journey" : "Plan your future together."}
           </h2>
 
           {/* Subtext */}
           <p className="mt-4 max-w-md text-base leading-relaxed text-slate-400 sm:mt-5 sm:max-w-lg sm:text-lg">
-            Join the waitlist for early access to DreamDuo.
+            {WAITLIST_ENABLED
+              ? "Join the waitlist for early access to DreamDuo."
+              : "Get a first look at DreamDuo while we prepare the Google Play release."}
           </p>
           {/* <p className="mt-3 text-base font-bold text-white sm:text-lg">
             Built for real couples with{" "}
@@ -72,54 +79,67 @@ export function CTA() {
 
           {/* Waitlist input */}
           <div className="mx-auto mt-8 w-full max-w-md sm:mt-10">
-            {!status ? (
-              <form
-                onSubmit={handleSubmit}
-                aria-label="Join the waitlist"
-                className="flex items-center rounded-full border-2 border-white/15 bg-white/10 shadow-lg backdrop-blur-sm"
-              >
-                <Mail className="ml-4 h-4 w-4 shrink-0 text-slate-400 sm:ml-5 sm:h-5 sm:w-5" />
-                <input
-                  type="email"
-                  required
-                  maxLength={254}
-                  autoComplete="email"
-                  inputMode="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  aria-label="Email address"
-                  className="flex-1 bg-transparent px-3 py-3 text-sm text-white placeholder-slate-500 focus:outline-none sm:py-3.5 sm:text-base"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="m-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2.5 text-xs font-bold text-white shadow-md transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:px-6 sm:py-3 sm:text-sm"
-                >
-                  {isSubmitting ? "Joining..." : "Join Waitlist"}
-                </button>
-              </form>
+            {WAITLIST_ENABLED ? (
+              <>
+                {!status ? (
+                  <form
+                    onSubmit={handleSubmit}
+                    aria-label="Join the waitlist"
+                    className="flex items-center rounded-full border-2 border-white/15 bg-white/10 shadow-lg backdrop-blur-sm"
+                  >
+                    <Mail className="ml-4 h-4 w-4 shrink-0 text-slate-400 sm:ml-5 sm:h-5 sm:w-5" />
+                    <input
+                      type="email"
+                      required
+                      maxLength={254}
+                      autoComplete="email"
+                      inputMode="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
+                      aria-label="Email address"
+                      className="flex-1 bg-transparent px-3 py-3 text-sm text-white placeholder-slate-500 focus:outline-none sm:py-3.5 sm:text-base"
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="m-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2.5 text-xs font-bold text-white shadow-md transition-all hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-70 sm:px-6 sm:py-3 sm:text-sm"
+                    >
+                      {isSubmitting ? "Joining..." : "Join Waitlist"}
+                    </button>
+                  </form>
+                ) : (
+                  <div
+                    aria-live="polite"
+                    className="flex items-center justify-center gap-2.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-6 py-3.5"
+                  >
+                    <CheckCircle className="h-5 w-5 text-emerald-400" />
+                    <span className="text-sm font-semibold text-emerald-400 sm:text-base">
+                      {statusMessage(status)}
+                    </span>
+                  </div>
+                )}
+
+                {error ? (
+                  <p className="mt-2 text-xs font-semibold text-rose-300 sm:text-sm">
+                    {error}
+                  </p>
+                ) : null}
+
+                <p className="mt-3 text-xs text-slate-500 sm:text-sm">
+                  We&apos;ll email you when beta opens. No spam.
+                </p>
+              </>
             ) : (
-              <div
-                aria-live="polite"
-                className="flex items-center justify-center gap-2.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-6 py-3.5"
-              >
-                <CheckCircle className="h-5 w-5 text-emerald-400" />
-                <span className="text-sm font-semibold text-emerald-400 sm:text-base">
-                  {statusMessage(status)}
-                </span>
+              <div className="text-center text-white">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                  Android beta
+                </p>
+                <div className="mt-5 flex justify-center">
+                  <PlayStoreCTA />
+                </div>
               </div>
             )}
-
-            {error ? (
-              <p className="mt-2 text-xs font-semibold text-rose-300 sm:text-sm">
-                {error}
-              </p>
-            ) : null}
-
-            <p className="mt-3 text-xs text-slate-500 sm:text-sm">
-              We&apos;ll email you when beta opens. No spam.
-            </p>
           </div>
         </div>
       </div>

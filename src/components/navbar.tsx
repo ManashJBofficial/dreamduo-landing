@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Heart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { WAITLIST_ENABLED } from "@/lib/feature-flags";
+import { BrandMark } from "@/components/brand-mark";
 
 const navLinks = [
   { label: "Goals", href: "#goals" },
@@ -17,6 +19,11 @@ function smoothScroll(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   const el = document.getElementById(id);
   if (el) {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  if (typeof window !== "undefined") {
+    window.location.assign(`/${href}`);
   }
 }
 
@@ -94,9 +101,7 @@ export function Navbar() {
             onClick={() => setMobileOpen(false)}
             className="flex items-center gap-2 px-3 sm:px-10"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-pink-400 to-rose-500">
-              <Heart className="h-4 w-4 fill-white text-white" />
-            </div>
+            <BrandMark className="h-8 w-8" iconClassName="h-4 w-4" />
             <span className="text-lg font-bold tracking-tight text-slate-800">
               DreamDuo
             </span>
@@ -104,18 +109,24 @@ export function Navbar() {
 
           {/* Right - CTA */}
           <div className="flex justify-end">
-            <a
-              href="#download"
-              onClick={(e) => {
-                smoothScroll(e, "#download");
-                setMobileOpen(false);
-              }}
-              className="relative z-0 rounded-full p-[2px] before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-r before:from-rose-400 before:via-pink-400 before:via-amber-300 before:to-rose-400 before:bg-[length:200%_200%] before:animate-[gradient-rotate_3s_linear_infinite] after:absolute after:inset-[2px] after:-z-10 after:rounded-full after:bg-white"
-            >
-              <span className="block rounded-full px-3 py-1.5 text-[11px] font-semibold text-slate-800 transition-colors hover:text-rose-600 sm:px-5 sm:py-2 sm:text-sm">
-                Get beta invite
+            {WAITLIST_ENABLED ? (
+              <a
+                href="#download"
+                onClick={(e) => {
+                  smoothScroll(e, "#download");
+                  setMobileOpen(false);
+                }}
+                className="relative z-0 rounded-full p-[2px] before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-r before:from-rose-400 before:via-pink-400 before:via-amber-300 before:to-rose-400 before:bg-[length:200%_200%] before:animate-[gradient-rotate_3s_linear_infinite] after:absolute after:inset-[2px] after:-z-10 after:rounded-full after:bg-white"
+              >
+                <span className="block rounded-full px-3 py-1.5 text-[11px] font-semibold text-slate-800 transition-colors hover:text-rose-600 sm:px-5 sm:py-2 sm:text-sm">
+                  Get beta invite
+                </span>
+              </a>
+            ) : (
+              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold text-slate-500 sm:px-4 sm:text-sm">
+                Android beta coming soon
               </span>
-            </a>
+            )}
           </div>
         </div>
 

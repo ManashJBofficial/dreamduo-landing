@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart } from "lucide-react";
+import { BrandMark } from "@/components/brand-mark";
 
 export function Footer() {
   return (
@@ -8,16 +8,14 @@ export function Footer() {
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-pink-400 to-rose-500">
-              <Heart className="h-3.5 w-3.5 fill-white text-white" />
-            </div>
+            <BrandMark className="h-7 w-7" iconClassName="h-3.5 w-3.5" />
             <span className="text-sm font-bold text-slate-400">DreamDuo</span>
           </div>
 
           {/* Links */}
           <div className="flex items-center gap-6 sm:gap-8">
             <Link
-              href="/privacy"
+              href="/privacy-policy"
               className="text-xs text-slate-500 transition-colors hover:text-slate-300 sm:text-sm"
             >
               Privacy

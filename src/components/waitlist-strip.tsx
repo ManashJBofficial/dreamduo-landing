@@ -2,12 +2,17 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { fetchWaitlistCount, type WaitlistStatus } from "@/lib/waitlist-api";
+import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 
 const countFormatter = new Intl.NumberFormat("en-US");
 const DEFAULT_PUBLIC_COUNT = 30;
 const LAST_COUNT_STORAGE_KEY = "waitlist_public_count";
 
 export function WaitlistStrip() {
+  if (!WAITLIST_ENABLED) {
+    return null;
+  }
+
   const initialCount = getInitialCount();
   const [count, setCount] = useState<number>(initialCount);
   const [displayCount, setDisplayCount] = useState(initialCount);

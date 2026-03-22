@@ -8,6 +8,7 @@ import { Quote } from "@/components/quote";
 import { Showcase } from "@/components/showcase";
 import { Testimonials } from "@/components/testimonials";
 import { WaitlistStrip } from "@/components/waitlist-strip";
+import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 
 export default function Home() {
   const jsonLd = [
@@ -67,7 +68,7 @@ export default function Home() {
         <Hero />
         <GoalCategories />
         <Quote />
-        <WaitlistStrip />
+        {WAITLIST_ENABLED ? <WaitlistStrip /> : null}
         <Showcase />
         <Testimonials />
         <FAQ />

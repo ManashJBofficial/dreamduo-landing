@@ -1,5 +1,7 @@
-import { ArrowRight, Heart } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { WAITLIST_ENABLED } from "@/lib/feature-flags";
+import { BrandMark } from "@/components/brand-mark";
 
 export function Testimonials() {
   return (
@@ -27,9 +29,7 @@ export function Testimonials() {
 
             <div className="mt-6 rounded-3xl border border-rose-100 bg-white/80 p-6 shadow-[0_18px_50px_-28px_rgba(244,63,94,0.45)] backdrop-blur sm:p-8">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-400 to-orange-400 shadow-lg shadow-pink-500/25">
-                  <Heart className="h-7 w-7 fill-white text-white" />
-                </div>
+                <BrandMark className="h-14 w-14" iconClassName="h-7 w-7" />
                 <div>
                   <div className="text-sm font-semibold text-slate-800 sm:text-base">
                     The DreamDuo Team
@@ -63,13 +63,19 @@ export function Testimonials() {
                 <span className="text-xs font-semibold text-rose-500 sm:text-sm">
                   Help shape DreamDuo before launch.
                 </span>
-                <Link
-                  href="#download"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 transition-colors hover:text-rose-500 sm:text-sm"
-                >
-                  Get beta invite
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
+                {WAITLIST_ENABLED ? (
+                  <Link
+                    href="#download"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 transition-colors hover:text-rose-500 sm:text-sm"
+                  >
+                    Get beta invite
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                ) : (
+                  <span className="inline-flex items-center rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-600 sm:text-sm">
+                    Android beta coming soon
+                  </span>
+                )}
               </div>
             </div>
           </div>
