@@ -38,9 +38,6 @@ export const metadata: Metadata = {
   authors: [{ name: "DreamDuo" }],
   creator: "DreamDuo",
   publisher: "DreamDuo",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "DreamDuo - Build Your Dreams Together",
     description:

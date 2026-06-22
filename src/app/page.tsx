@@ -35,6 +35,21 @@ export default function Home() {
         "DreamDuo helps couples track shared goals, savings, habits, and milestones in one place.",
       url: "https://dreamduo.app",
     },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "DreamDuo",
+      url: "https://dreamduo.app",
+      logo: "https://dreamduo.app/opengraph-image",
+      description:
+        "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
+      sameAs: [],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "support@dreamduo.app",
+        contactType: "customer support",
+      },
+    },
   ];
 
   return (

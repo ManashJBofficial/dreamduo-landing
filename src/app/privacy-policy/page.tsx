@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/privacy-policy",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  keywords: [
+    "DreamDuo privacy policy",
+    "couples app privacy",
+    "data protection",
+    "GDPR",
+    "relationship app privacy",
+  ],
   openGraph: {
     title: "Privacy Policy",
     description:
@@ -17,21 +28,43 @@ export const metadata: Metadata = {
     siteName: "DreamDuo",
     locale: "en_US",
     type: "article",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "DreamDuo Privacy Policy",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Privacy Policy",
     description:
       "Learn how DreamDuo collects, uses, and protects your information.",
+    images: ["/opengraph-image"],
   },
 };
 
 const lastUpdated = "March 22, 2026";
 const contactEmail = "support@dreamduo.app";
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://dreamduo.app" },
+    { "@type": "ListItem", position: 2, name: "Privacy Policy", item: "https://dreamduo.app/privacy-policy" },
+  ],
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <a
         href="#main-content"
         className="sr-only z-[70] rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"

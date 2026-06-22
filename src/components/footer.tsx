@@ -27,6 +27,18 @@ export function Footer() {
               Terms
             </Link>
             <Link
+              href="/account-deletion"
+              className="text-xs text-slate-500 transition-colors hover:text-slate-300 sm:text-sm"
+            >
+              Delete Account
+            </Link>
+            <Link
+              href="/data-deletion"
+              className="text-xs text-slate-500 transition-colors hover:text-slate-300 sm:text-sm"
+            >
+              Delete Data
+            </Link>
+            <Link
               href="mailto:hello@dreamduo.app"
               className="text-xs text-slate-500 transition-colors hover:text-slate-300 sm:text-sm"
             >

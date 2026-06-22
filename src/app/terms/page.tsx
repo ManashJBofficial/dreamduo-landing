@@ -8,6 +8,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/terms",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  keywords: [
+    "DreamDuo terms",
+    "couples app terms of service",
+    "terms and conditions",
+    "relationship app terms",
+  ],
   openGraph: {
     title: "Terms and Conditions",
     description: "Review the Terms and Conditions for using DreamDuo.",
@@ -15,20 +25,42 @@ export const metadata: Metadata = {
     siteName: "DreamDuo",
     locale: "en_US",
     type: "article",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "DreamDuo Terms and Conditions",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Terms and Conditions",
     description: "Review the Terms and Conditions for using DreamDuo.",
+    images: ["/opengraph-image"],
   },
 };
 
 const effectiveDate = "March 22, 2026";
 const lastUpdated = "March 22, 2026";
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://dreamduo.app" },
+    { "@type": "ListItem", position: 2, name: "Terms and Conditions", item: "https://dreamduo.app/terms" },
+  ],
+};
+
 export default function TermsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <a
         href="#main-content"
         className="sr-only z-[70] rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
