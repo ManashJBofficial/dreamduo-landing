@@ -116,18 +116,11 @@ export function Testimonials() {
               </div>
 
               <div className="rounded-3xl border border-rose-100 bg-gradient-to-br from-white via-rose-50/70 to-white p-5 sm:p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-widest text-rose-500">
-                      Our promise
-                    </div>
-                    <div className="mt-1 text-sm font-semibold text-slate-800">
-                      Designed for real couples, not dashboards.
-                    </div>
-                  </div>
-                  <div className="rounded-full bg-rose-500/10 px-3 py-1 text-xs font-bold text-rose-600">
-                    From us to you
-                  </div>
+                <div className="text-xs font-semibold uppercase tracking-widest text-rose-500">
+                  Our promise
+                </div>
+                <div className="mt-1 text-sm font-semibold text-slate-800">
+                  Designed for real couples, not dashboards.
                 </div>
               </div>
             </div>
