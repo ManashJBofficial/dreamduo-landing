@@ -10,39 +10,39 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "Is DreamDuo free?",
+    question: "Is DreamDuo available right now?",
     answer:
-      "Yes. The free plan includes 3 active goals, 3 collections, 50MB storage per user, 5 hidden messages, basic analytics, and basic notification sounds. Pro unlocks unlimited goals and collections, more storage, advanced analytics, and premium sounds.",
+      "DreamDuo is launching first on Android through Google Play, with iOS planned for a later release. We're in beta, so new features are still rolling out.",
   },
   {
-    question: "What is the launch offer?",
+    question: "Is DreamDuo free to use?",
     answer:
-      "The first 50 couples receive 2 one-year Pro coupon codes, one for each partner.",
+      "Yes. The free plan gives you 3 active dreams, 3 collections, 50MB of storage per person, 5 hidden messages, and basic analytics and sounds. Pro unlocks unlimited dreams and collections, more storage, advanced analytics, and premium sounds.",
   },
   {
-    question: "What if my partner does not have the app yet?",
+    question: "What if my partner doesn't have the app yet?",
     answer:
-      "You can start solo and invite your partner anytime with a simple link. Once they join, your shared goals sync automatically.",
+      "Start solo and invite them anytime with a simple link. Once they join, your shared dreams sync automatically.",
   },
   {
     question: "Is our data private and secure?",
     answer:
-      "Sensitive data is encrypted at rest on our servers, and we never sell your data.",
+      "Yes. Sensitive data is encrypted at rest on our servers, and we never sell your data.",
   },
   {
-    question: "Can we track different types of goals?",
+    question: "Can we track different types of dreams?",
     answer:
-      "Yes. You can track 4 goal types: amount or number, checklist, habit, and time.",
+      "Yes. Track 4 dream types, amount or number, checklist, habit, and time, so you can match the format to what you're working toward.",
   },
   {
-    question: "Can we keep some goals private?",
+    question: "Can we keep some dreams private?",
     answer:
-      "Yes. Goals can be shared or private, and you can toggle privacy anytime. Private goals are visible only to you.",
+      "Yes. Any dream can be shared or private, and you can switch anytime. Private dreams are visible only to you.",
   },
   {
     question: "How do Hidden Surprises and Milestone Messages work?",
     answer:
-      "Hidden Surprises let you add secret contributions that reveal on a date or milestone. Milestone Messages unlock at 25%, 50%, 75%, or 100% and can include notes or photos.",
+      "Hidden Surprises let you add secret contributions that reveal on a chosen date or milestone. Milestone Messages unlock at 25%, 50%, 75%, or 100% progress, and can include notes or photos.",
   },
 ];
 

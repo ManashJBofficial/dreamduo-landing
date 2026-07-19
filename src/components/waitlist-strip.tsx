@@ -137,7 +137,7 @@ export function WaitlistStrip() {
                 PRIVATE
               </div>
               <div className="mt-2 text-[11px] font-semibold uppercase tracking-widest text-white/65">
-                Private goals, shared dreams
+                Private dreams, built together
               </div>
             </div>
           </div>

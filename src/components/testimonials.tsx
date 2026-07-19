@@ -1,6 +1,3 @@
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { BrandMark } from "@/components/brand-mark";
 
 export function Testimonials() {
@@ -48,7 +45,7 @@ export function Testimonials() {
                 </p>
                 <p>
                   Every feature exists because we wished it existed for us
-                  &mdash; shared goals with surprise contributions, daily
+                  &mdash; shared dreams with surprise contributions, daily
                   questions that spark real conversations, streaks that keep you
                   both accountable.
                 </p>
@@ -59,23 +56,10 @@ export function Testimonials() {
                 </p>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-rose-100 pt-5 sm:mt-7">
-                <span className="text-xs font-semibold text-rose-500 sm:text-sm">
-                  Help shape DreamDuo before launch.
+              <div className="mt-6 border-t border-rose-100 pt-5 sm:mt-7">
+                <span className="font-serif text-sm italic text-rose-500 sm:text-base">
+                  Nash &amp; Lia
                 </span>
-                {WAITLIST_ENABLED ? (
-                  <Link
-                    href="#download"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 transition-colors hover:text-rose-500 sm:text-sm"
-                  >
-                    Get beta invite
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
-                ) : (
-                  <span className="inline-flex items-center rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-600 sm:text-sm">
-                    Android beta coming soon
-                  </span>
-                )}
               </div>
             </div>
           </div>
@@ -89,7 +73,7 @@ export function Testimonials() {
                   <div className="text-sm font-extrabold text-emerald-500">01</div>
                   <div>
                     <div className="text-sm font-semibold text-slate-800 sm:text-base">
-                      Money + goals, synced in one place
+                      Money + dreams, synced in one place
                     </div>
                     <p className="mt-1 text-sm text-slate-500">
                       One shared plan for savings, trips, and milestones, with

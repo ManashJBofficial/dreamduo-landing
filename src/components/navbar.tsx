@@ -7,7 +7,7 @@ import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { BrandMark } from "@/components/brand-mark";
 
 const navLinks = [
-  { label: "Goals", href: "#goals" },
+  { label: "Dreams", href: "#dreams" },
   { label: "Features", href: "#features" },
   { label: "Our Story", href: "#story" },
   { label: "FAQ", href: "#faq" },
@@ -123,8 +123,9 @@ export function Navbar() {
                 </span>
               </a>
             ) : (
-              <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold text-slate-500 sm:px-4 sm:text-sm">
-                Android beta coming soon
+              <span className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold text-slate-500 sm:px-4 sm:text-sm">
+                <span className="sm:hidden">Beta soon</span>
+                <span className="hidden sm:inline">Android beta coming soon</span>
               </span>
             )}
           </div>

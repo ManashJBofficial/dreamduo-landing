@@ -1,13 +1,13 @@
 import { TrendingUp } from "lucide-react";
 
 const marqueeItems = [
-  "Build goals side by side",
+  "Build dreams side by side",
   "Plan your future with clarity",
   "Track progress as a team",
   "Save for what matters most",
   "Stay connected with daily check-ins",
   "Celebrate each milestone together",
-  "Keep personal goals private",
+  "Keep personal dreams private",
   "Made for real couples",
 ];
 

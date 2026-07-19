@@ -36,7 +36,7 @@ import {
   Milestone,
   Users,
 } from "lucide-react";
-import Link from "next/link";
+import { PlayStoreCTA } from "@/components/playstore-cta";
 
 interface CategoryFeature {
   icon: LucideIcon;
@@ -76,7 +76,7 @@ const categories: Category[] = [
     modalFeatureBg: "bg-emerald-400/10",
     modalBtnBg: "bg-emerald-400",
     modalBtnText: "text-emerald-950",
-    headline: "Reach Your Savings Goals",
+    headline: "Reach Your Savings Dreams",
     description:
       "Whether it's a house deposit, wedding fund, or emergency savings - track every dollar together and watch your future take shape.",
     features: [
@@ -88,7 +88,7 @@ const categories: Category[] = [
       {
         icon: Gift,
         title: "Hidden contributions",
-        description: "Secretly add to goals and surprise your partner",
+        description: "Secretly add to dreams and surprise your partner",
       },
       {
         icon: Trophy,
@@ -121,7 +121,7 @@ const categories: Category[] = [
     features: [
       {
         icon: Map,
-        title: "Trip goal templates",
+        title: "Dream trip templates",
         description: "Pre-built templates for travel budgets and planning",
       },
       {
@@ -279,7 +279,7 @@ const categories: Category[] = [
       {
         icon: Lightbulb,
         title: "Idea commitment",
-        description: "Both partners commit before a goal goes live",
+        description: "Both partners commit before a dream goes live",
       },
       {
         icon: Landmark,
@@ -332,7 +332,7 @@ function CategoryModal({
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close goal details"
+          aria-label="Close dream details"
           className={`absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full ${category.modalFeatureBg} ${category.modalText} transition-opacity hover:opacity-80 sm:right-4 sm:top-4 sm:h-9 sm:w-9`}
         >
           <X className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -396,18 +396,13 @@ function CategoryModal({
 
         {/* CTA */}
         <div className="shrink-0 border-t border-white/10 px-5 pb-7 pt-4 text-center sm:px-8 sm:pb-8 sm:pt-5">
-          <Link
-            href="#download"
-            onClick={onClose}
-            className={`inline-flex items-center gap-2 rounded-full ${category.modalBtnBg} px-7 py-3 text-sm font-bold ${category.modalBtnText} shadow-lg transition-all hover:opacity-90 hover:shadow-xl sm:px-8 sm:py-3.5 sm:text-base`}
-          >
-            <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
-            Join the Waitlist
-          </Link>
+          <div className="flex justify-center">
+            <PlayStoreCTA />
+          </div>
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
           >
-            Built for real couples with synced goals, daily check-ins, and private shared planning.
+            Built for real couples with synced dreams, daily check-ins, and private shared planning.
           </p>
         </div>
 
@@ -424,7 +419,7 @@ function CategoryModal({
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
           >
-            Built for real couples with synced goals, daily check-ins, and private shared planning.
+            Built for real couples with synced dreams, daily check-ins, and private shared planning.
           </p>
         </div>
         */}
@@ -457,7 +452,7 @@ export function GoalCategories() {
 
   return (
     <>
-      <section id="goals" className="scroll-mt-16 bg-slate-50/50 py-16 sm:py-20 md:py-24 lg:py-28">
+      <section id="dreams" className="scroll-mt-16 bg-slate-50/50 py-16 sm:py-20 md:py-24 lg:py-28">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mx-auto max-w-2xl text-center">
@@ -465,7 +460,7 @@ export function GoalCategories() {
               What are you dreaming of?
             </h2>
             <p className="mt-3 text-base text-slate-500 sm:mt-4 sm:text-lg">
-              Tap a goal to preview the experience. Track progress with 4 goal
+              Tap a dream to preview the experience. Track progress with 4 dream
               types: amount, checklist, habit, and time.
             </p>
           </div>

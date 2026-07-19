@@ -131,6 +131,26 @@ body {
   animation: float 5s ease-in-out infinite;
 }
 
+/* Staggered float variants so floating cards don't move in lockstep */
+.animate-float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 5s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+/* Soft dotted pattern for light-mode "aura" sections */
+.bg-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(233, 30, 123, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
 /* Pulse glow */
 @keyframes pulse-glow {
   0%,

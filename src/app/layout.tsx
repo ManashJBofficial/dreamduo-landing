@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import { Manrope } from "next/font/google";
 import "./globals.css";
@@ -17,6 +17,13 @@ const manrope = Manrope({
 
 const siteUrl = "https://dreamduo.app";
 
+export const viewport: Viewport = {
+  themeColor: "#e91e7b",
+  colorScheme: "light",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -26,6 +33,15 @@ export const metadata: Metadata = {
   description:
     "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
   applicationName: "DreamDuo",
+  alternates: {
+    canonical: "/",
+  },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [{ url: "/dreamduo_logo.webp", type: "image/webp" }],
+    shortcut: [{ url: "/dreamduo_logo.webp", type: "image/webp" }],
+    apple: [{ url: "/dreamduo_logo.webp", type: "image/webp" }],
+  },
   keywords: [
     "couples goal tracker",
     "relationship goals",

@@ -73,7 +73,7 @@ export function CTA() {
           {/* <p className="mt-3 text-base font-bold text-white sm:text-lg">
             Built for real couples with{" "}
             <span className="bg-gradient-to-r from-pink-400 to-orange-300 bg-clip-text text-transparent">
-              synced goals, daily check-ins, and private shared planning.
+              synced dreams, daily check-ins, and private shared planning.
             </span>
           </p> */}
 
