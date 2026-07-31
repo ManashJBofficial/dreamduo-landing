@@ -58,7 +58,11 @@ export function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <nav aria-label="Primary" className="sticky top-0 z-50 flex justify-center">
+    <>
+      <nav
+        aria-label="Primary"
+        className="fixed inset-x-2 top-0 z-50 flex justify-center sm:inset-x-3 lg:inset-x-4"
+      >
       <div ref={navRef} className="relative w-full md:w-auto">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center rounded-2xl bg-white px-4 pb-3 pt-4 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] sm:px-10 sm:pb-3.5 sm:pt-6 md:rounded-b-3xl md:rounded-t-none lg:px-12 lg:pt-7">
           {/* Left - Desktop nav links */}
@@ -153,6 +157,10 @@ export function Navbar() {
           </div>
         )}
       </div>
-    </nav>
+      </nav>
+
+      {/* Preserve the navbar's layout space while it is fixed to the viewport. */}
+      <div aria-hidden="true" className="h-[60px] sm:h-[70px] lg:h-[74px]" />
+    </>
   );
 }
