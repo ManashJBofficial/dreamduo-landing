@@ -39,7 +39,7 @@ export function Footer() {
               Delete Data
             </Link>
             <Link
-              href="mailto:hello@dreamduo.app"
+              href="mailto:support@dreamduo.app"
               className="text-xs text-slate-500 transition-colors hover:text-slate-300 sm:text-sm"
             >
               Contact

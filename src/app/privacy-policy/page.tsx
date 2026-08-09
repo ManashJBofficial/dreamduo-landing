@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
 };
 
-const lastUpdated = "March 22, 2026";
+const lastUpdated = "August 3, 2026";
 const contactEmail = "support@dreamduo.app";
 
 const breadcrumbJsonLd = {
@@ -163,6 +163,10 @@ export default function PrivacyPolicyPage() {
                       <li>usage activity and session information</li>
                       <li>notification token or device token for push notifications</li>
                       <li>
+                        subscription status, entitlements, and purchase history
+                        associated with your account
+                      </li>
+                      <li>
                         timestamps relating to account activity and feature usage
                       </li>
                     </ul>
@@ -185,7 +189,40 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  2. Camera, Photos, and Files
+                  2. Location Information
+                </h2>
+                <p>
+                  DreamDuo may request access to your device&apos;s{" "}
+                  <strong>approximate (coarse) location</strong>. We do not
+                  request or collect precise GPS location.
+                </p>
+                <p>
+                  Approximate location is used only to display distance,
+                  region, and local-time details between you and your linked
+                  partner within your shared view. When you use this feature, we
+                  store a reduced-precision version of your coordinates, a
+                  country or region label derived from them, and your timezone.
+                  If you have a linked partner, that approximate location
+                  information and the distance derived from it may be visible to
+                  that partner as part of this feature.
+                </p>
+                <p>
+                  Location is requested only when you use this feature. We do not
+                  use location for advertising, profiling, or tracking, and we do
+                  not sell or share location data with advertisers or data
+                  brokers.
+                </p>
+                <p>
+                  You may deny or revoke location permission at any time through
+                  your device settings, and you can clear your saved location
+                  from within the app. The rest of DreamDuo continues to work
+                  without it.
+                </p>
+              </section>
+
+              <section className="space-y-4">
+                <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
+                  3. Camera, Photos, and Files
                 </h2>
                 <p>
                   DreamDuo may request access to your device camera, photo library,
@@ -206,7 +243,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  3. How We Use Your Information
+                  4. How We Use Your Information
                 </h2>
                 <p>We may use your information to:</p>
                 <ul className="list-disc space-y-1.5 pl-5">
@@ -222,6 +259,10 @@ export default function PrivacyPolicyPage() {
                     send service-related notifications, reminders, updates, and
                     alerts
                   </li>
+                  <li>
+                    manage subscriptions, entitlements, and access to paid
+                    features
+                  </li>
                   <li>personalize the app experience</li>
                   <li>operate, maintain, troubleshoot, and improve the Services</li>
                   <li>
@@ -234,7 +275,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  4. Shared Couple Features
+                  5. Shared Couple Features
                 </h2>
                 <p>
                   DreamDuo includes features designed for shared use between
@@ -263,7 +304,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  5. Notifications
+                  6. Notifications
                 </h2>
                 <p>
                   If you enable notifications, DreamDuo may send push notifications
@@ -285,7 +326,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  6. How We Store and Protect Information
+                  7. How We Store and Protect Information
                 </h2>
                 <p>
                   We use reasonable administrative, technical, and organizational
@@ -295,15 +336,17 @@ export default function PrivacyPolicyPage() {
                   security.
                 </p>
                 <p>
-                  Your content and account information may be stored and processed
-                  on secure servers and cloud infrastructure used to operate
-                  DreamDuo.
+                  Your content and account information are stored on secure
+                  servers and cloud infrastructure used to operate DreamDuo. Data
+                  is encrypted in transit using industry-standard TLS, and
+                  sensitive content, including files uploaded through our
+                  encrypted file storage, is encrypted at rest.
                 </p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  7. When We Share Information
+                  8. When We Share Information
                 </h2>
                 <p>We may share information in the following situations:</p>
 
@@ -372,7 +415,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  8. Data Retention
+                  9. Data Retention
                 </h2>
                 <p>We retain information for as long as reasonably necessary to:</p>
                 <ul className="list-disc space-y-1.5 pl-5">
@@ -394,7 +437,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  9. Your Choices and Rights
+                  10. Your Choices and Rights
                 </h2>
                 <p>
                   Depending on your location and applicable law, you may have the
@@ -414,6 +457,34 @@ export default function PrivacyPolicyPage() {
                   <li>manage notification preferences through app or device settings</li>
                 </ul>
                 <p>
+                  You can request deletion of your account and associated data at
+                  any time from within the app, or through our web forms:
+                </p>
+                <ul className="list-disc space-y-1.5 pl-5">
+                  <li>
+                    Account deletion:{" "}
+                    <a
+                      href="https://dreamduo.app/account-deletion"
+                      className="font-semibold text-rose-500 hover:text-rose-600"
+                    >
+                      https://dreamduo.app/account-deletion
+                    </a>
+                  </li>
+                  <li>
+                    Data deletion:{" "}
+                    <a
+                      href="https://dreamduo.app/data-deletion"
+                      className="font-semibold text-rose-500 hover:text-rose-600"
+                    >
+                      https://dreamduo.app/data-deletion
+                    </a>
+                  </li>
+                </ul>
+                <p>
+                  Deletion requests are processed within 30 days, except where
+                  retention is required by law.
+                </p>
+                <p>
                   To make a privacy-related request, contact us at{" "}
                   <a
                     href={`mailto:${contactEmail}`}
@@ -427,7 +498,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  10. Third-Party Services
+                  11. Third-Party Services
                 </h2>
                 <p>
                   DreamDuo may rely on third-party services such as sign-in
@@ -442,11 +513,16 @@ export default function PrivacyPolicyPage() {
                   DreamDuo does not receive your full payment card details from the
                   app store.
                 </p>
+                <p>
+                  DreamDuo does not display advertising, does not use advertising
+                  identifiers, and does not share your information with
+                  advertising networks or data brokers.
+                </p>
               </section>
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  11. International Data Processing
+                  12. International Data Processing
                 </h2>
                 <p>
                   Your information may be processed and stored in countries other
@@ -458,13 +534,14 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  12. Children&apos;s Privacy
+                  13. Children&apos;s Privacy
                 </h2>
                 <p>
-                  DreamDuo is not intended for children under the age of 13, and we
-                  do not knowingly collect personal information from children under
-                  13. If you believe that a child has provided personal information
-                  to us, please contact us so we can take appropriate action.
+                  DreamDuo is intended for adults. You must be at least 18 years
+                  old to use the Services, and we do not knowingly collect
+                  personal information from anyone under 18. If you believe that
+                  someone under 18 has provided personal information to us,
+                  please contact us so we can take appropriate action.
                 </p>
                 <p>
                   If a higher minimum age applies under the law in your
@@ -474,7 +551,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  13. Changes to This Privacy Policy
+                  14. Changes to This Privacy Policy
                 </h2>
                 <p>
                   We may update this Privacy Policy from time to time. If we make
@@ -490,7 +567,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
-                  14. Contact Us
+                  15. Contact Us
                 </h2>
                 <p>
                   If you have questions, concerns, or requests related to this
