@@ -499,10 +499,9 @@ function StreaksVisual() {
         <div className="mt-3 flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-slate-800 to-slate-900 p-3 shadow-[0_12px_24px_-8px_rgba(15,23,42,0.45)] sm:mt-4 sm:rounded-2xl sm:p-3.5">
           <Zap className="h-4 w-4 shrink-0 text-amber-400 sm:h-5 sm:w-5" />
           <div className="min-w-0 flex-1">
-            <div className="text-[10px] font-bold text-white sm:text-xs">Streak Shield Active</div>
-            <div className="text-[9px] text-slate-400 sm:text-[10px]">Miss a day? Your streak is protected</div>
+            <div className="text-[10px] font-bold text-white sm:text-xs">Milestone Unlocked</div>
+            <div className="text-[9px] text-slate-400 sm:text-[10px]">Day 30: a new question pack is yours</div>
           </div>
-          <span className="shrink-0 text-[10px] font-bold text-amber-400">2x</span>
         </div>
       </div>
     </div>
@@ -619,11 +618,11 @@ const showcaseItems: ShowcaseItem[] = [
     badge: "Know Your Journey",
     title: "Smart Insights That Keep You On Track",
     description:
-      "See if you're ahead or behind schedule, get milestone alerts, and track couple stats: days together, dreams completed, total saved. Upgrade to Pro for mood trends, activity heatmaps, and communication scores.",
+      "See if you're ahead or behind schedule, get milestone alerts, and track couple stats: days together, dreams completed, total saved. Upgrade to Pro for mood trends and activity heatmaps.",
     highlights: [
       "On-track alerts and completion predictions",
       "Couple stats: days together, dreams, savings",
-      "Pro: mood trends, heatmaps, communication score",
+      "Pro: mood trends and activity heatmaps",
     ],
     visual: <InsightsVisual />,
     icon: Brain,
@@ -633,13 +632,13 @@ const showcaseItems: ShowcaseItem[] = [
   },
   {
     badge: "Streaks & Rewards",
-    title: "Check In Daily, Earn Badges, Never Break the Chain",
+    title: "Check In Daily, Unlock More, Never Break the Chain",
     description:
-      "Track your individual and couple streak. Earn badges at 7, 14, 30, 50, 100, and 365 days, from Common to Legendary. Streak shields protect you if you miss a day. Pro users earn at 2x speed.",
+      "Track your individual and couple streak. As your couple streak grows, milestones at 3, 7, 14, 30, 60, and 100 days unlock new question packs to explore together.",
     highlights: [
       "Daily couple check-ins with streak tracking",
-      "Badges: Common, Rare, Epic, Legendary",
-      "Streak shields and multipliers",
+      "Couple milestones from day 3 to day 100",
+      "Unlock new question packs as you go",
     ],
     visual: <StreaksVisual />,
     icon: Flame,
