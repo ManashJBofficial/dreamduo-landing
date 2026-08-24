@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { BrandMark } from "@/components/brand-mark";
+import { PlayStoreCTA } from "@/components/playstore-cta";
 
 const navLinks = [
   { label: "Dreams", href: "#dreams" },
@@ -127,10 +128,7 @@ export function Navbar() {
                 </span>
               </a>
             ) : (
-              <span className="whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold text-slate-500 sm:px-4 sm:text-sm">
-                <span className="sm:hidden">Beta soon</span>
-                <span className="hidden sm:inline">Android beta coming soon</span>
-              </span>
+              <PlayStoreCTA variant="compact" placement="navbar" />
             )}
           </div>
         </div>

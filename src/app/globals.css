@@ -294,3 +294,36 @@ select:focus-visible {
     animation-iteration-count: infinite !important;
   }
 }
+
+/* Soft halo that breathes behind the primary install button */
+@keyframes install-halo {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+.animate-install-halo {
+  animation: install-halo 3.2s ease-in-out infinite;
+}
+
+/* Sticky mobile install bar entrance */
+@keyframes install-bar-in {
+  from {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-install-bar-in {
+  animation: install-bar-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

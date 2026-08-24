@@ -12,7 +12,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is DreamDuo available right now?",
     answer:
-      "DreamDuo is launching first on Android through Google Play, with iOS planned for a later release. We're in beta, so new features are still rolling out.",
+      "Yes. DreamDuo is live on Google Play and free to download today. iOS is planned for a later release.",
   },
   {
     question: "Is DreamDuo free to use?",

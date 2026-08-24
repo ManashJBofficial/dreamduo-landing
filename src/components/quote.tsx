@@ -1,14 +1,14 @@
-import { TrendingUp } from "lucide-react";
-
+// Concrete things the app actually does, in the words a person would use.
+// Anything abstract ("plan with clarity", "what matters most") reads as filler.
 const marqueeItems = [
-  "Build dreams side by side",
-  "Plan your future with clarity",
-  "Track progress as a team",
-  "Save for what matters most",
-  "Stay connected with daily check-ins",
-  "Celebrate each milestone together",
-  "Keep personal dreams private",
-  "Made for real couples",
+  "Give the dream a number and a date",
+  "See how close you actually are",
+  "Hide a note they unlock at 75%",
+  "One question a day, you both answer",
+  "Some dreams stay just yours",
+  "Nudge them without nagging",
+  "Photos, links and receipts in one place",
+  "Two people, one plan",
 ];
 
 export function Quote() {
@@ -29,17 +29,19 @@ export function Quote() {
         </div>
       </div>
 
-      <section className="bg-slate-900 py-16 sm:py-20 md:py-24 lg:py-28">
+      <section className="bg-slate-900 py-14 sm:py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <TrendingUp className="mx-auto h-6 w-6 text-rose-400 sm:h-7 sm:w-7" />
-          <blockquote className="mt-6 font-serif text-xl font-bold leading-snug text-white sm:mt-8 sm:text-2xl md:text-3xl lg:text-4xl">
-            &ldquo;Spreadsheets don&apos;t understand your relationship.
-            <br />
-            <span className="text-slate-400">
-              Generic apps don&apos;t know you&apos;re a team.&rdquo;
-            </span>
-          </blockquote>
-          <div className="mx-auto mt-6 h-0.5 w-12 rounded-full bg-rose-400 sm:mt-8 sm:w-16" />
+          {/* Not a quotation, so no quote marks and no implied speaker we
+              would have to invent. */}
+          <p className="text-balance font-serif text-xl font-bold leading-snug text-white sm:text-2xl md:text-3xl lg:text-4xl">
+            Some things are too important to leave in a chat.
+          </p>
+
+          <p className="mx-auto mt-4 max-w-lg text-balance text-base leading-relaxed text-slate-300 sm:mt-5 sm:text-lg">
+            Keep the plans you&apos;re building together in one place.
+          </p>
+
+          <div className="mx-auto mt-7 h-0.5 w-12 rounded-full bg-rose-400 sm:w-16" />
         </div>
       </section>
     </>

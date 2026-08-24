@@ -70,7 +70,7 @@ export function Testimonials() {
               <div className="relative rounded-3xl border border-rose-100 bg-white/90 p-5 shadow-[0_12px_36px_-24px_rgba(244,63,94,0.45)] backdrop-blur sm:p-6">
                 <span className="absolute -left-3 top-8 hidden h-3 w-3 rounded-full bg-rose-400 ring-4 ring-rose-100 lg:block" />
                 <div className="flex items-start gap-4">
-                  <div className="text-sm font-extrabold text-emerald-500">01</div>
+                  <div className="text-sm font-bold text-emerald-500">01</div>
                   <div>
                     <div className="text-sm font-semibold text-slate-800 sm:text-base">
                       Money + dreams, synced in one place
@@ -86,7 +86,7 @@ export function Testimonials() {
               <div className="relative rounded-3xl border border-rose-100 bg-white/90 p-5 shadow-[0_12px_36px_-24px_rgba(244,63,94,0.45)] backdrop-blur sm:p-6">
                 <span className="absolute -left-3 top-8 hidden h-3 w-3 rounded-full bg-rose-400 ring-4 ring-rose-100 lg:block" />
                 <div className="flex items-start gap-4">
-                  <div className="text-sm font-extrabold text-sky-500">02</div>
+                  <div className="text-sm font-bold text-sky-500">02</div>
                   <div>
                     <div className="text-sm font-semibold text-slate-800 sm:text-base">
                       Accountability without the friction
@@ -102,7 +102,7 @@ export function Testimonials() {
               <div className="relative rounded-3xl border border-rose-100 bg-white/90 p-5 shadow-[0_12px_36px_-24px_rgba(244,63,94,0.45)] backdrop-blur sm:p-6">
                 <span className="absolute -left-3 top-8 hidden h-3 w-3 rounded-full bg-rose-400 ring-4 ring-rose-100 lg:block" />
                 <div className="flex items-start gap-4">
-                  <div className="text-sm font-extrabold text-amber-500">03</div>
+                  <div className="text-sm font-bold text-amber-500">03</div>
                   <div>
                     <div className="text-sm font-semibold text-slate-800 sm:text-base">
                       Moments that feel personal, not transactional

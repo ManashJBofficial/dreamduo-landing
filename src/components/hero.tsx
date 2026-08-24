@@ -1,5 +1,8 @@
+import Image from "next/image";
 import { Gift, MessageCircleHeart } from "lucide-react";
 import { FloatingCard } from "@/components/floating-card";
+import { PlayStoreCTA } from "@/components/playstore-cta";
+import { getPlayStoreUrl } from "@/lib/store-links";
 
 export function Hero() {
   return (
@@ -30,26 +33,74 @@ export function Hero() {
           sync.
         </p>
 
+        {/* Primary conversion point: install on Google Play. Sits above the
+            artwork's z-index because the illustration is pulled up over it. */}
+        <div className="relative z-20 mt-7 flex w-full flex-col items-center sm:mt-9">
+          <PlayStoreCTA variant="hero" glow placement="hero" />
+
+          {/* Desktop hand-off. Absolutely positioned off the centre axis so the
+              button stays centred with the h1 and the artwork below it. Tune
+              translate-x to change the gap from the button. */}
+          <a
+            href={getPlayStoreUrl("hero_qr")}
+            target="_blank"
+            rel="noopener"
+            aria-label="QR code to install DreamDuo on your phone"
+            className="absolute left-1/2 top-1 hidden translate-x-[10.5rem] items-center gap-3 rounded-2xl border border-slate-900/5 bg-white/70 p-2.5 pr-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.7)] backdrop-blur-sm transition hover:bg-white lg:flex"
+          >
+            <Image
+              src="/install-qr-hero.svg"
+              alt=""
+              aria-hidden="true"
+              width={64}
+              height={64}
+              className="h-16 w-16"
+            />
+            <span className="max-w-[6.5rem] text-left text-[11px] font-semibold leading-snug text-slate-600">
+              Scan to install on your phone
+            </span>
+          </a>
+
+          <p className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-slate-600 sm:text-sm">
+            <span
+              aria-hidden="true"
+              className="relative flex h-2 w-2 items-center justify-center"
+            >
+              <span className="absolute h-2 w-2 animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Live on Google Play
+          </p>
+
+          <p className="mt-1.5 text-[13px] text-slate-500 sm:text-sm">
+            Free to start. No card needed.
+          </p>
+        </div>
+
         {/* Hero illustration + floating cards.
             The full image (phone + hand) is shown UNCROPPED. The SVG has a tall
             transparent band at the top of its canvas, which we tuck under the
             subtitle with a negative margin so the phone sits in the initial
             viewport while the hand extends below the fold and is revealed on
             scroll. Tune the -mt-* values to raise/lower the phone. */}
-        <div className="relative -mt-6 flex w-full max-w-6xl items-start justify-center sm:-mt-14 md:-mt-24 lg:-mt-36">
+        <div className="relative -mt-14 flex w-full max-w-6xl items-start justify-center sm:-mt-24 md:-mt-32 lg:-mt-44">
           {/* Glow behind the phone */}
           <div
             aria-hidden="true"
             className="absolute top-[24%] h-[42%] w-[80%] rounded-full bg-gradient-to-br from-rose-300/60 via-fuchsia-300/50 to-amber-200/50 blur-3xl"
           />
 
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero-img.svg"
+          {/* LCP image. The WebP is a raster export of the original 2MB SVG,
+              which mobile could not download fast enough to be worth it. */}
+          <Image
+            src="/hero-img.webp"
             alt="Hand holding a phone showing the DreamDuo app"
-            width={810}
-            height={1012}
-            className="relative z-10 w-[300px] drop-shadow-2xl sm:w-[440px] md:w-[580px] lg:w-[700px]"
+            width={1400}
+            height={1750}
+            priority
+            fetchPriority="high"
+            sizes="(max-width: 639px) 280px, (max-width: 767px) 440px, (max-width: 1023px) 580px, 700px"
+            className="pointer-events-none relative z-10 h-auto w-[280px] drop-shadow-2xl sm:w-[440px] md:w-[580px] lg:w-[700px]"
           />
 
           {/* Floating notification cards (decorative), clustered around the phone

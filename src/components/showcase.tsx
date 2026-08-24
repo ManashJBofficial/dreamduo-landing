@@ -5,8 +5,6 @@ import {
   Lock,
   MessageCircleHeart,
   Bell,
-  Volume2,
-  ImagePlus,
   Trophy,
   Gift,
   Camera,
@@ -24,11 +22,9 @@ import {
   // Layers,
   // ArrowLeft,
   // Home,
-  Clock,
-  ListTodo,
-  Repeat,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import { FloatingCard } from "@/components/floating-card";
 
 type AccentKey =
@@ -238,10 +234,13 @@ function NotificationAvatar({
 }) {
   return (
     <div className="relative shrink-0">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={40}
+        height={40}
+        loading="lazy"
+        sizes="40px"
         className="h-9 w-9 rounded-full object-cover shadow-sm sm:h-10 sm:w-10"
       />
       <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-slate-800 ring-2 ring-white">
@@ -352,10 +351,13 @@ function CelebrateVisual() {
 function FilesVisual() {
   return (
     <div className="relative flex h-full w-full max-w-sm items-center justify-center lg:h-full">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/files.svg"
+      <Image
+        src="/files.webp"
         alt="Phone screen showing photos, links, and documents organized by dream"
+        width={1000}
+        height={1250}
+        loading="lazy"
+        sizes="(max-width: 639px) 320px, 400px"
         className="h-auto max-h-[420px] w-auto max-w-[320px] drop-shadow-2xl sm:max-w-[400px] lg:h-full lg:max-h-[520px]"
       />
     </div>
@@ -531,7 +533,7 @@ const showcaseItems: ShowcaseItem[] = [
       subtitle: "Both partners in",
       position: "bottom-6 right-6",
     },
-    image: { src: "/shared-dreams.svg", alt: "Couple planning shared dreams together" },
+    image: { src: "/shared-dreams.webp", alt: "Couple planning shared dreams together" },
   },
   // {
   //   badge: "Daily Deck",
@@ -684,10 +686,13 @@ function PhotoBentoCard({
 
       {/* Contained photo — inset, not full-bleed, clean rounded corners */}
       <div className="relative mt-6 overflow-hidden rounded-2xl shadow-md shadow-rose-200/40">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={photo.src}
           alt={photo.alt}
+          width={600}
+          height={400}
+          loading="lazy"
+          sizes="(max-width: 639px) 100vw, 560px"
           className="h-56 w-full object-cover sm:h-64"
         />
       </div>
@@ -784,10 +789,13 @@ function BentoCard({ item }: { item: ShowcaseItem }) {
           at a fixed width regardless of how tall the card ends up. */}
       {item.image && (
         <div className="relative mt-6 flex flex-1 items-center justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={item.image.src}
             alt={item.image.alt}
+            width={1200}
+            height={1498}
+            loading="lazy"
+            sizes="(max-width: 639px) 340px, 400px"
             className="h-full max-h-[420px] w-auto max-w-full object-contain sm:max-h-[480px]"
           />
         </div>

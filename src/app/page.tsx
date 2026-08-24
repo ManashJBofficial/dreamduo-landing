@@ -6,9 +6,11 @@ import { Hero } from "@/components/hero";
 import { Navbar } from "@/components/navbar";
 import { Quote } from "@/components/quote";
 import { Showcase } from "@/components/showcase";
+import { StickyInstallBar } from "@/components/sticky-install-bar";
 import { Testimonials } from "@/components/testimonials";
 import { WaitlistStrip } from "@/components/waitlist-strip";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
+import { GOOGLE_PLAY_URL } from "@/lib/store-links";
 
 export default function Home() {
   const jsonLd = [
@@ -25,11 +27,14 @@ export default function Home() {
       "@type": "SoftwareApplication",
       name: "DreamDuo",
       applicationCategory: "LifestyleApplication",
-      operatingSystem: "iOS, Android, Web",
+      operatingSystem: "Android",
+      installUrl: GOOGLE_PLAY_URL,
+      downloadUrl: GOOGLE_PLAY_URL,
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
+        url: GOOGLE_PLAY_URL,
       },
       description:
         "DreamDuo helps couples track shared goals, savings, habits, and milestones in one place.",
@@ -43,7 +48,7 @@ export default function Home() {
       logo: "https://dreamduo.app/opengraph-image",
       description:
         "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
-      sameAs: [],
+      sameAs: [GOOGLE_PLAY_URL],
       contactPoint: {
         "@type": "ContactPoint",
         email: "support@dreamduo.app",
@@ -90,6 +95,8 @@ export default function Home() {
         <CTA />
         <Footer />
       </main>
+
+      <StickyInstallBar />
     </>
   );
 }

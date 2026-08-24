@@ -1,14 +1,19 @@
-// Replace these with your actual store URLs when available
-const APP_STORE_URL = "#";
-const GOOGLE_PLAY_URL = "#";
+export const GOOGLE_PLAY_PACKAGE = "com.dreamduo.app";
 
-export function getStoreUrl(): string | null {
-  if (typeof navigator === "undefined") return null;
+export const GOOGLE_PLAY_URL = `https://play.google.com/store/apps/details?id=${GOOGLE_PLAY_PACKAGE}`;
 
-  const ua = navigator.userAgent;
+/**
+ * Play Store install URL tagged with a referrer so we can see which CTA on the
+ * page drove the install inside Play Console acquisition reports.
+ */
+export function getPlayStoreUrl(placement?: string): string {
+  if (!placement) return GOOGLE_PLAY_URL;
 
-  if (/iPhone|iPad|iPod/i.test(ua)) return APP_STORE_URL;
-  if (/Android/i.test(ua)) return GOOGLE_PLAY_URL;
+  const referrer = new URLSearchParams({
+    utm_source: "dreamduo_landing",
+    utm_medium: "web",
+    utm_campaign: placement,
+  }).toString();
 
-  return null;
+  return `${GOOGLE_PLAY_URL}&referrer=${encodeURIComponent(referrer)}`;
 }

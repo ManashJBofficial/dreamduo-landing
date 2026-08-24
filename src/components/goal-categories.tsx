@@ -397,7 +397,7 @@ function CategoryModal({
         {/* CTA */}
         <div className="shrink-0 border-t border-white/10 px-5 pb-7 pt-4 text-center sm:px-8 sm:pb-8 sm:pt-5">
           <div className="flex justify-center">
-            <PlayStoreCTA />
+            <PlayStoreCTA variant="light" placement="dream_modal" />
           </div>
           <p
             className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
