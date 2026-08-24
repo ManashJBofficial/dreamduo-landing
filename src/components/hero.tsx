@@ -54,6 +54,7 @@ export function Hero() {
               aria-hidden="true"
               width={64}
               height={64}
+              unoptimized
               className="h-16 w-16"
             />
             <span className="max-w-[6.5rem] text-left text-[11px] font-semibold leading-snug text-slate-600">

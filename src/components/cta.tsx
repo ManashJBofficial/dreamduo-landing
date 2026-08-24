@@ -54,6 +54,7 @@ export function CTA() {
                       alt="QR code linking to DreamDuo on Google Play"
                       width={132}
                       height={132}
+                      unoptimized
                       loading="lazy"
                       className="h-[132px] w-[132px]"
                     />
