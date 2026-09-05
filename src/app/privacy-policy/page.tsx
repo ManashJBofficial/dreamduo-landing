@@ -537,11 +537,17 @@ export default function PrivacyPolicyPage() {
                   13. Children&apos;s Privacy
                 </h2>
                 <p>
-                  DreamDuo is intended for adults. You must be at least 18 years
-                  old to use the Services, and we do not knowingly collect
-                  personal information from anyone under 18. If you believe that
-                  someone under 18 has provided personal information to us,
-                  please contact us so we can take appropriate action.
+                  You must be at least 16 years old to use the Services, and we
+                  do not knowingly collect personal information from anyone under
+                  16. If you believe that someone under 16 has provided personal
+                  information to us, please contact us so we can take appropriate
+                  action.
+                </p>
+                <p>
+                  Certain content, including our adult conversation packs, is
+                  restricted to users aged 18 and over. That content is locked by
+                  default and only becomes available after both partners confirm
+                  they are 18 or older.
                 </p>
                 <p>
                   If a higher minimum age applies under the law in your

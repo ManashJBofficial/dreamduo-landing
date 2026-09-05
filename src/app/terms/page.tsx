@@ -111,7 +111,12 @@ export default function TermsPage() {
                 <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">
                   1. Eligibility
                 </h2>
-                <p>You must be at least 18 years old to use DreamDuo.</p>
+                <p>
+                  You must be at least 16 years old to use DreamDuo. Some
+                  content, including our adult conversation packs, is restricted
+                  to users aged 18 and over and stays locked until both partners
+                  confirm they are 18 or older.
+                </p>
                 <p>By using the Services, you represent and warrant that:</p>
                 <ul className="list-disc space-y-1.5 pl-5">
                   <li>you are legally capable of entering into a binding agreement</li>
