@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
-import { PlayStoreCTA } from "@/components/playstore-cta";
+import { StoreCTARow } from "@/components/store-cta-row";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { BrandMark } from "@/components/brand-mark";
 
@@ -34,15 +34,15 @@ export function CTA() {
               : "DreamDuo is live on Google Play. Install it free and start your first shared dream tonight."}
           </p>
 
-          <div className="mx-auto mt-8 w-full max-w-md sm:mt-10">
+          <div className="mx-auto mt-8 w-full max-w-md sm:mt-10 sm:max-w-2xl">
             {WAITLIST_ENABLED ? (
               <WaitlistForm />
             ) : (
               <div className="flex flex-col items-center">
-                <PlayStoreCTA variant="light" glow placement="footer_cta" />
+                <StoreCTARow variant="light" glow placement="footer_cta" />
 
                 <p className="mt-6 text-xs text-slate-400 sm:text-sm">
-                  Free to start on Android. iOS is on the way.
+                  Free to start on Android. iOS is on the way, join the wishlist.
                 </p>
 
                 {/* Desktop visitors cannot install from a Play link, so hand
@@ -60,7 +60,7 @@ export function CTA() {
                     />
                   </div>
                   <p className="mt-3 text-xs font-medium text-slate-400">
-                    On a computer? Scan to install on your phone.
+                    On a computer? Scan to install on Android.
                   </p>
                 </div>
               </div>

@@ -17,3 +17,9 @@ export function getPlayStoreUrl(placement?: string): string {
 
   return `${GOOGLE_PLAY_URL}&referrer=${encodeURIComponent(referrer)}`;
 }
+
+/**
+ * iOS is not shipped yet. Every App Store CTA opens a "coming soon" modal that
+ * points here so we can size the iOS waitlist before building for it.
+ */
+export const IOS_WAITLIST_URL = "https://tally.so/r/obLJQ1";

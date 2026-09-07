@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { BrandMark } from "@/components/brand-mark";
+import { AppStoreCTA } from "@/components/app-store-cta";
 import { PlayStoreCTA } from "@/components/playstore-cta";
 
 const navLinks = [
@@ -113,7 +114,7 @@ export function Navbar() {
           </Link>
 
           {/* Right - CTA */}
-          <div className="flex justify-end">
+          <div className="flex items-center justify-end gap-1.5 sm:gap-2">
             {WAITLIST_ENABLED ? (
               <a
                 href="#download"
@@ -128,7 +129,18 @@ export function Navbar() {
                 </span>
               </a>
             ) : (
-              <PlayStoreCTA variant="compact" placement="navbar" />
+              <>
+                <PlayStoreCTA
+                  variant="compact"
+                  placement="navbar"
+                  iconOnlyOnMobile
+                />
+                <AppStoreCTA
+                  variant="compact"
+                  placement="navbar"
+                  iconOnlyOnMobile
+                />
+              </>
             )}
           </div>
         </div>

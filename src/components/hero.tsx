@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Gift, MessageCircleHeart } from "lucide-react";
 import { FloatingCard } from "@/components/floating-card";
-import { PlayStoreCTA } from "@/components/playstore-cta";
+import { StoreCTARow } from "@/components/store-cta-row";
 import { getPlayStoreUrl } from "@/lib/store-links";
 
 export function Hero() {
@@ -36,31 +36,41 @@ export function Hero() {
         {/* Primary conversion point: install on Google Play. Sits above the
             artwork's z-index because the illustration is pulled up over it. */}
         <div className="relative z-20 mt-7 flex w-full flex-col items-center sm:mt-9">
-          <PlayStoreCTA variant="hero" glow placement="hero" />
+          {/* The wrapper shrink-wraps the button row from `xl` up, so the QR can
+              hang off `left-full` and track the row's real width instead of a
+              hand-tuned offset that collides the moment the row changes. */}
+          <div className="relative flex w-full justify-center xl:w-auto">
+            <StoreCTARow variant="hero" glow placement="hero" />
 
-          {/* Desktop hand-off. Absolutely positioned off the centre axis so the
-              button stays centred with the h1 and the artwork below it. Tune
-              translate-x to change the gap from the button. */}
-          <a
-            href={getPlayStoreUrl("hero_qr")}
-            target="_blank"
-            rel="noopener"
-            aria-label="QR code to install DreamDuo on your phone"
-            className="absolute left-1/2 top-1 hidden translate-x-[10.5rem] items-center gap-3 rounded-2xl border border-slate-900/5 bg-white/70 p-2.5 pr-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.7)] backdrop-blur-sm transition hover:bg-white lg:flex"
-          >
-            <Image
-              src="/install-qr-hero.svg"
-              alt=""
-              aria-hidden="true"
-              width={64}
-              height={64}
-              unoptimized
-              className="h-16 w-16"
-            />
-            <span className="max-w-[6.5rem] text-left text-[11px] font-semibold leading-snug text-slate-600">
-              Scan to install on your phone
-            </span>
-          </a>
+            {/* Desktop hand-off, and Android only: a Play link is useless on a
+                desktop browser, so it sits on the Android button's side of the
+                row. Absolutely positioned so the row stays centred with the h1
+                and the artwork below it. `w-max` matters: `right-full` leaves
+                zero available width in the containing block, so without it the
+                card shrink-wraps to min-content and the label spills outside
+                its own background. Held back to `xl` because two buttons plus
+                the card do not clear `max-w-5xl` at `lg`. */}
+            <a
+              href={getPlayStoreUrl("hero_qr")}
+              target="_blank"
+              rel="noopener"
+              aria-label="QR code to install DreamDuo from Google Play on your phone"
+              className="absolute right-full top-1 mr-6 hidden w-max items-center gap-3 rounded-2xl border border-slate-900/5 bg-white/70 p-2.5 pr-4 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.7)] backdrop-blur-sm transition hover:bg-white xl:flex"
+            >
+              <Image
+                src="/install-qr-hero.svg"
+                alt=""
+                aria-hidden="true"
+                width={64}
+                height={64}
+                unoptimized
+                className="h-16 w-16"
+              />
+              <span className="w-[7rem] text-left text-[11px] font-semibold leading-snug text-slate-600">
+                Scan to install on Android
+              </span>
+            </a>
+          </div>
 
           <p className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-slate-600 sm:text-sm">
             <span
@@ -70,7 +80,7 @@ export function Hero() {
               <span className="absolute h-2 w-2 animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            Live on Google Play
+            Live on Google Play. iOS coming soon.
           </p>
 
           <p className="mt-1.5 text-[13px] text-slate-500 sm:text-sm">

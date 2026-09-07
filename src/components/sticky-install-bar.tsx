@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { track } from "@vercel/analytics";
+import { AppStoreCTA } from "@/components/app-store-cta";
 import { getPlayStoreUrl } from "@/lib/store-links";
 
 const DISMISS_KEY = "install_bar_dismissed";
@@ -77,6 +78,14 @@ export function StickyInstallBar() {
             Free on Google Play
           </div>
         </div>
+
+        {/* Icon-only so the Play install stays the widest target in the bar. */}
+        <AppStoreCTA
+          variant="compact"
+          placement="sticky_bar"
+          iconOnlyOnMobile
+          className="min-h-11 shrink-0 sm:min-h-11"
+        />
 
         <a
           href={getPlayStoreUrl("sticky_bar")}

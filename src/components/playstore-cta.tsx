@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { track } from "@vercel/analytics";
 import { getPlayStoreUrl } from "@/lib/store-links";
+import { cn } from "@/lib/utils";
 
 type PlayStoreVariant = "hero" | "light" | "compact";
 
@@ -15,6 +16,11 @@ interface PlayStoreCTAProps {
   placement: string;
   /** Animated glow halo behind the button. */
   glow?: boolean;
+  /**
+   * Hide the label under `sm` and show the icon only. For tight rows such as
+   * the navbar, where the App Store button collapses the same way.
+   */
+  iconOnlyOnMobile?: boolean;
 }
 
 const base =
@@ -47,9 +53,12 @@ export function PlayStoreCTA({
   variant = "hero",
   placement,
   glow = false,
+  iconOnlyOnMobile = false,
 }: PlayStoreCTAProps) {
   const isCompact = variant === "compact";
-  const text = label ?? (isCompact ? "Get the app" : "Get it on Google Play");
+  // Compact reads as a platform chip next to the iOS one, so it names the
+  // platform rather than repeating the generic "Get the app".
+  const text = label ?? (isCompact ? "Android" : "Get it on Google Play");
 
   const link = (
     <a
@@ -58,7 +67,15 @@ export function PlayStoreCTA({
       rel="noopener"
       onClick={() => track("install_click", { placement })}
       aria-label="Download DreamDuo free on Google Play"
-      className={[base, variantStyles[variant], glow ? "relative z-10" : "", className].join(" ")}
+      className={cn(
+        base,
+        variantStyles[variant],
+        glow && "relative z-10",
+        // Squares off to an icon button under `sm`; twMerge drops the variant's
+        // own width/padding so the two never fight.
+        iconOnlyOnMobile && "aspect-square w-auto px-0 sm:aspect-auto sm:px-4",
+        className
+      )}
     >
       <Image
         src="/google-play.png"
@@ -73,7 +90,14 @@ export function PlayStoreCTA({
             : "h-5 w-5 shrink-0 transition-transform duration-200 group-hover:scale-110 sm:h-6 sm:w-6"
         }
       />
-      <span className="whitespace-nowrap">{text}</span>
+      <span
+        className={cn(
+          "whitespace-nowrap",
+          iconOnlyOnMobile && "hidden sm:inline"
+        )}
+      >
+        {text}
+      </span>
     </a>
   );
 
