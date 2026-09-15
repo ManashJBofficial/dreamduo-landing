@@ -10,7 +10,7 @@ import { StickyInstallBar } from "@/components/sticky-install-bar";
 import { Testimonials } from "@/components/testimonials";
 import { WaitlistStrip } from "@/components/waitlist-strip";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
-import { GOOGLE_PLAY_URL } from "@/lib/store-links";
+import { GOOGLE_PLAY_URL, APP_STORE_URL } from "@/lib/store-links";
 
 export default function Home() {
   const jsonLd = [
@@ -27,9 +27,12 @@ export default function Home() {
       "@type": "SoftwareApplication",
       name: "DreamDuo",
       applicationCategory: "LifestyleApplication",
-      operatingSystem: "Android",
-      installUrl: GOOGLE_PLAY_URL,
-      downloadUrl: GOOGLE_PLAY_URL,
+      // Both platforms since the iOS launch on 2026-09-15. Schema.org takes a
+      // comma-separated list here; installUrl keeps Play as the canonical
+      // install link while the App Store URL is listed alongside.
+      operatingSystem: "Android, iOS",
+      installUrl: [GOOGLE_PLAY_URL, APP_STORE_URL],
+      downloadUrl: [GOOGLE_PLAY_URL, APP_STORE_URL],
       offers: {
         "@type": "Offer",
         price: "0",

@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { track } from "@vercel/analytics";
-import { IOSComingSoonModal } from "@/components/ios-coming-soon-modal";
+import { getAppStoreUrl } from "@/lib/store-links";
 import { cn } from "@/lib/utils";
 
 type AppStoreVariant = "hero" | "light" | "compact";
@@ -13,7 +12,7 @@ interface AppStoreCTAProps {
   /** Button text. Keep it short, this sits next to the Play Store button. */
   label?: string;
   variant?: AppStoreVariant;
-  /** Names the analytics event and attributes the waitlist click. */
+  /** Names the analytics event and the App Store campaign token. */
   placement: string;
   /**
    * Hide the label under `sm` and show the icon only. For tight rows such as
@@ -51,6 +50,12 @@ const variantStyles: Record<AppStoreVariant, string> = {
     "active:scale-95 focus-visible:ring-offset-white sm:min-h-10 sm:px-4 sm:text-sm",
 };
 
+/**
+ * iOS shipped on 2026-09-15 (App Store id 6807477523). This used to open a
+ * "coming soon" waitlist modal; it is now a plain link to the listing, shaped
+ * exactly like PlayStoreCTA so the two read as a matched pair. The modal file
+ * is left in place but nothing renders it.
+ */
 export function AppStoreCTA({
   className = "",
   label,
@@ -58,61 +63,49 @@ export function AppStoreCTA({
   placement,
   iconOnlyOnMobile = false,
 }: AppStoreCTAProps) {
-  const [open, setOpen] = useState(false);
   const isCompact = variant === "compact";
-  const text = label ?? (isCompact ? "iOS" : "Coming soon on iOS");
+  const text = label ?? (isCompact ? "iOS" : "Download on the App Store");
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => {
-          track("ios_cta_click", { placement });
-          setOpen(true);
-        }}
-        aria-haspopup="dialog"
-        aria-expanded={open}
-        aria-label="DreamDuo for iPhone is coming soon, join the wishlist"
-        className={cn(
-          base,
-          variantStyles[variant],
-          // Squares off to an icon button under `sm`; twMerge drops the
-          // variant's own width/padding so the two never fight.
-          iconOnlyOnMobile &&
-            (isCompact
-              ? "aspect-square w-auto px-0 sm:aspect-auto sm:px-4"
-              : "aspect-square w-auto px-0 sm:aspect-auto sm:px-8"),
-          className
-        )}
-      >
-        <Image
-          src="/app-store.png"
-          alt=""
-          aria-hidden="true"
-          width={28}
-          height={28}
-          className={
-            isCompact
-              ? "h-4 w-4 shrink-0 rounded-[5px] ring-1 ring-white/80 sm:h-[18px] sm:w-[18px]"
-              : "h-5 w-5 shrink-0 rounded-md ring-2 ring-white/80 transition-transform duration-200 group-hover:scale-110 sm:h-6 sm:w-6"
-          }
-        />
-        <span
-          className={
-            iconOnlyOnMobile
-              ? "hidden whitespace-nowrap sm:inline"
-              : "whitespace-nowrap"
-          }
-        >
-          {text}
-        </span>
-      </button>
-
-      <IOSComingSoonModal
-        open={open}
-        onClose={() => setOpen(false)}
-        placement={placement}
+    <a
+      href={getAppStoreUrl(placement)}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => track("install_click", { placement, store: "app_store" })}
+      aria-label="Download DreamDuo on the App Store"
+      className={cn(
+        base,
+        variantStyles[variant],
+        // Squares off to an icon button under `sm`; twMerge drops the
+        // variant's own width/padding so the two never fight.
+        iconOnlyOnMobile &&
+          (isCompact
+            ? "aspect-square w-auto px-0 sm:aspect-auto sm:px-4"
+            : "aspect-square w-auto px-0 sm:aspect-auto sm:px-8"),
+        className
+      )}
+    >
+      <Image
+        src="/app-store.png"
+        alt=""
+        aria-hidden="true"
+        width={28}
+        height={28}
+        className={
+          isCompact
+            ? "h-4 w-4 shrink-0 rounded-[5px] ring-1 ring-white/80 sm:h-[18px] sm:w-[18px]"
+            : "h-5 w-5 shrink-0 rounded-md ring-2 ring-white/80 transition-transform duration-200 group-hover:scale-110 sm:h-6 sm:w-6"
+        }
       />
-    </>
+      <span
+        className={
+          iconOnlyOnMobile
+            ? "hidden whitespace-nowrap sm:inline"
+            : "whitespace-nowrap"
+        }
+      >
+        {text}
+      </span>
+    </a>
   );
 }

@@ -18,8 +18,24 @@ export function getPlayStoreUrl(placement?: string): string {
   return `${GOOGLE_PLAY_URL}&referrer=${encodeURIComponent(referrer)}`;
 }
 
+export const APP_STORE_ID = "6807477523";
+
+export const APP_STORE_URL = `https://apps.apple.com/app/id${APP_STORE_ID}`;
+
 /**
- * iOS is not shipped yet. Every App Store CTA opens a "coming soon" modal that
- * points here so we can size the iOS waitlist before building for it.
+ * App Store install URL tagged with a campaign token, so App Store Connect
+ * Analytics can attribute installs to the CTA that drove them, the same way the
+ * Play referrer does for Google. `pt` is the provider token and `ct` the
+ * campaign; both are Apple's own attribution params.
+ */
+export function getAppStoreUrl(placement?: string): string {
+  if (!placement) return APP_STORE_URL;
+  const params = new URLSearchParams({ ct: placement, mt: "8" }).toString();
+  return `${APP_STORE_URL}?${params}`;
+}
+
+/**
+ * Kept for the retired "coming soon" modal. iOS shipped 2026-09-15, so every
+ * App Store CTA now links to the store directly; nothing renders this today.
  */
 export const IOS_WAITLIST_URL = "https://tally.so/r/obLJQ1";
