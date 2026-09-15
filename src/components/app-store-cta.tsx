@@ -53,8 +53,7 @@ const variantStyles: Record<AppStoreVariant, string> = {
 /**
  * iOS shipped on 2026-09-15 (App Store id 6807477523). This used to open a
  * "coming soon" waitlist modal; it is now a plain link to the listing, shaped
- * exactly like PlayStoreCTA so the two read as a matched pair. The modal file
- * is left in place but nothing renders it.
+ * exactly like PlayStoreCTA so the two read as a matched pair.
  */
 export function AppStoreCTA({
   className = "",

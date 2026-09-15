@@ -20,7 +20,11 @@ export function getPlayStoreUrl(placement?: string): string {
 
 export const APP_STORE_ID = "6807477523";
 
-export const APP_STORE_URL = `https://apps.apple.com/app/id${APP_STORE_ID}`;
+export const APP_STORE_SLUG = "dreamduo-a-couples-app";
+
+// No storefront segment (`/in/`): Apple redirects each visitor to their own
+// country store, which is the only way a non-Indian user can install.
+export const APP_STORE_URL = `https://apps.apple.com/app/${APP_STORE_SLUG}/id${APP_STORE_ID}`;
 
 /**
  * App Store install URL tagged with a campaign token, so App Store Connect
@@ -33,9 +37,3 @@ export function getAppStoreUrl(placement?: string): string {
   const params = new URLSearchParams({ ct: placement, mt: "8" }).toString();
   return `${APP_STORE_URL}?${params}`;
 }
-
-/**
- * Kept for the retired "coming soon" modal. iOS shipped 2026-09-15, so every
- * App Store CTA now links to the store directly; nothing renders this today.
- */
-export const IOS_WAITLIST_URL = "https://tally.so/r/obLJQ1";
