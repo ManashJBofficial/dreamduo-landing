@@ -4,6 +4,19 @@ import { StoreCTARow } from "@/components/store-cta-row";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { BrandMark } from "@/components/brand-mark";
 
+const FOOTER_QRS = [
+  {
+    src: "/install-qr.svg",
+    alt: "QR code linking to DreamDuo on Google Play",
+    label: "Android",
+  },
+  {
+    src: "/install-qr-ios.svg",
+    alt: "QR code linking to DreamDuo on the App Store",
+    label: "iPhone",
+  },
+];
+
 export function CTA() {
   return (
     <section
@@ -31,7 +44,7 @@ export function CTA() {
           <p className="mt-4 max-w-md text-base leading-relaxed text-slate-400 sm:mt-5 sm:max-w-lg sm:text-lg">
             {WAITLIST_ENABLED
               ? "Join the waitlist for early access to DreamDuo."
-              : "DreamDuo is live on Google Play. Install it free and start your first shared dream tonight."}
+              : "DreamDuo is live on Google Play and the App Store. Install it free and start your first shared dream tonight."}
           </p>
 
           <div className="mx-auto mt-8 w-full max-w-md sm:mt-10 sm:max-w-2xl">
@@ -42,25 +55,35 @@ export function CTA() {
                 <StoreCTARow variant="light" glow placement="footer_cta" />
 
                 <p className="mt-6 text-xs text-slate-400 sm:text-sm">
-                  Free to start on Android. iOS is on the way, join the wishlist.
+                  Free to start on Android and iOS. No card needed.
                 </p>
 
-                {/* Desktop visitors cannot install from a Play link, so hand
-                    them the phone instead. Lazy so mobile never fetches it. */}
+                {/* Desktop visitors cannot install from a store link, so hand
+                    them the phone instead: one QR per platform, side by side.
+                    Lazy so mobile never fetches them. */}
                 <div className="mt-10 hidden flex-col items-center md:flex">
-                  <div className="rounded-2xl bg-white p-3 shadow-lg">
-                    <Image
-                      src="/install-qr.svg"
-                      alt="QR code linking to DreamDuo on Google Play"
-                      width={132}
-                      height={132}
-                      unoptimized
-                      loading="lazy"
-                      className="h-[132px] w-[132px]"
-                    />
+                  <div className="flex items-start gap-8">
+                    {FOOTER_QRS.map((qr) => (
+                      <div key={qr.src} className="flex flex-col items-center">
+                        <div className="rounded-2xl bg-white p-3 shadow-lg">
+                          <Image
+                            src={qr.src}
+                            alt={qr.alt}
+                            width={132}
+                            height={132}
+                            unoptimized
+                            loading="lazy"
+                            className="h-[132px] w-[132px]"
+                          />
+                        </div>
+                        <p className="mt-3 text-xs font-medium text-slate-300">
+                          {qr.label}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                  <p className="mt-3 text-xs font-medium text-slate-400">
-                    On a computer? Scan to install on Android.
+                  <p className="mt-4 text-xs font-medium text-slate-400">
+                    On a computer? Scan with your phone to install.
                   </p>
                 </div>
               </div>
