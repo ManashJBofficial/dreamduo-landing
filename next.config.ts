@@ -12,6 +12,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  async redirects() {
+    return [
+      {
+        // The project's own *.vercel.app alias serves a full copy of the site.
+        // Send it to the canonical host so search engines never index a
+        // duplicate. Production only: preview deployments must keep working
+        // on their vercel.app URLs.
+        source: "/:path*",
+        has: [{ type: "host", value: "dreamduo-landing.vercel.app" }],
+        destination: "https://dreamduo.app/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
