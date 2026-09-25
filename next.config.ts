@@ -57,6 +57,17 @@ const nextConfig: NextConfig = {
         destination: `${smartLinkBaseUrl}?to=%2Fdeck%3Fmode%3Dtoday`,
         permanent: false,
       },
+      // Some already-sent emails (and possibly a misconfigured
+      // PUBLIC_API_BASE_URL) point smart-link buttons at this marketing
+      // domain instead of api.dreamduo.app directly. The generic /api/*
+      // rewrite below only reaches the waitlist microservice, so without this
+      // more specific redirect first, every one of those links 404s. Covers
+      // /open, /unsubscribe, and any other route under email.routes.ts.
+      {
+        source: "/api/v1/email/:path*",
+        destination: "https://api.dreamduo.app/api/v1/email/:path*",
+        permanent: false,
+      },
     ];
   },
   async rewrites() {
