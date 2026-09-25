@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dreamduo.app",
+      "sha256_cert_fingerprints": [
+        "FD:F3:E3:90:ED:44:D5:03:98:1F:7F:4B:94:09:6A:1E:C9:35:D9:D5:F8:3C:7C:54:40:EE:6C:21:FC:5B:59:5C"
+      ]
+    }
+  }
+]
