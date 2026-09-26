@@ -68,6 +68,19 @@ const nextConfig: NextConfig = {
         destination: "https://api.dreamduo.app/api/v1/email/:path*",
         permanent: false,
       },
+      // EMAIL_SMART_LINK_URL is set to this bare vanity path (not
+      // /api/v1/email/open), and every email template's CTA — decoded from a
+      // real sent email: https://dreamduo.app/open?to=/ — points here. Every
+      // template shares this exact path, only the ?to= query differs (/,
+      // /premium, /goals, ...), and Next auto-forwards it since the
+      // destination doesn't redeclare it. This one rule is what actually
+      // fixes email buttons; the path-specific redirects above are for a
+      // different, unrelated caller (push notifications' `deepLink` values).
+      {
+        source: "/open",
+        destination: smartLinkBaseUrl,
+        permanent: false,
+      },
     ];
   },
   async rewrites() {
