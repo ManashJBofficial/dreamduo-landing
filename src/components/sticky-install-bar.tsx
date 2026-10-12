@@ -62,7 +62,7 @@ export function StickyInstallBar() {
       className="animate-install-bar-in fixed inset-x-2 z-50 md:hidden"
       style={{ bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
-      <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/95 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.9)] backdrop-blur">
+      <div className="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-950/95 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.9)] backdrop-blur">
         <Image
           src="/dreamduo_logo.webp"
           alt=""
@@ -75,7 +75,7 @@ export function StickyInstallBar() {
         <div className="min-w-0 flex-1">
           <div className="truncate text-sm font-bold text-white">DreamDuo</div>
           <div className="truncate text-[11px] text-slate-400">
-            Free on Google Play
+            Free on iOS &amp; Android
           </div>
         </div>
 
@@ -87,13 +87,24 @@ export function StickyInstallBar() {
           className="min-h-11 shrink-0 sm:min-h-11"
         />
 
+        {/* Carries the Play mark rather than reading as a bare "Install":
+            next to an App Store button, an unmarked one looks like the only
+            download and leaves the platform ambiguous. */}
         <a
           href={getPlayStoreUrl("sticky_bar")}
           target="_blank"
           rel="noopener"
           onClick={() => track("install_click", { placement: "sticky_bar" })}
-          className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-5 text-sm font-bold text-white shadow-lg transition-transform active:scale-95"
+          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-4 text-sm font-bold text-white shadow-lg transition-transform active:scale-95"
         >
+          <Image
+            src="/google-play.png"
+            alt=""
+            aria-hidden="true"
+            width={16}
+            height={16}
+            className="h-4 w-4 shrink-0"
+          />
           Install
         </a>
 

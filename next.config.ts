@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/privacy", destination: "/privacy-policy", permanent: true },
       {
         // The project's own *.vercel.app alias serves a full copy of the site.
         // Send it to the canonical host so search engines never index a

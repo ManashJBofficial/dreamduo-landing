@@ -8,25 +8,23 @@ import { BrandMark } from "@/components/brand-mark";
 import { AppStoreCTA } from "@/components/app-store-cta";
 import { PlayStoreCTA } from "@/components/playstore-cta";
 
+// A "#" href scrolls (or jumps home first, see smoothScroll). Anything else is
+// a real route and has to be a Link, or the blog would never be reachable from
+// the nav and would only exist in the sitemap.
 const navLinks = [
-  { label: "Dreams", href: "#dreams" },
-  { label: "Features", href: "#features" },
-  { label: "Our Story", href: "#story" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Dreams", href: "/#dreams" },
+  { label: "Features", href: "/#features" },
+  { label: "Our Story", href: "/#story" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Blog", href: "/blog" },
 ];
 
 function smoothScroll(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const el = document.getElementById(href.split("#")[1]);
+  if (!el) return;
   e.preventDefault();
-  const id = href.replace("#", "");
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-    return;
-  }
-
-  if (typeof window !== "undefined") {
-    window.location.assign(`/${href}`);
-  }
+  el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
 }
 
 export function Navbar() {
@@ -65,24 +63,37 @@ export function Navbar() {
         aria-label="Primary"
         className="fixed inset-x-2 top-0 z-50 flex justify-center sm:inset-x-3 lg:inset-x-4"
       >
-      <div ref={navRef} className="relative w-full md:w-auto">
+      {/* Fills the width up to max-w-6xl instead of shrink-wrapping its links.
+          Articles, the footer and comparison pages use the same box, so every
+          page shares one set of left and right edges. */}
+      <div ref={navRef} className="relative w-full md:max-w-6xl">
         <div className="grid grid-cols-[1fr_auto_1fr] items-center rounded-2xl bg-white px-4 pb-3 pt-4 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] sm:px-10 sm:pb-3.5 sm:pt-6 md:rounded-b-3xl md:rounded-t-none lg:px-12 lg:pt-7">
           {/* Left - Desktop nav links */}
-          <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => smoothScroll(e, link.href)}
-                className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden items-center gap-0.5 lg:flex lg:gap-1">
+            {navLinks.map((link) =>
+              link.href.startsWith("/#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => smoothScroll(e, link.href)}
+                  className="rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900 lg:px-3 lg:text-[15px]"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:text-slate-900 lg:px-3 lg:text-[15px]"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               type="button"
               onClick={() => setMobileOpen((prev) => !prev)}
@@ -116,8 +127,8 @@ export function Navbar() {
           {/* Right - CTA */}
           <div className="flex items-center justify-end gap-1.5 sm:gap-2">
             {WAITLIST_ENABLED ? (
-              <a
-                href="#download"
+              <Link
+                href="/#download"
                 onClick={(e) => {
                   smoothScroll(e, "#download");
                   setMobileOpen(false);
@@ -127,7 +138,7 @@ export function Navbar() {
                 <span className="block rounded-full px-3 py-1.5 text-[11px] font-semibold text-slate-800 transition-colors hover:text-rose-600 sm:px-5 sm:py-2 sm:text-sm">
                   Get beta invite
                 </span>
-              </a>
+              </Link>
             ) : (
               <>
                 <PlayStoreCTA
@@ -149,21 +160,32 @@ export function Navbar() {
         {mobileOpen && (
           <div
             id="mobile-nav"
-            className="absolute top-full mt-2 w-48 rounded-xl border border-slate-100 bg-white px-3 pb-3 pt-2 shadow-lg md:hidden"
+            className="absolute top-full mt-2 w-48 rounded-xl border border-slate-100 bg-white px-3 pb-3 pt-2 shadow-lg lg:hidden"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  smoothScroll(e, link.href);
-                  setMobileOpen(false);
-                }}
-                className="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith("/#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => {
+                    smoothScroll(e, link.href);
+                    setMobileOpen(false);
+                  }}
+                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
         )}
       </div>

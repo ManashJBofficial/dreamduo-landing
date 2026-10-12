@@ -147,7 +147,7 @@ export default function AccountDeletionPage() {
                     <span className="mt-0.5 shrink-0">↩️</span>
                     <span>
                       You can restore your account within these 7 days by opening
-                      the app and tapping <strong>"Restore Account"</strong>.
+                      the app and tapping <strong>&quot;Restore Account&quot;</strong>.
                     </span>
                   </li>
                   <li className="flex gap-2">

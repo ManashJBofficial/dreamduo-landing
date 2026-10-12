@@ -9,10 +9,10 @@ const DEFAULT_PUBLIC_COUNT = 30;
 const LAST_COUNT_STORAGE_KEY = "waitlist_public_count";
 
 export function WaitlistStrip() {
-  if (!WAITLIST_ENABLED) {
-    return null;
-  }
+  return WAITLIST_ENABLED ? <EnabledWaitlistStrip /> : null;
+}
 
+function EnabledWaitlistStrip() {
   const initialCount = getInitialCount();
   const [count, setCount] = useState<number>(initialCount);
   const [displayCount, setDisplayCount] = useState(initialCount);
