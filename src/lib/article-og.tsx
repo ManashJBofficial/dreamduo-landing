@@ -11,7 +11,7 @@ export function articleOpenGraph(entry: Post) {
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 800 }}>
         <div style={{ fontSize: 25, fontWeight: 700 }}>dreamduo / journal</div>
         <div style={{ fontSize: entry.title.length > 75 ? 57 : 64, lineHeight: 1.08, letterSpacing: -2, fontWeight: 700 }}>{entry.title}</div>
-        <div style={{ fontSize: 22 }}>{entry.author ?? "DreamDuo"} · {entry.readingMinutes} min read</div>
+        <div style={{ fontSize: 22 }}>{`${entry.author ?? "DreamDuo"} · ${entry.readingMinutes} min read`}</div>
       </div>
     </div>,
     { width: 1200, height: 630 }
