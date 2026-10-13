@@ -7,14 +7,14 @@ import { PostCard } from "@/components/post-card";
 import { BlogAppCTA } from "@/components/blog-app-cta";
 import { MdxBody } from "@/components/mdx-body";
 import { ArticleLayout, type Crumb } from "@/components/article-layout";
-import { getHeadings, getPost, getPosts, getRelatedPosts } from "@/lib/blog";
+import { getHeadings, getPost, getPublicPosts, getRelatedPosts } from "@/lib/blog";
 import { articleJsonLd, articleMetadata } from "@/lib/article-meta";
 
 const CRUMBS: Crumb[] = [{ label: "Blog", href: "/blog" }];
 
 /** Every post is prerendered at build time, so there is no per-request work. */
 export function generateStaticParams() {
-  return getPosts().map((post) => ({ slug: post.slug }));
+  return getPublicPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -71,8 +71,9 @@ export default async function BlogPostPage({
           author={post.author}
           image={post.image}
           imageAlt={post.imageAlt}
-          headings={getHeadings(post.content)}
+          headings={getHeadings(post.content).filter((heading) => heading.level <= (post.tocDepth ?? 3))}
           draft={post.draft}
+          archived={post.archived}
           footer={
             <>
               {post.tags && post.tags.length > 0 && (
@@ -89,7 +90,7 @@ export default async function BlogPostPage({
                 </div>
               )}
 
-              <BlogAppCTA />
+              <BlogAppCTA placement={`blog_${post.slug}_footer`} />
 
               {related.length > 0 && (
                 <section className="mt-14 border-t border-slate-200 pt-10">

@@ -16,6 +16,11 @@ type Collection = "blog" | "compare";
 
 export interface PostFrontmatter {
   title: string;
+  /** Optional search/social title; the visible H1 and schema headline remain the article title. */
+  seoTitle?: string;
+  /** Short, factual cover copy. Omitted headlines fall back to the actual article title. */
+  coverHeadline?: string;
+  coverSubtitle?: string;
   /** Meta description and the excerpt shown on the index. Keep under ~155 chars. */
   description: string;
   /** ISO date (YYYY-MM-DD). Drives ordering and the article schema. */
@@ -25,6 +30,8 @@ export interface PostFrontmatter {
   /** Lowercase, hyphenated. Each one becomes a /blog/tag/<tag> hub page. */
   tags?: string[];
   author?: string;
+  /** Limit long articles' navigation to section headings while retaining detailed body headings. */
+  tocDepth?: 2 | 3;
   /**
    * Optional cover override. Without an image, abstract artwork is automatic.
    * For an override, save the file as
@@ -42,6 +49,8 @@ export interface PostFrontmatter {
   competitor?: string;
   /** Previewable in development; returns 404 and is excluded from production discovery. */
   draft?: boolean;
+  /** Retained at its original URL and in tag hubs, but retired from the main listing and RSS. */
+  archived?: boolean;
 }
 
 export interface Post extends PostFrontmatter {
@@ -116,6 +125,11 @@ function published(entries: Post[]): PostSummary[] {
 
 /** Published posts, newest first. */
 export function getPosts(): PostSummary[] {
+  return getPublicPosts().filter((post) => !post.archived);
+}
+
+/** All accessible published posts, including older guides kept for existing links. */
+export function getPublicPosts(): PostSummary[] {
   return published(readCollection("blog"));
 }
 
@@ -186,7 +200,7 @@ export function getHeadings(content: string): Heading[] {
 export function getTags(): { tag: string; count: number }[] {
   const counts = new Map<string, number>();
 
-  for (const post of getPosts()) {
+  for (const post of getPublicPosts()) {
     for (const tag of post.tags ?? []) {
       counts.set(tag, (counts.get(tag) ?? 0) + 1);
     }
@@ -198,7 +212,7 @@ export function getTags(): { tag: string; count: number }[] {
 }
 
 export function getPostsByTag(tag: string): PostSummary[] {
-  return getPosts().filter((post) => post.tags?.includes(tag));
+  return getPublicPosts().filter((post) => post.tags?.includes(tag));
 }
 
 /**

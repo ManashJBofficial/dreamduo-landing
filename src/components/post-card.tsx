@@ -14,8 +14,11 @@ export function PostCard({ post, collection = "blog" }: { post: PostSummary; col
         <div className="editorial-card-art" style={{ backgroundColor: art.background }}>
           {post.image ? <Image src={post.image} alt={post.imageAlt ?? post.title} {...getLocalImageSize(post.image)} sizes="(max-width: 768px) 100vw, 34rem" className="h-full w-full object-cover" /> : <>
             <AbstractPattern seed={post.slug} className="editorial-card-pattern" />
-            <span className="absolute left-6 top-6 text-xs font-bold tracking-wide" style={{ color: art.ink }}>dreamduo<span className="ml-2 font-normal">/ journal</span></span>
-            <span className="absolute bottom-6 left-6 max-w-[45%] font-display text-xl font-bold leading-tight" style={{ color: art.ink }}>{collection === "compare" ? <>Two apps.<br />Your choice.</> : post.tags?.includes("comparisons") ? <>Find your<br />kind of together.</> : <>Small steps.<br />Shared dreams.</>}</span>
+            <div className="editorial-cover-copy" aria-hidden="true" style={{ color: art.ink }}>
+              <div><span className="editorial-cover-headline">{post.coverHeadline ?? post.title}</span>
+                {post.coverSubtitle && <span className="editorial-cover-subtitle">{post.coverSubtitle}</span>}
+              </div>
+            </div>
           </>}
           <span className="editorial-card-arrow" aria-hidden="true"><ArrowUpRight size={20} /></span>
         </div>

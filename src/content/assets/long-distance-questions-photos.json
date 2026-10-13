@@ -1,0 +1,56 @@
+{
+  "desire": {
+    "file": "01-desire.webp",
+    "alt": "An adult couple sharing a close kiss in warm light.",
+    "source": "https://www.pexels.com/photo/close-up-of-a-couple-kissing-19033068/",
+    "photoId": "19033068",
+    "credit": "Sergey Romanenko",
+    "license": "https://www.pexels.com/license/",
+    "crop": "attention"
+  },
+  "apart": {
+    "file": "02-apart.webp",
+    "alt": "The silhouettes of two adults embracing in warm red light.",
+    "source": "https://www.pexels.com/photo/romantic-silhouette-of-couple-embracing-30373875/",
+    "photoId": "30373875",
+    "credit": "Eric Moura",
+    "license": "https://www.pexels.com/license/",
+    "crop": "north"
+  },
+  "memories": {
+    "file": "03-memories.webp",
+    "alt": "A black-and-white portrait of an adult couple sharing a kiss.",
+    "source": "https://www.pexels.com/photo/close-up-shot-of-a-romantic-couple-kissing-5883764/",
+    "photoId": "5883764",
+    "credit": "Xenia Shtreter",
+    "license": "https://www.pexels.com/license/",
+    "crop": "attention"
+  },
+  "fantasies": {
+    "file": "04-fantasies.webp",
+    "alt": "Two adult men kissing in a softly lit room.",
+    "source": "https://www.pexels.com/photo/kissing-while-on-the-bed-backlit-by-the-lamp-5940612/",
+    "photoId": "5940612",
+    "credit": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "crop": "attention"
+  },
+  "preferences": {
+    "file": "05-private-moment.webp",
+    "alt": "An adult couple sharing a close kiss beside curtains in warm evening light.",
+    "source": "https://www.pexels.com/photo/a-couple-kissing-intimately-9497740/",
+    "photoId": "9497740",
+    "credit": "Ron Lach",
+    "license": "https://www.pexels.com/license/",
+    "crop": "custom: 1200x750 at left 0, top 350 of 1200x1800 source"
+  },
+  "reunion": {
+    "file": "06-reunion-detail.webp",
+    "alt": "An adult couple sharing a kiss while seated on a bed.",
+    "source": "https://www.pexels.com/photo/couple-kissing-in-bed-4651228/",
+    "photoId": "4651228",
+    "credit": "Ketut Subiyanto",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  }
+}

@@ -38,8 +38,9 @@ export function Footer() {
       links: [
         { label: "Blog", href: "/blog" },
         { label: "Best couples apps in 2026", href: "/blog/best-couples-apps" },
-        { label: "Tracking shared goals", href: "/blog/how-to-track-shared-goals-as-a-couple" },
+        { label: "Long-distance care packages", href: "/blog/long-distance-care-package-ideas" },
         { label: "RSS feed", href: "/blog/rss.xml" },
+        { label: "How we write our guides", href: "/editorial-policy" },
         { label: "Contact support", href: "mailto:support@dreamduo.app" },
       ],
     },

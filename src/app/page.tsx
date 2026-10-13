@@ -46,12 +46,13 @@ export default function Home() {
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://dreamduo.app/#organization",
       name: "DreamDuo",
       url: "https://dreamduo.app",
-      logo: "https://dreamduo.app/opengraph-image",
+      logo: "https://dreamduo.app/dreamduo_logo.webp",
       description:
         "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
-      sameAs: [GOOGLE_PLAY_URL],
+      sameAs: [GOOGLE_PLAY_URL, APP_STORE_URL],
       contactPoint: {
         "@type": "ContactPoint",
         email: "support@dreamduo.app",

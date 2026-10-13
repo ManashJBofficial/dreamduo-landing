@@ -27,7 +27,7 @@ export function articleMetadata(entry: Post, path: string): Metadata {
   const image = previewImage(entry);
 
   return {
-    title: entry.title,
+    title: entry.seoTitle ?? entry.title,
     description: entry.description,
     alternates: { canonical: path },
     // A draft reachable by direct URL must never enter the index, even though
@@ -36,7 +36,7 @@ export function articleMetadata(entry: Post, path: string): Metadata {
     authors: entry.author ? [{ name: entry.author }] : undefined,
     keywords: entry.tags,
     openGraph: {
-      title: entry.title,
+      title: entry.seoTitle ?? entry.title,
       description: entry.description,
       url: path,
       siteName: "DreamDuo",
@@ -50,7 +50,7 @@ export function articleMetadata(entry: Post, path: string): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: entry.title,
+      title: entry.seoTitle ?? entry.title,
       description: entry.description,
       images: [image.url],
     },
@@ -76,11 +76,13 @@ export function articleJsonLd(entry: Post, path: string, crumbs: Crumb[]) {
             "@type": "Person",
             name: author.name,
             jobTitle: author.role,
-            ...(author.url ? { url: author.url } : {}),
+            ...(author.avatar ? { image: new URL(author.avatar, SITE_URL).href } : {}),
+            ...(author.url ? { url: new URL(author.url, SITE_URL).href } : {}),
           }
         : { "@type": "Organization", name: "DreamDuo", url: SITE_URL },
       publisher: {
         "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
         name: "DreamDuo",
         url: SITE_URL,
         logo: { "@type": "ImageObject", url: `${SITE_URL}/dreamduo_logo.webp` },

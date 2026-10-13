@@ -1,0 +1,329 @@
+{
+  "picnic": {
+    "file": "01-picnic.webp",
+    "alt": "A couple enjoying a picnic together in a green park.",
+    "source": "https://www.pexels.com/photo/a-couple-having-a-picnic-in-a-park-26615121/",
+    "photoId": "26615121",
+    "credit": "Alexander Mass",
+    "license": "https://www.pexels.com/license/"
+  },
+  "sunrise": {
+    "file": "02-sunrise.webp",
+    "alt": "Golden sunlight spreading across the ocean at sunrise.",
+    "source": "https://www.pexels.com/photo/sunrise-over-the-horizon-11384470/",
+    "photoId": "11384470",
+    "credit": "Francesco Ungaro",
+    "license": "https://www.pexels.com/license/"
+  },
+  "coffee": {
+    "file": "03-coffee.webp",
+    "alt": "A couple sharing coffee and conversation at a cafe.",
+    "source": "https://www.pexels.com/photo/couple-at-cafe-20479940/",
+    "photoId": "20479940",
+    "credit": "Alexander Mass",
+    "license": "https://www.pexels.com/license/"
+  },
+  "walk": {
+    "file": "04-walk.webp",
+    "alt": "Two people walking along a tree-lined park path.",
+    "source": "https://www.pexels.com/photo/couple-walking-in-a-park-14703553/",
+    "photoId": "14703553",
+    "credit": "Gökhan Yetimova",
+    "license": "https://www.pexels.com/license/"
+  },
+  "market": {
+    "file": "05-market.webp",
+    "alt": "Fresh vegetables displayed at a busy outdoor market.",
+    "source": "https://www.pexels.com/photo/vegetables-on-stall-at-market-17590744/",
+    "photoId": "17590744",
+    "credit": "@coldbeer",
+    "license": "https://www.pexels.com/license/"
+  },
+  "bookstore": {
+    "file": "06-bookstore.webp",
+    "alt": "Two people browsing shelves in a cosy bookstore.",
+    "source": "https://www.pexels.com/photo/couple-exploring-cozy-bookstore-interior-29684718/",
+    "photoId": "29684718",
+    "credit": "Ezgi Kaya",
+    "license": "https://www.pexels.com/license/"
+  },
+  "museum": {
+    "file": "07-museum.webp",
+    "alt": "Two visitors looking at paintings in an art gallery.",
+    "source": "https://www.pexels.com/photo/couple-enjoying-art-at-a-museum-gallery-32215673/",
+    "photoId": "32215673",
+    "credit": "Truc Pham",
+    "license": "https://www.pexels.com/license/"
+  },
+  "stars": {
+    "file": "08-stars.webp",
+    "alt": "The Milky Way above a quiet picnic area at night.",
+    "source": "https://www.pexels.com/photo/trees-and-grass-field-under-starry-sky-5427813/",
+    "photoId": "5427813",
+    "credit": "Ken Cheung",
+    "license": "https://www.pexels.com/license/"
+  },
+  "cook": {
+    "file": "09-cook-detail.webp",
+    "alt": "Two people preparing dough together in a kitchen.",
+    "source": "https://www.pexels.com/photo/couple-cooking-together-8902018/",
+    "photoId": "8902018",
+    "credit": "ANTONI SHKRABA production",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  },
+  "bake": {
+    "file": "10-bake-detail.webp",
+    "alt": "A couple baking cakes together at a kitchen counter.",
+    "source": "https://www.pexels.com/photo/couple-baking-in-a-kitchen-26598633/",
+    "photoId": "26598633",
+    "credit": "Angela Chacón",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  },
+  "movie": {
+    "file": "11-movie-detail.webp",
+    "alt": "A couple watching a film on their sofa with popcorn.",
+    "source": "https://www.pexels.com/photo/a-couple-sitting-on-the-sofa-while-holding-popcorn-6336657/",
+    "photoId": "6336657",
+    "credit": "Tima Miroshnichenko",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  },
+  "games": {
+    "file": "12-games-detail.webp",
+    "alt": "Two people sharing a game night at home.",
+    "source": "https://www.pexels.com/photo/wood-couple-love-texture-4009762/",
+    "photoId": "4009762",
+    "credit": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  },
+  "puzzle": {
+    "file": "13-puzzle-detail.webp",
+    "alt": "Two people working on a puzzle at a table.",
+    "source": "https://www.pexels.com/photo/a-couple-doing-a-transparent-puzzle-7418075/",
+    "photoId": "7418075",
+    "credit": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "crop": "south"
+  },
+  "garden": {
+    "file": "14-garden.webp",
+    "alt": "A couple choosing plants together in a garden nursery.",
+    "source": "https://www.pexels.com/photo/a-couple-gardening-together-5029821/",
+    "photoId": "5029821",
+    "credit": "Anna Shvets",
+    "license": "https://www.pexels.com/license/"
+  },
+  "playlist": {
+    "file": "15-playlist.webp",
+    "alt": "Vinyl records beside a turntable and microphone.",
+    "source": "https://www.pexels.com/photo/vinyl-records-on-the-table-5118730/",
+    "photoId": "5118730",
+    "credit": "Tima Miroshnichenko",
+    "license": "https://www.pexels.com/license/"
+  },
+  "letters": {
+    "file": "16-letters.webp",
+    "alt": "A handwritten letter being taken from an envelope.",
+    "source": "https://www.pexels.com/photo/getting-a-letter-from-a-envelope-8716083/",
+    "photoId": "8716083",
+    "credit": "Katya Wolf",
+    "license": "https://www.pexels.com/license/"
+  },
+  "paint": {
+    "file": "17-paint.webp",
+    "alt": "A couple painting together on a canvas indoors.",
+    "source": "https://www.pexels.com/photo/a-couple-painting-on-a-canvas-7719076/",
+    "photoId": "7719076",
+    "credit": "Mikhail Nilov",
+    "license": "https://www.pexels.com/license/"
+  },
+  "pottery": {
+    "file": "18-pottery.webp",
+    "alt": "Two people shaping clay during a pottery workshop.",
+    "source": "https://www.pexels.com/photo/happy-couple-doing-pottery-together-5302959/",
+    "photoId": "5302959",
+    "credit": "Monstera Production",
+    "license": "https://www.pexels.com/license/"
+  },
+  "dance": {
+    "file": "19-dance.webp",
+    "alt": "A couple dancing together in a sunlit living room.",
+    "source": "https://www.pexels.com/photo/a-couple-dancing-in-a-living-room-8091341/",
+    "photoId": "8091341",
+    "credit": "Yaroslav Shuraev",
+    "license": "https://www.pexels.com/license/"
+  },
+  "scrapbook": {
+    "file": "20-scrapbook.webp",
+    "alt": "Instant photographs arranged across a wooden table.",
+    "source": "https://www.pexels.com/photo/collection-of-instant-photos-on-wooden-table-32805943/",
+    "photoId": "32805943",
+    "credit": "Alexander Mass",
+    "license": "https://www.pexels.com/license/"
+  },
+  "photography": {
+    "file": "21-photography.webp",
+    "alt": "A couple taking a photograph with a camera outdoors.",
+    "source": "https://www.pexels.com/photo/couple-taking-a-photo-by-a-camera-7507968/",
+    "photoId": "7507968",
+    "credit": "cottonbro studio",
+    "license": "https://www.pexels.com/license/"
+  },
+  "breakfast": {
+    "file": "22-breakfast.webp",
+    "alt": "Two people sharing a pancake breakfast at home.",
+    "source": "https://www.pexels.com/photo/photo-of-couple-eating-pancakes-3692884/",
+    "photoId": "3692884",
+    "credit": "cottonbro studio",
+    "license": "https://www.pexels.com/license/"
+  },
+  "read": {
+    "file": "23-read-detail.webp",
+    "alt": "A couple reading a book together at home.",
+    "source": "https://www.pexels.com/photo/couple-reading-book-4649825/",
+    "photoId": "4649825",
+    "credit": "Ketut Subiyanto",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  },
+  "movement": {
+    "file": "24-movement.webp",
+    "alt": "Two people practising yoga on a forest cabin deck.",
+    "source": "https://www.pexels.com/photo/couple-doing-yoga-on-cabin-patio-9225406/",
+    "photoId": "9225406",
+    "credit": "Ron Lach",
+    "license": "https://www.pexels.com/license/"
+  },
+  "hike": {
+    "file": "25-hike.webp",
+    "alt": "A couple walking along a scenic hiking trail.",
+    "source": "https://www.pexels.com/photo/couple-hiking-up-trail-5937225/",
+    "photoId": "5937225",
+    "credit": "Kampus Production",
+    "license": "https://www.pexels.com/license/"
+  },
+  "bike": {
+    "file": "26-bike.webp",
+    "alt": "Two people riding bicycles together beside flowers.",
+    "source": "https://www.pexels.com/photo/couple-riding-their-bicycles-8350895/",
+    "photoId": "8350895",
+    "credit": "Mikhail Nilov",
+    "license": "https://www.pexels.com/license/"
+  },
+  "kayak": {
+    "file": "27-kayak.webp",
+    "alt": "Two people paddling kayaks on a tree-lined river.",
+    "source": "https://www.pexels.com/photo/couple-having-fun-in-kayaks-16930183/",
+    "photoId": "16930183",
+    "credit": "Gene Samit",
+    "license": "https://www.pexels.com/license/"
+  },
+  "waterfall": {
+    "file": "28-waterfall.webp",
+    "alt": "A waterfall cascading down a rocky cliff.",
+    "source": "https://www.pexels.com/photo/waterfall-in-nature-10130123/",
+    "photoId": "10130123",
+    "credit": "Markus Partoll",
+    "license": "https://www.pexels.com/license/"
+  },
+  "camp": {
+    "file": "29-camp-detail.webp",
+    "alt": "Two people setting up a tent in a forest.",
+    "source": "https://www.pexels.com/photo/couple-setting-up-a-tent-5993939/",
+    "photoId": "5993939",
+    "credit": "cottonbro studio",
+    "license": "https://www.pexels.com/license/",
+    "crop": "centre"
+  },
+  "train": {
+    "file": "30-train.webp",
+    "alt": "A passenger train travelling through green countryside.",
+    "source": "https://www.pexels.com/photo/train-traveling-through-the-countryside-20629555/",
+    "photoId": "20629555",
+    "credit": "Lesandu Alokabandara",
+    "license": "https://www.pexels.com/license/"
+  },
+  "road-trip": {
+    "file": "31-road-trip.webp",
+    "alt": "A view of a mountain road through a car window.",
+    "source": "https://www.pexels.com/photo/scenic-road-trip-through-mountainous-landscape-28840460/",
+    "photoId": "28840460",
+    "credit": "Luca Dross",
+    "license": "https://www.pexels.com/license/"
+  },
+  "beach": {
+    "file": "32-beach.webp",
+    "alt": "Two people standing on a beach at sunset.",
+    "source": "https://www.pexels.com/photo/couple-on-beach-at-sunset-8501550/",
+    "photoId": "8501550",
+    "credit": "Minh Tân Nguyễn",
+    "license": "https://www.pexels.com/license/"
+  },
+  "volunteer": {
+    "file": "33-volunteer.webp",
+    "alt": "Two volunteers collecting litter during a street clean-up.",
+    "source": "https://www.pexels.com/photo/volunteers-cleaning-the-street-6647007/",
+    "photoId": "6647007",
+    "credit": "RDNE Stock project",
+    "license": "https://www.pexels.com/license/"
+  },
+  "concert": {
+    "file": "34-concert.webp",
+    "alt": "An audience watching a live performance under colourful stage lights.",
+    "source": "https://www.pexels.com/photo/audience-at-a-concert-17120474/",
+    "photoId": "17120474",
+    "credit": "Caleb Oquendo",
+    "license": "https://www.pexels.com/license/"
+  },
+  "season": {
+    "file": "35-season.webp",
+    "alt": "A park path covered with fallen autumn leaves.",
+    "source": "https://www.pexels.com/photo/walkway-through-autumn-park-with-colorful-trees-in-cloudy-weather-4324352/",
+    "photoId": "4324352",
+    "credit": "Ivars",
+    "license": "https://www.pexels.com/license/"
+  },
+  "distance-cook": {
+    "file": "36-distance-cook.webp",
+    "alt": "Two people using a laptop and phone for a kitchen video call.",
+    "source": "https://www.pexels.com/photo/couple-having-video-call-in-the-kitchen-5711517/",
+    "photoId": "5711517",
+    "credit": "Diva Plavalaguna",
+    "license": "https://www.pexels.com/license/"
+  },
+  "video-date": {
+    "file": "37-video-date.webp",
+    "alt": "Two people sharing a laptop during a video call at home.",
+    "source": "https://www.pexels.com/photo/a-couple-using-a-laptop-while-doing-vide-call-5412014/",
+    "photoId": "5412014",
+    "credit": "Nataliya Vaitkevich",
+    "license": "https://www.pexels.com/license/"
+  },
+  "visit": {
+    "file": "38-visit.webp",
+    "alt": "A passport and travel planning notes arranged over a map.",
+    "source": "https://www.pexels.com/photo/passport-on-top-of-a-planner-7235894/",
+    "photoId": "7235894",
+    "credit": "Nataliya Vaitkevich",
+    "license": "https://www.pexels.com/license/"
+  },
+  "savings": {
+    "file": "39-savings.webp",
+    "alt": "Coins falling into a clear glass savings jar.",
+    "source": "https://www.pexels.com/photo/coins-in-a-jar-6863252/",
+    "photoId": "6863252",
+    "credit": "Nataliya Vaitkevich",
+    "license": "https://www.pexels.com/license/"
+  },
+  "anniversary": {
+    "file": "40-anniversary.webp",
+    "alt": "A couple taking a selfie during a celebratory dinner.",
+    "source": "https://www.pexels.com/photo/couple-taking-a-selfie-during-romantic-dinner-6496074/",
+    "photoId": "6496074",
+    "credit": "Gustavo Fring",
+    "license": "https://www.pexels.com/license/"
+  }
+}

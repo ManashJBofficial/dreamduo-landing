@@ -3,6 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { slugify } from "@/lib/blog";
 import { getLocalImageSize } from "@/lib/images";
+import { BucketListPhoto } from "@/components/bucket-list-photo";
+import { BucketListStarter } from "@/components/bucket-list-starter";
+import { DailyQuestionCTA } from "@/components/daily-question-cta";
+import { EditorialPhoto } from "@/components/editorial-photo";
+import { ArticleDownload } from "@/components/article-download";
 
 /**
  * Element styling for rendered MDX. Posts are plain markdown, so everything a
@@ -62,7 +67,7 @@ function Anchor({ href = "", children, ...props }: ComponentPropsWithoutRef<"a">
  * Full /paths still work, for sharing an image between posts.
  */
 export function createMdxComponents(assetBase: string) {
-  return { ...baseComponents, img: (props: ComponentPropsWithoutRef<"img">) => <MdxImage {...props} assetBase={assetBase} /> };
+  return { ...baseComponents, BucketListPhoto, EditorialPhoto, ArticleDownload, BucketListStarter, DailyQuestionCTA, img: (props: ComponentPropsWithoutRef<"img">) => <MdxImage {...props} assetBase={assetBase} /> };
 }
 
 const baseComponents = {

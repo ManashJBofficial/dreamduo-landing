@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local pre-publication reports and research outputs
+/docs/prepublication-*.md
+/docs/prepublication-*.json
+/docs/*-audit.md
+/docs/keyword-research-*.md
+/docs/*-article.md
+/docs/long-distance-questions-selection.json

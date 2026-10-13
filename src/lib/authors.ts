@@ -3,8 +3,8 @@
  * photo next to an article is one of the clearest trust signals a small site
  * can give, to readers and to Google alike.
  *
- * To add a photo: put a square image at public/blog/authors/<name>.webp
- * (400x400 is plenty) and set `avatar` to its path. Until then the card shows
+ * To add a photo: put a small image at public/blog/authors/<name>.webp
+ * (400px wide is plenty) and set `avatar` to its path. Until then the card shows
  * initials.
  */
 
@@ -20,6 +20,8 @@ const AUTHORS: Record<string, Author> = {
   "Manash Jyoti Baruah": {
     name: "Manash Jyoti Baruah",
     role: "Founder, DreamDuo",
+    avatar: "/blog/authors/manash-jyoti-baruah-cutout.webp",
+    url: "/editorial-policy#author",
   },
 };
 

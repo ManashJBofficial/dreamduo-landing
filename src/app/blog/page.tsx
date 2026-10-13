@@ -5,11 +5,12 @@ import { Rss } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PostCard } from "@/components/post-card";
-import { getPosts, getTags } from "@/lib/blog";
+import { BlogTopicNav } from "@/components/blog-topic-nav";
+import { getPosts } from "@/lib/blog";
 
-const title = "Shared Goals, Habits & Couples App Guides";
+const title = "Couples Blog: Gift Ideas, Shared Goals & Relationship Guides";
 const description =
-  "Guides, comparisons, and honest advice for couples building a life together: shared goals, money, habits, and staying close at any distance.";
+  "Practical guides for couples: shared goals, bucket list ideas, long-distance conversations and app comparisons with features, pricing and source links.";
 
 export const metadata: Metadata = {
   title,
@@ -37,7 +38,6 @@ export const metadata: Metadata = {
 
 export default function BlogIndexPage() {
   const posts = getPosts();
-  const tags = getTags();
 
   const jsonLd = [
     {
@@ -48,6 +48,7 @@ export default function BlogIndexPage() {
       url: "https://dreamduo.app/blog",
       publisher: {
         "@type": "Organization",
+        "@id": "https://dreamduo.app/#organization",
         name: "DreamDuo",
         url: "https://dreamduo.app",
         logo: "https://dreamduo.app/dreamduo_logo.webp",
@@ -91,22 +92,22 @@ export default function BlogIndexPage() {
       >
         <Navbar />
 
-        <EditorialBanner seed="dreamduo-journal">
+        <EditorialBanner seed="dreamduo-journal" className="journal-hero">
           <p className="editorial-eyebrow mb-6">The DreamDuo journal</p>
           <h1 className="editorial-title">A little closer.<br />A little more together.</h1>
-          <p className="editorial-deck">Practical guides and thoughtful comparisons for the life you&apos;re building together. From your next small habit to your biggest shared dream.</p>
-          <Link href="/compare" className="mt-7 inline-flex text-sm font-bold text-rose-800 underline decoration-rose-300 underline-offset-4">Explore the app comparisons &rarr;</Link>
-        </EditorialBanner>
-        <div className="editorial-shell mt-10">
-          <div className="flex flex-wrap gap-2" aria-label="Browse topics">
-            <Link href="/blog" className="editorial-filter" aria-current="page">All stories</Link>
-            {tags.map(({ tag }) => <Link key={tag} href={`/blog/tag/${tag}`} className="editorial-filter">{tag.replace(/-/g, " ")}</Link>)}
+          <p className="editorial-deck">Practical guides for couples, from shared goals and bucket lists to long-distance conversations and clear app comparisons.</p>
+          <div className="journal-hero-actions">
+            <a href="#journal-stories" className="journal-primary-link">Explore the journal <span aria-hidden="true">&darr;</span></a>
+            <Link href="/compare" className="journal-secondary-link">Compare couples apps <span aria-hidden="true">&rarr;</span></Link>
           </div>
+        </EditorialBanner>
+        <div className="editorial-shell">
+          <BlogTopicNav />
         </div>
 
-        <section className="bg-white py-12 sm:py-16">
+        <section id="journal-stories" aria-labelledby="journal-stories-title" className="journal-stories bg-white pb-12 sm:pb-16">
           <div className="editorial-shell">
-            <div className="mb-8 flex items-center justify-between border-b border-slate-200 pb-5"><h2 className="font-display text-2xl font-bold text-slate-900">The latest stories</h2><span className="text-xs text-slate-600">Ideas for two</span></div>
+            <div className="mb-8 border-b border-slate-200 pb-5"><h2 id="journal-stories-title" className="font-display text-2xl font-bold text-slate-900">Latest articles</h2></div>
             {posts.length === 0 ? (
               <p className="text-base text-slate-500">
                 Our first stories are on their way. Come back soon.

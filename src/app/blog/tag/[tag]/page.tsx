@@ -7,6 +7,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PostCard } from "@/components/post-card";
 import { getPostsByTag, getTags } from "@/lib/blog";
+import { BlogTopicNav } from "@/components/blog-topic-nav";
+import { getBlogTopic } from "@/lib/blog-topics";
 
 const SITE_URL = "https://dreamduo.app";
 
@@ -20,7 +22,7 @@ export function generateStaticParams() {
 }
 
 function label(tag: string): string {
-  return tag.replace(/-/g, " ");
+  return getBlogTopic(tag).label;
 }
 
 export async function generateMetadata({
@@ -34,9 +36,7 @@ export async function generateMetadata({
   if (posts.length === 0) return { title: "Topic not found" };
 
   const title = `${label(tag)} articles`;
-  const description = `${posts.length} ${
-    posts.length === 1 ? "article" : "articles"
-  } on ${label(tag)} for couples building something together.`;
+  const description = getBlogTopic(tag).description;
 
   return {
     title,
@@ -104,11 +104,12 @@ export default async function BlogTagPage({
           <Link href="/blog" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-600"><ArrowLeft size={16} /> All stories</Link>
           <p className="editorial-eyebrow mb-4">Explore the journal</p>
           <h1 className="editorial-title capitalize">{label(tag)}</h1>
-          <p className="editorial-deck">{posts.length} {posts.length === 1 ? "story" : "stories"} for the life you&apos;re building together.</p>
+          <p className="editorial-deck">{getBlogTopic(tag).description}</p>
         </EditorialBanner>
         <section className="bg-white pb-16">
           <div className="editorial-shell">
-            <div className="mt-10 grid gap-x-12 gap-y-12 md:grid-cols-2">
+            <BlogTopicNav activeHref={`/blog/tag/${tag}`} />
+            <div className="grid gap-x-12 gap-y-12 md:grid-cols-2">
               {posts.map((post) => (
                 <PostCard key={post.slug} post={post} />
               ))}

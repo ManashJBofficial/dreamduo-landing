@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getComparisons, getPosts, getTags } from "@/lib/blog";
+import { getComparisons, getPublicPosts, getTags } from "@/lib/blog";
 
 const SITE_URL = "https://dreamduo.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getPosts();
+  const posts = getPublicPosts();
 
   const comparisons = getComparisons();
 
@@ -62,6 +62,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-03-22"),
       changeFrequency: "yearly",
       priority: 0.6,
+    },
+    {
+      url: `${SITE_URL}/editorial-policy`,
+      changeFrequency: "yearly",
+      priority: 0.4,
     },
     {
       url: `${SITE_URL}/account-deletion`,

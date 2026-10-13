@@ -7,7 +7,7 @@ import { StoreCTARow } from "@/components/store-cta-row";
  * tags, so it never interrupts the read, and it reuses the same store buttons
  * as the rest of the site so install tracking stays in one place.
  */
-export function BlogAppCTA() {
+export function BlogAppCTA({ placement = "blog_article" }: { placement?: string }) {
   return (
     <aside id="try-dreamduo" className="relative mt-14 overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 px-6 py-10 text-center sm:rounded-3xl sm:px-10 sm:py-12">
       <div
@@ -32,7 +32,7 @@ export function BlogAppCTA() {
         </p>
 
         <div className="mt-7 flex justify-center">
-          <StoreCTARow variant="light" placement="blog_article" />
+          <StoreCTARow variant="light" placement={placement} />
         </div>
       </div>
     </aside>

@@ -1,0 +1,273 @@
+{
+  "gift-01": {
+    "file": "gift-01-framed-photo.webp",
+    "alt": "A framed couple photograph beside a wrapped gift on a wooden table.",
+    "kind": "photo",
+    "credit": "Anna Pou",
+    "source": "https://www.pexels.com/photo/white-wooden-picture-frame-on-brown-wooden-table-9451328/",
+    "license": "https://www.pexels.com/license/",
+    "photoId": "9451328",
+    "crop": "centre",
+    "extract": {
+      "left": 0,
+      "top": 900,
+      "width": 1600,
+      "height": 1000
+    }
+  },
+  "gift-03": {
+    "file": "gift-03-landscape.webp",
+    "alt": "Printed instant photographs spread across a wooden desk.",
+    "source": "https://www.pexels.com/photo/photographs-scattered-on-a-desk-15756565/",
+    "photoId": "15756565",
+    "credit": "Squared one",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "crop": "centre",
+    "extract": {
+      "left": 0,
+      "top": 250,
+      "width": 1600,
+      "height": 1750
+    }
+  },
+  "gift-04": {
+    "file": "gift-04-landscape.webp",
+    "alt": "An open handmade scrapbook with photographs.",
+    "source": "https://www.pexels.com/photo/woman-holding-a-scrapbook-16605270/",
+    "photoId": "16605270",
+    "credit": "Mohamed hamdi",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "crop": "centre",
+    "extract": {
+      "left": 0,
+      "top": 300,
+      "width": 1600,
+      "height": 1600
+    }
+  },
+  "gift-06": {
+    "file": "gift-06-landscape.webp",
+    "alt": "Packaged chocolate bars stacked together.",
+    "source": "https://www.pexels.com/photo/close-up-photo-of-stacks-of-chocolate-bars-9667288/",
+    "photoId": "9667288",
+    "credit": "Semiha Deniz",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "crop": "centre"
+  },
+  "gift-07": {
+    "file": "gift-07-hoodie.webp",
+    "alt": "Soft green and beige hoodies hanging side by side.",
+    "kind": "photo",
+    "credit": "Ron Lach",
+    "source": "https://www.pexels.com/photo/hoodie-sweaters-hanged-on-a-clothes-rack-9594667/",
+    "license": "https://www.pexels.com/license/",
+    "photoId": "9594667",
+    "crop": "centre"
+  },
+  "gift-08": {
+    "file": "gift-08-candle.webp",
+    "alt": "A white candle in an open white-and-gold gift box.",
+    "kind": "photo",
+    "credit": "Pelicular Studio",
+    "source": "https://unsplash.com/photos/white-candle-in-an-open-gift-box-KbLfVcoWjjI",
+    "license": "https://unsplash.com/license",
+    "downloadUrl": "https://images.unsplash.com/photo-1760804876257-f073f77f2bcf?auto=format&fit=max&w=1600&q=85",
+    "crop": "centre"
+  },
+  "gift-09": {
+    "file": "gift-09-travel-pouch.webp",
+    "alt": "An open travel pouch holding toiletries and a toothbrush.",
+    "kind": "photo",
+    "credit": "Timur Weber",
+    "source": "https://www.pexels.com/photo/black-toiletry-bag-9185864/",
+    "license": "https://www.pexels.com/license/",
+    "photoId": "9185864",
+    "crop": "centre",
+    "rotation": 90
+  },
+  "gift-10": {
+    "file": "gift-10-instant-camera.webp",
+    "alt": "An instant camera with printed snapshots on a wooden table.",
+    "kind": "photo",
+    "credit": "Dũng Phạm",
+    "source": "https://www.pexels.com/photo/photos-and-insta-camera-on-table-19607905/",
+    "license": "https://www.pexels.com/license/",
+    "photoId": "19607905",
+    "crop": "centre"
+  },
+  "gift-11": {
+    "file": "gift-11-local-snacks.webp",
+    "alt": "Packaged snacks, sweets and biscuits displayed at a local shop.",
+    "credit": "angie duong",
+    "source": "https://www.pexels.com/photo/selection-of-sweets-and-snacks-15225307/",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "photoId": "15225307",
+    "crop": "centre"
+  },
+  "gift-13": {
+    "file": "gift-13-landscape.webp",
+    "alt": "A compact illustrated deck of playing cards resting on a wooden table.",
+    "source": "https://www.pexels.com/photo/a-deck-of-playing-cards-on-the-table-10762651/",
+    "photoId": "10762651",
+    "credit": "Ali Kazal",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "crop": "attention"
+  },
+  "gift-14": {
+    "file": "gift-14-landscape.webp",
+    "alt": "Small folded paper cranes displayed inside a glass jar.",
+    "source": "https://www.pexels.com/photo/paper-cranes-inside-a-glass-jar-9896079/",
+    "photoId": "9896079",
+    "credit": "Capped X",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "extract": {
+      "left": 390,
+      "top": 1350,
+      "width": 750,
+      "height": 750
+    },
+    "crop": "attention"
+  },
+  "gift-16": {
+    "file": "gift-16-birthday-countdown.webp",
+    "alt": "Three small wrapped gifts with ribbons for a birthday countdown.",
+    "kind": "photo",
+    "credit": "www.kaboompics.com",
+    "source": "https://www.pexels.com/photo/glittery-gifts-on-a-white-background-5485048/",
+    "license": "https://www.pexels.com/license/",
+    "photoId": "5485048",
+    "crop": "centre",
+    "extract": {
+      "left": 0,
+      "top": 0,
+      "width": 1600,
+      "height": 1000
+    }
+  },
+  "gift-21": {
+    "file": "gift-21-landscape.webp",
+    "alt": "A close-up of printed Paris postcards.",
+    "source": "https://www.pexels.com/photo/close-up-of-postcards-12011126/",
+    "photoId": "12011126",
+    "credit": "Alessandro Bonanni",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "extract": {
+      "left": 0,
+      "top": 1250,
+      "width": 1600,
+      "height": 1450
+    },
+    "crop": "attention"
+  },
+  "gift-22": {
+    "file": "gift-22-landscape.webp",
+    "alt": "Handmade decorated bookmarks arranged with drawing supplies.",
+    "source": "https://www.pexels.com/photo/artistic-overhead-view-of-handmade-bookmarks-30698553/",
+    "photoId": "30698553",
+    "credit": "Sedanur Kunuk",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "fit": "cover",
+    "crop": "centre",
+    "rotation": 90
+  },
+  "gift-24": {
+    "file": "gift-24-stickers.webp",
+    "alt": "Colourful sticker sheets with hearts, labels and decorative shapes beside an open notebook.",
+    "credit": "KATRIN BOLOVTSOVA",
+    "source": "https://www.pexels.com/photo/assorted-stickers-and-a-planner-6192124/",
+    "photoId": "6192124",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "crop": "centre"
+  },
+  "gift-02": {
+    "file": "gift-02-generated.webp",
+    "alt": "Four cream envelopes with personal letters, flowers and a cotton ribbon.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  },
+  "gift-05": {
+    "file": "gift-05-generated.webp",
+    "alt": "Voice-message gift card with an example QR pattern beside a phone showing audio controls.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example. The QR pattern is illustrative; use your own tested recording link."
+  },
+  "gift-12": {
+    "file": "gift-12-scarf.webp",
+    "alt": "A soft knitted scarf folded neatly in warm neutral colours.",
+    "credit": "Dilara Hazıroğlu",
+    "source": "https://www.pexels.com/photo/folded-crochet-scarf-19814912/",
+    "license": "https://www.pexels.com/license/",
+    "kind": "photo",
+    "photoId": "19814912",
+    "crop": "centre"
+  },
+  "gift-15": {
+    "file": "gift-15-generated.webp",
+    "alt": "Handmade song-note booklet and a music card beside a phone showing a playlist.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  },
+  "gift-17": {
+    "file": "gift-17-generated.webp",
+    "alt": "Accordion-fold anniversary timeline with four couple photographs and handwritten captions.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  },
+  "gift-18": {
+    "file": "gift-18-generated.webp",
+    "alt": "Comfort care package containing knitted socks, a packaged snack and a short note.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  },
+  "gift-19": {
+    "file": "gift-19-generated.webp",
+    "alt": "Ribbon-wrapped notebook with a congratulations card and a pen.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  },
+  "gift-20": {
+    "file": "gift-20-generated.webp",
+    "alt": "Next-visit invitation card with a printed park photograph and a wrapped notebook.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  },
+  "gift-23": {
+    "file": "gift-23-name-keyrings.webp",
+    "alt": "Personalised name keyrings with heart details and colourful charms.",
+    "credit": "Jeyakumaran Mayooresan",
+    "source": "https://unsplash.com/photos/three-personalized-name-keychains-with-charms-on-a-red-surface-z5qV4oTtPtU",
+    "license": "https://unsplash.com/license",
+    "downloadUrl": "https://images.unsplash.com/photo-1780021147498-b594a573942d?auto=format&fit=max&w=1600&q=85",
+    "kind": "photo",
+    "crop": "centre"
+  },
+  "gift-25": {
+    "file": "gift-25-generated.webp",
+    "alt": "Three paper invitation cards for a sunrise walk, homemade breakfast and a picnic, with spaces to choose dates, beside a floral-lined envelope.",
+    "kind": "generated",
+    "credit": "DreamDuo",
+    "caption": "AI-generated gift example."
+  }
+}
