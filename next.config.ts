@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import BLOG_SLUG_REDIRECTS from "./src/content/blog-slug-redirects.json";
 
 const waitlistApiBaseUrl =
   process.env.WAITLIST_INTERNAL_API_BASE_URL ?? "http://127.0.0.1:5050";
@@ -22,6 +23,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      ...Object.entries(BLOG_SLUG_REDIRECTS).flatMap(([previous, current]) => [
+        { source: `/blog/${previous}`, destination: `/blog/${current}`, permanent: true },
+        { source: `/blog/${previous}/opengraph-image`, destination: `/blog/${current}/opengraph-image`, permanent: true },
+      ]),
       { source: "/privacy", destination: "/privacy-policy", permanent: true },
       {
         // The project's own *.vercel.app alias serves a full copy of the site.

@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
+import fs from "node:fs/promises";
 
 // Run against a production Next.js server: node scripts/check-seo.mjs http://127.0.0.1:4101
 const base = new URL(process.argv[2] ?? "http://localhost:4100");
 const origin = "https://dreamduo.app";
+const blogRedirects = JSON.parse(await fs.readFile(new URL("../src/content/blog-slug-redirects.json", import.meta.url), "utf8"));
 // Date-only editorial fields use the publisher\'s calendar day, not UTC midnight.
 const today = new Intl.DateTimeFormat("en-CA", { timeZone: process.env.SEO_AUDIT_TIMEZONE ?? "Asia/Kolkata" }).format(new Date());
 const sitemap = await (await fetch(new URL("/sitemap.xml", base))).text();
@@ -72,6 +74,10 @@ for (const route of routes) {
     assert.equal(article.mainEntityOfPage?.["@id"], `${origin}${route}`, `${route} schema must use its canonical URL`);
     assert(article.author.name && article.author.url, `${route} needs an identifiable author`);
     assert.equal(article.publisher?.["@id"], `${origin}/#organization`, `${route} needs consistent publisher identity`);
+    if (route.startsWith("/blog/")) {
+      const titleSlug = article.headline.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      assert.equal(route, `/blog/${titleSlug}`, `${route} must match the full article title`);
+    }
     assert(html.includes(article.headline.replaceAll("&", "&amp;").replaceAll("'", "&#x27;").replaceAll('"', "&quot;")), `${route} schema headline must be visible in server HTML`);
     const imageResponse = await fetch(new URL(`${route}/opengraph-image`, base));
     assert.equal(imageResponse.status, 200, `${route} generated social card must render`);
@@ -91,6 +97,17 @@ for (const route of internal) {
 for (const { path, hash, from } of fragments) assert(pageHtml.get(path)?.includes(`id="${hash}"`), `Broken section link from ${from} to ${path}#${hash}`);
 assert(storeLinks > 0, "Public pages must expose app download links");
 const privacy = await fetch(new URL("/privacy", base), { redirect: "manual" });
+for (const [previous, current] of Object.entries(blogRedirects)) {
+  for (const suffix of ["", "/opengraph-image"]) {
+    const response = await fetch(new URL(`/blog/${previous}${suffix}?utm_source=seo-check`, base), { redirect: "manual" });
+    assert.equal(response.status, 308, `${previous}${suffix} needs a permanent redirect`);
+    const destination = new URL(response.headers.get("location"), base);
+    assert.equal(destination.pathname, `/blog/${current}${suffix}`, `${previous} must redirect directly to its matching article`);
+    assert.equal(destination.searchParams.get("utm_source"), "seo-check", `${previous} must preserve query parameters`);
+  }
+  assert(!routes.includes(`/blog/${previous}`), `${previous} must not remain in the sitemap`);
+  assert(routes.includes(`/blog/${current}`), `${current} must be discoverable in the sitemap`);
+}
 assert.equal(privacy.status, 308, "Legacy privacy URL needs a permanent redirect");
 assert.equal(new URL(privacy.headers.get("location"), base).pathname, "/privacy-policy");
 for (const route of ["/blog/missing-seo-check", "/compare/missing-seo-check", "/blog/tag/missing-seo-check"]) assert.equal((await fetch(new URL(route, base))).status, 404, `${route} must remain a real 404`);

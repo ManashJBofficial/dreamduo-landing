@@ -97,7 +97,7 @@ export default async function ComparePage({
                   ))}
                   <li className="sm:col-span-2">
                     <Link
-                      href="/blog/best-couples-apps"
+                      href="/blog/the-5-best-couples-apps-in-2026-compared-honestly"
                       className="group flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3.5 font-semibold text-slate-800 transition-colors hover:text-rose-600"
                     >
                       All five apps side by side: the best couples apps in 2026

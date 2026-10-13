@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { findCover, getLocalImageSize } from "@/lib/images";
+import BLOG_SLUG_REDIRECTS from "@/content/blog-slug-redirects.json";
 
 /**
  * File-backed content. Blog posts live in src/content/blog and comparison
@@ -71,6 +72,8 @@ function readingMinutes(content: string): number {
 
 function parseFile(collection: Collection, fileName: string): Post {
   const slug = fileName.replace(/\.mdx?$/, "");
+  // Existing image URLs remain stable when an article receives a longer URL.
+  const assetSlug = collection === "blog" ? Object.entries(BLOG_SLUG_REDIRECTS).find(([, current]) => current === slug)?.[0] ?? slug : slug;
   const raw = fs.readFileSync(path.join(CONTENT_ROOT, collection, fileName), "utf8");
   const { data, content } = matter(raw);
   const frontmatter = data as PostFrontmatter;
@@ -86,14 +89,14 @@ function parseFile(collection: Collection, fileName: string): Post {
   // public/<collection>/<slug>/ and it is found with no frontmatter at all.
   // Checked here rather than at render so a typo fails the build immediately,
   // with the filename that caused it.
-  const image = frontmatter.image ?? findCover(collection, slug);
+  const image = frontmatter.image ?? findCover(collection, assetSlug);
   if (image) getLocalImageSize(image);
 
   return {
     ...frontmatter,
     image,
     slug,
-    assetBase: `/${collection}/${slug}`,
+    assetBase: `/${collection}/${assetSlug}`,
     content,
     readingMinutes: readingMinutes(content),
   };

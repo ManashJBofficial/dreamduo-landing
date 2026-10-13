@@ -37,8 +37,8 @@ export function Footer() {
       title: "Resources",
       links: [
         { label: "Blog", href: "/blog" },
-        { label: "Best couples apps in 2026", href: "/blog/best-couples-apps" },
-        { label: "Long-distance care packages", href: "/blog/long-distance-care-package-ideas" },
+        { label: "Best couples apps in 2026", href: "/blog/the-5-best-couples-apps-in-2026-compared-honestly" },
+        { label: "Long-distance care packages", href: "/blog/25-best-items-to-put-in-a-long-distance-care-package" },
         { label: "RSS feed", href: "/blog/rss.xml" },
         { label: "How we write our guides", href: "/editorial-policy" },
         { label: "Contact support", href: "mailto:support@dreamduo.app" },

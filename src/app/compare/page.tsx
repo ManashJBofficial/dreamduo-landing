@@ -88,7 +88,7 @@ export default function CompareIndexPage() {
             </div>
 
             <Link
-              href="/blog/best-couples-apps"
+              href="/blog/the-5-best-couples-apps-in-2026-compared-honestly"
               className="group mt-12 flex items-center justify-between rounded-2xl bg-slate-50 px-6 py-5 font-semibold text-slate-800 transition-colors hover:text-rose-600"
             >
               Want all five in one place? Read the full roundup of the best couples apps

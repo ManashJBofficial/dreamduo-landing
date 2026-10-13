@@ -1,4 +1,5 @@
 /** Stable, asset-free artwork: adding an MDX entry is all the setup needed. */
+import BLOG_SLUG_REDIRECTS from "@/content/blog-slug-redirects.json";
 const palettes = [
   { background: "#fff0f1", ink: "#941e35", accent: "#e94755", soft: "#f4a4ad" },
   { background: "#fbe9ec", ink: "#7d2038", accent: "#d93c53", soft: "#eda0af" },
@@ -7,6 +8,7 @@ const palettes = [
 ];
 
 export function getArticleArt(seed: string) {
+  seed = Object.entries(BLOG_SLUG_REDIRECTS).find(([, current]) => current === seed)?.[0] ?? seed;
   let hash = 2166136261;
   for (const character of seed) hash = Math.imul(hash ^ character.charCodeAt(0), 16777619) >>> 0;
   const topic = seed === "spicy-questions-long-distance-couples" ? "questions"

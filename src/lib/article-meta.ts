@@ -14,7 +14,8 @@ export const SITE_URL = "https://dreamduo.app";
 /** The entry's own cover when it has one, else its generated abstract preview card. */
 export function previewImage(entry: Post) {
   if (!entry.image) {
-    return { url: `${entry.assetBase}/opengraph-image`, width: 1200, height: 630, alt: entry.title };
+    const collection = entry.assetBase.startsWith("/compare/") ? "compare" : "blog";
+    return { url: `/${collection}/${entry.slug}/opengraph-image`, width: 1200, height: 630, alt: entry.title };
   }
   return {
     url: entry.image,
