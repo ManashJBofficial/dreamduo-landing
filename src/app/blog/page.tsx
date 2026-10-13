@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer";
 import { PostCard } from "@/components/post-card";
 import { getPosts, getTags } from "@/lib/blog";
 
-const title = "The DreamDuo Blog";
+const title = "Shared Goals, Habits & Couples App Guides";
 const description =
   "Guides, comparisons, and honest advice for couples building a life together: shared goals, money, habits, and staying close at any distance.";
 
@@ -94,8 +94,8 @@ export default function BlogIndexPage() {
         <EditorialBanner seed="dreamduo-journal">
           <p className="editorial-eyebrow mb-6">The DreamDuo journal</p>
           <h1 className="editorial-title">A little closer.<br />A little more together.</h1>
-          <p className="editorial-deck">Practical guides and thoughtful comparisons for the life you?re building together. From your next small habit to your biggest shared dream.</p>
-          <Link href="/compare" className="mt-7 inline-flex text-sm font-bold text-rose-800 underline decoration-rose-300 underline-offset-4">Explore the app comparisons ?</Link>
+          <p className="editorial-deck">Practical guides and thoughtful comparisons for the life you&apos;re building together. From your next small habit to your biggest shared dream.</p>
+          <Link href="/compare" className="mt-7 inline-flex text-sm font-bold text-rose-800 underline decoration-rose-300 underline-offset-4">Explore the app comparisons &rarr;</Link>
         </EditorialBanner>
         <div className="editorial-shell mt-10">
           <div className="flex flex-wrap gap-2" aria-label="Browse topics">

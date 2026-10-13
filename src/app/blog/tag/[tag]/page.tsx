@@ -104,7 +104,7 @@ export default async function BlogTagPage({
           <Link href="/blog" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-600"><ArrowLeft size={16} /> All stories</Link>
           <p className="editorial-eyebrow mb-4">Explore the journal</p>
           <h1 className="editorial-title capitalize">{label(tag)}</h1>
-          <p className="editorial-deck">{posts.length} {posts.length === 1 ? "story" : "stories"} for the life you?re building together.</p>
+          <p className="editorial-deck">{posts.length} {posts.length === 1 ? "story" : "stories"} for the life you&apos;re building together.</p>
         </EditorialBanner>
         <section className="bg-white pb-16">
           <div className="editorial-shell">

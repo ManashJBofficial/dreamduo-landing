@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
 
             <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               <p>
-                DreamDuo ("DreamDuo," "we," "our," or "us") provides a mobile
+                DreamDuo (&quot;DreamDuo,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) provides a mobile
                 app, website, and related services designed to help couples and
                 individuals manage goals, save memories, build habits, answer daily
                 questions, and stay connected.
@@ -101,7 +101,7 @@ export default function PrivacyPolicyPage() {
                 This Privacy Policy explains what information we collect, how we
                 use it, when we share it, and the choices available to you when you
                 use DreamDuo&apos;s website, mobile application, and related services
-                (collectively, the "Services").
+                (collectively, the &quot;Services&quot;).
               </p>
               <p>By using DreamDuo, you agree to this Privacy Policy.</p>
             </div>

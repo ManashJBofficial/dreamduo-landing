@@ -20,13 +20,14 @@ export interface PostFrontmatter {
   description: string;
   /** ISO date (YYYY-MM-DD). Drives ordering and the article schema. */
   date: string;
-  /** ISO date of the last meaningful edit. Google shows this for freshness. */
+  /** ISO date of the last meaningful edit, shared by metadata and discovery feeds. */
   updated?: string;
   /** Lowercase, hyphenated. Each one becomes a /blog/tag/<tag> hub page. */
   tags?: string[];
   author?: string;
   /**
-   * Cover image override. Usually unnecessary: save the file as
+   * Optional cover override. Without an image, abstract artwork is automatic.
+   * For an override, save the file as
    * public/<collection>/<slug>/cover.webp and it is found automatically. Set
    * this only to point at a different file. 1200x630 suits both the hero and
    * the preview shown when the link is shared.
@@ -39,7 +40,7 @@ export interface PostFrontmatter {
    * "DreamDuo vs. Paired" link text in the footer and on /compare.
    */
   competitor?: string;
-  /** Omitted from the index, sitemap, and RSS, and noindexed if visited. */
+  /** Previewable in development; returns 404 and is excluded from production discovery. */
   draft?: boolean;
 }
 
@@ -78,7 +79,6 @@ function parseFile(collection: Collection, fileName: string): Post {
   // with the filename that caused it.
   const image = frontmatter.image ?? findCover(collection, slug);
   if (image) getLocalImageSize(image);
-
 
   return {
     ...frontmatter,

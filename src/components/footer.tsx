@@ -94,7 +94,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-12 md:grid-cols-4">
           {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
                 {column.title}
               </h2>
               <ul className="mt-4 space-y-3">

@@ -91,13 +91,13 @@ export default function TermsPage() {
 
             <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               <p>
-                These Terms and Conditions ("Terms") govern your access to and use
+                These Terms and Conditions (&quot;Terms&quot;) govern your access to and use
                 of the DreamDuo website, mobile application, and related services
-                (collectively, the "Services").
+                (collectively, the &quot;Services&quot;).
               </p>
               <p>
                 DreamDuo is operated by [Your Full Legal Name or Business Name],
-                doing business as DreamDuo ("DreamDuo," "we," "our," or "us").
+                doing business as DreamDuo (&quot;DreamDuo,&quot; &quot;we,&quot; &quot;our,&quot; or &quot;us&quot;).
               </p>
               <p>
                 By accessing or using DreamDuo, you agree to be bound by these
@@ -317,7 +317,7 @@ export default function TermsPage() {
                   8. User Content
                 </h2>
                 <p>
-                  "User Content" means content you submit, upload, create, store,
+                  &quot;User Content&quot; means content you submit, upload, create, store,
                   transmit, or otherwise make available through DreamDuo, including
                   text, profile information, photos, files, messages, goal data,
                   responses, reflections, and other materials.
@@ -429,7 +429,7 @@ export default function TermsPage() {
                   no rights are granted to you.
                 </p>
                 <p>
-                  "DreamDuo," the DreamDuo name, logo, and related branding may not
+                  &quot;DreamDuo,&quot; the DreamDuo name, logo, and related branding may not
                   be used without prior written permission.
                 </p>
               </section>
@@ -526,7 +526,7 @@ export default function TermsPage() {
                 </h2>
                 <p>
                   TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SERVICES ARE PROVIDED
-                  ON AN "AS IS" AND "AS AVAILABLE" BASIS.
+                  ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS.
                 </p>
                 <p>
                   TO THE MAXIMUM EXTENT PERMITTED BY LAW, DREAMDUO DISCLAIMS ALL

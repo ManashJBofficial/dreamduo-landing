@@ -9,5 +9,5 @@ const palettes = [
 export function getArticleArt(seed: string) {
   let hash = 2166136261;
   for (const character of seed) hash = Math.imul(hash ^ character.charCodeAt(0), 16777619) >>> 0;
-  return { ...palettes[hash % palettes.length], variant: (hash >>> 4) % 4 };
+  return { ...palettes[(hash >>> 8) % palettes.length], variant: (hash >>> 4) % 4 };
 }

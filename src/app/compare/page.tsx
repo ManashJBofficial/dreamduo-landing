@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 import { getComparisons } from "@/lib/blog";
 import { SITE_URL } from "@/lib/article-meta";
 
-const title = "DreamDuo Compared to Other Couples Apps";
+const title = "Couples App Comparisons";
 const description =
   "Honest side-by-side comparisons of DreamDuo with Paired, Honeydue, Lasting and Between: features, prices, and which one suits which couple.";
 
