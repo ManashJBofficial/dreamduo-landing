@@ -86,7 +86,7 @@ export function AppStoreCTA({
     >
       <Image
         src="/app-store.png"
-        alt=""
+        alt="Apple App Store icon"
         aria-hidden="true"
         width={28}
         height={28}

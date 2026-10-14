@@ -79,7 +79,7 @@ export function PlayStoreCTA({
     >
       <Image
         src="/google-play.png"
-        alt=""
+        alt="Google Play icon"
         aria-hidden="true"
         width={28}
         height={28}

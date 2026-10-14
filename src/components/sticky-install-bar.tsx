@@ -65,7 +65,7 @@ export function StickyInstallBar() {
       <div className="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-950/95 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.9)] backdrop-blur">
         <Image
           src="/dreamduo_logo.webp"
-          alt=""
+          alt="DreamDuo app icon"
           aria-hidden="true"
           width={40}
           height={40}
@@ -99,7 +99,7 @@ export function StickyInstallBar() {
         >
           <Image
             src="/google-play.png"
-            alt=""
+            alt="Google Play icon"
             aria-hidden="true"
             width={16}
             height={16}

@@ -8,7 +8,7 @@ import { PostCard } from "@/components/post-card";
 import { BlogTopicNav } from "@/components/blog-topic-nav";
 import { getPosts } from "@/lib/blog";
 
-const title = "Couples Blog: Gift Ideas, Shared Goals & Relationship Guides";
+const title = "Couples Blog: Gifts, Goals & Relationship Guides";
 const description =
   "Practical guides for couples: shared goals, bucket list ideas, long-distance conversations and app comparisons with features, pricing and source links.";
 

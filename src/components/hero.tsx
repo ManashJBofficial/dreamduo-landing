@@ -66,8 +66,7 @@ export function Hero() {
             >
               <Image
                 src="/install-qr-hero.svg"
-                alt=""
-                aria-hidden="true"
+                alt="QR code to install DreamDuo on Android"
                 width={64}
                 height={64}
                 unoptimized
@@ -87,8 +86,7 @@ export function Hero() {
             >
               <Image
                 src="/install-qr-ios-hero.svg"
-                alt=""
-                aria-hidden="true"
+                alt="QR code to install DreamDuo on iPhone"
                 width={64}
                 height={64}
                 unoptimized

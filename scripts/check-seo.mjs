@@ -39,6 +39,10 @@ for (const route of routes) {
     ["description", html.match(/name="description" content="([^"]+)"/)?.[1], descriptions],
   ]) {
     assert(value?.trim(), `${route} needs a non-empty ${label}`);
+    if (label === "title") {
+      const decoded = value.replace(/&(?:amp|quot|apos|lt|gt);|&#(?:\d+|x[0-9a-f]+);/gi, "_");
+      assert(decoded.length < 70, `${route} search title must stay below 70 characters including the brand`);
+    }
     assert(!seen.has(value), `${route} duplicates the ${label} on ${seen.get(value)}`);
     seen.set(value, route);
   }
@@ -133,6 +137,18 @@ for (const agent of agents) {
     assert(!/name="robots" content="[^"]*(noindex|nosnippet)/.test(html), `${agent} must not receive search restrictions`);
   }
 }
+const downloads = (await fs.readdir(new URL("../public/downloads/", import.meta.url))).filter(name => name.endsWith(".html"));
+for (const name of downloads) {
+  const response = await fetch(new URL(`/downloads/${name}`, base));
+  assert.equal(response.status, 200, `${name} printable download must work`);
+  const html = await response.text();
+  assert.match(html, /name="description" content="[^"]+"/, `${name} needs a description`);
+  assert.match(html, /name="robots" content="noindex,follow"/, `${name} must retain its printable-only indexing policy`);
+}
+for (const image of pageHtml.get("/").matchAll(/<img\b[^>]*>/g)) {
+  assert.match(image[0], /\balt="[^"]+"/, "Homepage images must have descriptive alt text");
+}
+console.log(`Bing scan checks passed: titles below 70 characters, ${downloads.length} printable descriptions, descriptive homepage image alt text.`);
 console.log(`Crawler checks passed: ${agents.length} user agents across ${articlePages.length} articles, without executing JavaScript.`);
 console.log(`Metadata and conversion checks passed: unique titles/descriptions, ${fragments.length} section links and ${storeLinks} correctly targeted app-store links.`);
 console.log(`SEO checks passed: ${routes.length} sitemap pages, ${internal.size} internal destinations, ${images} generated social cards, privacy redirect, real 404s, robots and RSS.`);
