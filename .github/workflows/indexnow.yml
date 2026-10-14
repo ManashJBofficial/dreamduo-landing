@@ -1,0 +1,43 @@
+name: Notify IndexNow after production deployment
+
+on:
+  repository_dispatch:
+    types: [vercel.deployment.success]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.client_payload.environment == 'production' &&
+       contains(github.event.client_payload.alias, 'dreamduo.app'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore previously submitted URLs
+        uses: actions/cache/restore@v4
+        with:
+          path: .indexnow/state.json
+          key: indexnow-production-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: indexnow-production-
+      - name: Submit live sitemap URLs
+        run: node scripts/indexnow.mjs --submit --state-file .indexnow/state.json
+      - name: Remember submitted URLs
+        uses: actions/cache/save@v4
+        with:
+          path: .indexnow/state.json
+          key: indexnow-production-${{ github.run_id }}-${{ github.run_attempt }}

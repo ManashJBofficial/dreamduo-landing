@@ -1,5 +1,38 @@
 This is a [Next.js](https://nextjs.org) landing app for DreamDuo.
 
+## Automatic IndexNow notifications
+
+The root verification file uses the key from Bing's setup screen. Once deployed,
+`https://dreamduo.app/b406e59e5a7946f49909c2530185b868.txt` must return the key as plain text.
+No Bing access token or repository secret is needed for this public verification key.
+
+Commit and push the workflow, script and verification file together, then allow the
+production deployment to finish. Enable GitHub Actions in this site's repository.
+The workflow uses Vercel's `repository_dispatch` event `vercel.deployment.success`,
+and runs only when the payload environment is `production` and its aliases include
+`dreamduo.app`. Vercel must be connected to this GitHub repository under Project
+Settings > Git. It skips preview, failed and unrelated project deployments.
+If the hosting integration does not emit these events,
+call `node scripts/indexnow.mjs --submit --state-file .indexnow/state.json` from the
+deployment pipeline **after** publishing to `https://dreamduo.app`, never as a build step.
+
+For the first submission, open GitHub **Actions > Notify IndexNow after production
+deployment > Run workflow** after the verification file is live. The default branch
+must contain the workflow. Each run reads the live sitemap, covering the homepage,
+blog, articles, topic pages, comparisons and other indexable pages. Previously submitted
+URLs removed from the sitemap are included too, while the GitHub cache is available.
+The sitemap must continue to list every page intended for indexing.
+
+Preview without submitting: `npm run indexnow` (reads the live sitemap).
+Preview a local sitemap: `npm run indexnow -- --sitemap-file path/to/sitemap.xml`.
+Submit manually after publishing: `npm run indexnow -- --submit`.
+Check results in GitHub Actions logs and Bing Webmaster Tools' IndexNow report.
+HTTP 200 means received; HTTP 202 means key verification is pending. Notifications
+do not guarantee indexing, ranking, or AI recommendations. Keep the sitemap and
+Google Search Console setup; IndexNow is for participating search engines.
+
+Protocol reference: [IndexNow documentation](https://www.indexnow.org/documentation).
+
 ## Waitlist API integration
 
 This frontend expects the waitlist wrapper API (`/v1/waitlist`, `/v1/waitlist/count`).
