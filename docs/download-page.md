@@ -117,6 +117,8 @@ mobile attribution platform if install attribution becomes necessary.
   The shared navbar places the logo left, navigation menus in the center, and the
   pink CTA right. Below 1024 px, menus collapse into a toggle with Escape and
   outside-click dismissal; following a link closes the menu.
+  The navbar floats 8/12/16 px below the viewport edge. Its spacer and anchor
+  offsets include that gap so content and sticky feature tabs clear the navbar.
 - Download artwork: `public/download-banner.svg` is the optimized runtime copy of
   the supplied transparent `Copy of Copy of dreamduo - normal screen (1).svg`.
   Its embedded PNGs are compressed to WebP while retaining the SVG layout and
@@ -130,6 +132,10 @@ mobile attribution platform if install attribution becomes necessary.
   placeholders, circles or divider lines.
   The badge row is capped at 368 px (about 56 px tall on desktop), with the QR
   centered below it and no additional QR heading or description.
+  "Download it now!" and its controls are centered within the left column. The
+  artwork viewBox trims only transparent margins, retaining 24 px of padding so
+  the phones fill the right column. Download content has 64 px top spacing on
+  desktop, 48 px on tablets, and 40 px on phones below the navbar.
 - Store artwork is shared through `store-badge.tsx`, using the official
   [App Store badge](https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg)
   and [Google Play badge](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png).

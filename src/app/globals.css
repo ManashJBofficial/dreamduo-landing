@@ -92,7 +92,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: calc(80px + var(--site-frame));
   /* clip, not just hidden: hidden on both html and body turns body into a
      scroll container that never scrolls, which silently breaks every
      position: sticky element (the blog sidebar). hidden stays as the
@@ -105,12 +105,6 @@ body {
   overflow-x: hidden;
   overflow-x: clip;
   width: 100%;
-}
-
-@media (min-width: 768px) {
-  html {
-    scroll-padding-top: 4.5rem;
-  }
 }
 
 /* Gradient animations */
