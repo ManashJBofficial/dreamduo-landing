@@ -4,19 +4,19 @@ export function Testimonials() {
   return (
     <section
       id="story"
-      className="relative scroll-mt-16 overflow-hidden bg-gradient-to-b from-rose-50 via-[#fff7f3] to-white py-16 sm:py-20 md:py-24 lg:py-28"
+      className="home-section relative scroll-mt-16 overflow-hidden bg-gradient-to-b from-rose-50 via-[#fff7f3] to-white py-16 sm:py-20 md:py-24 lg:py-28"
     >
       <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-gradient-to-br from-rose-200/40 to-orange-200/10 blur-3xl" />
       <div className="absolute right-0 top-16 h-80 w-80 translate-x-1/3 rounded-full bg-gradient-to-br from-pink-200/30 to-amber-200/10 blur-3xl" />
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-200/70 to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="site-container relative">
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-rose-500 sm:text-sm">
+            <span className="home-eyebrow uppercase">
               Our Story
             </span>
-            <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl">
+            <h2 className="home-heading mt-4">
               Built by Couples, for Couples
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-500 sm:text-lg">
@@ -31,7 +31,7 @@ export function Testimonials() {
                   <div className="text-sm font-semibold text-slate-800 sm:text-base">
                     The DreamDuo Team
                   </div>
-                  <div className="text-[11px] text-slate-400 sm:text-xs">
+                  <div className="text-sm text-slate-400">
                     Creators
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export function Testimonials() {
               </div>
 
               <div className="rounded-3xl border border-rose-100 bg-gradient-to-br from-white via-rose-50/70 to-white p-5 sm:p-6">
-                <div className="text-xs font-semibold uppercase tracking-widest text-rose-500">
+                <div className="text-sm font-semibold uppercase tracking-widest text-rose-500">
                   Our promise
                 </div>
                 <div className="mt-1 text-sm font-semibold text-slate-800">

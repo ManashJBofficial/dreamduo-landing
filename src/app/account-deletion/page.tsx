@@ -78,8 +78,8 @@ export default function AccountDeletionPage() {
       >
         <Navbar />
 
-        <section className="bg-white px-6 py-10 sm:px-10 sm:py-14 lg:px-16">
-          <div className="mx-auto max-w-3xl">
+        <section className="bg-white py-10 sm:py-14">
+          <div className="site-container">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-rose-500">
               Legal
             </span>

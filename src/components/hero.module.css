@@ -1,0 +1,73 @@
+.surface {
+  position: relative;
+  background:
+    radial-gradient(ellipse 560px 460px at 0% 0%, #fda4af80, transparent 75%),
+    radial-gradient(ellipse 640px 560px at 100% 65%, #f0abfc66, transparent 75%),
+    radial-gradient(ellipse 480px 360px at 45% 100%, #fde68a40, transparent 75%),
+    linear-gradient(180deg, #fff9f9, #ffffff 55%, #fff9fb);
+}
+
+.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(#ec489926 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.hero { position: relative; overflow: hidden; }
+
+.layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: center;
+  gap: 24px;
+  min-height: 700px;
+  padding-block: 96px 32px;
+}
+
+.copy { min-width: 0; padding-block: 32px 48px; }
+.copy h1 > span { display: block; }
+.description { max-width: 440px; margin-top: 24px; }
+.install { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 100%; max-width: 540px; margin-top: 28px; }
+.stores { width: 100%; min-width: 0; }
+
+.storeRow { flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; width: 100%; }
+.storeRow > a { --store-badge-height: 56px; }
+.qrCard { display: flex; flex: none; flex-direction: column; align-items: center; gap: 8px; border-radius: 12px; }
+.qrCard > svg { display: block; width: clamp(168px, 16vw, 208px); height: auto; aspect-ratio: 1; border-radius: 12px; }
+.qrCard:focus-visible { outline: 2px solid #e11d48; outline-offset: 4px; }
+
+.artwork { min-width: 0; align-self: center; justify-self: center; width: min(100%, 640px); }
+.phone { display: block; width: 100%; height: auto; }
+
+@media (max-width: 1150px) and (min-width: 1024px) {
+  .storeRow { gap: 8px; }
+  .storeRow > a { --store-badge-height: 50px; }
+}
+
+@media (max-width: 1023px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; min-height: 0; padding-top: 72px; }
+  .copy { padding: 0; text-align: center; }
+  .copy h1 > span { margin-inline: auto; }
+  .description { margin-inline: auto; margin-top: 20px; }
+  .install { align-items: center; margin-inline: auto; }
+  .storeRow { justify-content: center; }
+  .artwork { width: min(100%, 520px); }
+}
+
+@media (max-width: 639px) {
+  .layout { padding-block: 64px 0; gap: 24px; }
+  .install { gap: 20px; }
+  .stores { width: 100%; }
+  .storeRow { gap: 8px; }
+  .storeRow > a { --store-badge-height: 48px; }
+  .artwork { width: min(100%, 360px); }
+}
+
+@media (max-width: 374px) {
+  .storeRow { flex-direction: column; }
+  .storeRow > a { --store-badge-height: 56px; }
+}

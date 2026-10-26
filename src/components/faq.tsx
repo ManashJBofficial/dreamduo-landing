@@ -12,12 +12,12 @@ const faqs: FAQItem[] = [
   {
     question: "Is DreamDuo available right now?",
     answer:
-      "Yes. DreamDuo is live on Google Play and the App Store, and free to download on both. Tap either store button on this page, or scan the QR code from a computer to open it on your phone.",
+      "Yes. Download it free on iPhone or Android.",
   },
   {
     question: "Is DreamDuo free to use?",
     answer:
-      "Yes. The free plan gives you 3 active dreams, 3 collections, 100MB of storage per person, 5 hidden messages, and basic analytics and sounds. Pro unlocks unlimited dreams and collections, 2GB of storage per person, advanced analytics, and premium sounds.",
+      "Yes. Start free with 3 active dreams and 100MB of storage per person. Pro adds unlimited dreams, more storage, and extra features.",
   },
   {
     question: "What if my partner doesn't have the app yet?",
@@ -32,7 +32,7 @@ const faqs: FAQItem[] = [
   {
     question: "Can we track different types of dreams?",
     answer:
-      "Yes. Track 4 dream types, amount or number, checklist, habit, and time, so you can match the format to what you're working toward.",
+      "Yes: amount, checklist, habit, and time.",
   },
   {
     question: "Can we keep some dreams private?",
@@ -42,7 +42,7 @@ const faqs: FAQItem[] = [
   {
     question: "How do Hidden Surprises and Milestone Messages work?",
     answer:
-      "Hidden Surprises let you add secret contributions that reveal on a chosen date or milestone. Milestone Messages unlock at 25%, 50%, 75%, or 100% progress, and can include notes or photos.",
+      "Secret contributions reveal on your chosen date or milestone. Notes and photos can unlock at 25%, 50%, 75%, or 100% progress.",
   },
 ];
 
@@ -67,7 +67,7 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
         onClick={() => onToggle(index)}
         className="flex w-full items-center justify-between py-4 text-left transition-colors hover:text-rose-500 sm:py-5"
       >
-        <span className="pr-4 text-sm font-semibold text-slate-800 sm:text-base md:text-lg">
+        <span className="home-label pr-4 text-sm font-semibold text-slate-800 sm:text-base md:text-lg">
           {item.question}
         </span>
         <ChevronDown
@@ -85,7 +85,7 @@ function FAQAccordionItem({ item, index, isOpen, onToggle }: FAQAccordionItemPro
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pr-8 text-sm leading-relaxed text-slate-500 sm:text-base">
+          <p className="home-body pr-8 text-sm leading-relaxed text-slate-500 sm:text-base">
             {item.answer}
           </p>
         </div>
@@ -116,29 +116,26 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="scroll-mt-16 bg-white py-16 sm:py-20 md:py-24 lg:py-32"
+      className="home-section scroll-mt-16 bg-white py-16 sm:py-20 md:py-24 lg:py-32"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className="site-container">
         {/* Section header */}
         <div className="text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-rose-500 sm:text-sm">
+          <span className="home-eyebrow text-xs font-bold uppercase tracking-widest text-rose-500 sm:text-sm">
             Questions?
           </span>
-          <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-slate-800 sm:mt-4 sm:text-4xl md:text-5xl">
+          <h2 className="home-heading mt-3 font-serif text-3xl font-bold tracking-tight text-slate-800 sm:mt-4 sm:text-4xl md:text-5xl">
             Frequently Asked
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-400 sm:mt-5 sm:text-lg">
-            Everything you need to know before getting started.
-          </p>
         </div>
 
         {/* FAQ list */}
-        <div className="mt-10 rounded-2xl border border-slate-100 bg-white px-5 shadow-sm sm:mt-14 sm:rounded-3xl sm:px-7 md:px-8 lg:mt-16">
+        <div className="mt-6 rounded-2xl border border-slate-100 bg-white px-5 shadow-sm sm:mt-8 sm:rounded-3xl sm:px-7 md:px-8">
           {faqs.map((faq, index) => (
             <FAQAccordionItem
               key={faq.question}

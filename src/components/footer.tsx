@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Instagram } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
-import { AppStoreCTA } from "@/components/app-store-cta";
-import { PlayStoreCTA } from "@/components/playstore-cta";
 import { getComparisons } from "@/lib/blog";
 import { getAppStoreUrl, getPlayStoreUrl } from "@/lib/store-links";
 
@@ -29,6 +27,7 @@ export function Footer() {
         { label: "Shared dreams", href: "/#dreams" },
         { label: "Our story", href: "/#story" },
         { label: "FAQ", href: "/#faq" },
+        { label: "Download DreamDuo", href: "/download" },
         { label: "Get it on Google Play", href: getPlayStoreUrl("footer"), external: true },
         { label: "Download on the App Store", href: getAppStoreUrl("footer"), external: true },
       ],
@@ -63,39 +62,38 @@ export function Footer() {
     },
   ];
 
-  const linkClass = "text-sm text-slate-400 transition-colors hover:text-white";
+  const linkClass = "home-footer-link text-sm text-slate-400 transition-colors hover:text-white";
 
   return (
-    <footer className="rounded-b-2xl bg-slate-950 px-5 pb-10 pt-14 sm:rounded-b-3xl sm:px-8 lg:px-12 lg:pt-16">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-col gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="home-footer home-dark rounded-b-2xl bg-slate-950 pb-10 pt-14 sm:rounded-b-3xl lg:pt-16">
+      <div className="site-container">
+        <div className="home-footer-top flex flex-col gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <Link href="/" className="inline-flex items-center gap-2.5">
               <BrandMark className="h-9 w-9" iconClassName="h-4 w-4" />
               <span className="text-lg font-bold tracking-tight text-white">DreamDuo</span>
             </Link>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
+            <p className="home-body mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
               Plan your future together. Shared goals, savings and daily check-ins for couples.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
-            {/* The compact Play button is slate-950, the same as this footer,
-                so it gets a lighter glass fill here or it disappears. */}
-            <PlayStoreCTA
-              variant="compact"
-              placement="footer"
-              label="Google Play"
-              className="border-white/15 bg-white/10 hover:bg-white/20"
-            />
-            <AppStoreCTA variant="compact" placement="footer" label="App Store" />
-          </div>
+          <a
+            href="https://www.instagram.com/dreamduoapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="DreamDuo on Instagram"
+            className="home-footer-link inline-flex min-h-11 items-center gap-2 self-start rounded-lg text-sm text-slate-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-400 sm:self-auto"
+          >
+            <Instagram size={20} aria-hidden="true" />
+            <span>@dreamduoapp</span>
+          </a>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-12 md:grid-cols-4">
+        <div className="home-footer-columns grid grid-cols-2 gap-x-6 gap-y-10 py-12 md:grid-cols-4">
           {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
+              <h2 className="home-eyebrow text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
                 {column.title}
               </h2>
               <ul className="mt-4 space-y-3">
@@ -116,7 +114,7 @@ export function Footer() {
                   <li>
                     <Link
                       href={column.more.href}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-300 transition-colors hover:text-rose-200"
+                      className="home-footer-link home-footer-more inline-flex items-center gap-1.5 text-sm font-semibold text-rose-300 transition-colors hover:text-rose-200"
                     >
                       {column.more.label}
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -128,7 +126,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+        <div className="home-footer-bottom home-small flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} DreamDuo Inc. All rights reserved.</p>
           <a href="mailto:support@dreamduo.app" className="transition-colors hover:text-slate-300">
             support@dreamduo.app

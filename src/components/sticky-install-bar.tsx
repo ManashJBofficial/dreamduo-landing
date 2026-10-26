@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { X } from "lucide-react";
 import { track } from "@vercel/analytics";
-import { AppStoreCTA } from "@/components/app-store-cta";
-import { getPlayStoreUrl } from "@/lib/store-links";
 
 const DISMISS_KEY = "install_bar_dismissed";
 
@@ -20,7 +19,7 @@ function wasDismissedThisSession(): boolean {
 
 /**
  * Mobile-only install bar. It stays out of the way until the hero CTA has
- * scrolled off, then keeps a one-tap Play Store link within thumb reach for the
+ * scrolled off, then keeps the download link within thumb reach for the
  * rest of the page.
  */
 export function StickyInstallBar() {
@@ -59,54 +58,33 @@ export function StickyInstallBar() {
 
   return (
     <div
-      className="animate-install-bar-in fixed inset-x-2 z-50 md:hidden"
+      className="home-dark animate-install-bar-in fixed inset-x-2 z-50 md:hidden"
       style={{ bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
-      <div className="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-950/95 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.9)] backdrop-blur">
+      <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/95 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.9)] backdrop-blur">
         <Image
-          src="/dreamduo_logo.webp"
+          src="/dreamduo-logo.webp"
           alt="DreamDuo app icon"
           aria-hidden="true"
           width={40}
           height={40}
-          className="h-10 w-10 shrink-0 rounded-xl"
+          className="h-9 w-9 shrink-0 rounded-xl"
         />
 
         <div className="min-w-0 flex-1">
-          <div className="truncate text-sm font-bold text-white">DreamDuo</div>
-          <div className="truncate text-[11px] text-slate-400">
-            Free on iOS &amp; Android
+          <div className="home-label truncate text-sm font-bold text-white">DreamDuo</div>
+          <div className="home-small truncate">
+            Free to start
           </div>
         </div>
 
-        {/* Icon-only so the Play install stays the widest target in the bar. */}
-        <AppStoreCTA
-          variant="compact"
-          placement="sticky_bar"
-          iconOnlyOnMobile
-          className="min-h-11 shrink-0 sm:min-h-11"
-        />
-
-        {/* Carries the Play mark rather than reading as a bare "Install":
-            next to an App Store button, an unmarked one looks like the only
-            download and leaves the platform ambiguous. */}
-        <a
-          href={getPlayStoreUrl("sticky_bar")}
-          target="_blank"
-          rel="noopener"
-          onClick={() => track("install_click", { placement: "sticky_bar" })}
-          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-rose-500 to-amber-400 px-4 text-sm font-bold text-white shadow-lg transition-transform active:scale-95"
+        <Link
+          href="/download"
+          onClick={() => track("download_page_click", { placement: "sticky_bar" })}
+          className="home-button-compact inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-4 font-semibold text-slate-950 transition-colors hover:bg-rose-50"
         >
-          <Image
-            src="/google-play.png"
-            alt="Google Play icon"
-            aria-hidden="true"
-            width={16}
-            height={16}
-            className="h-4 w-4 shrink-0"
-          />
-          Install
-        </a>
+          Try for free
+        </Link>
 
         <button
           type="button"

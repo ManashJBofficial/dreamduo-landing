@@ -1,0 +1,13 @@
+.visibility { display: none; }
+
+@media (min-width: 768px) {
+  .visibility { display: contents; }
+}
+
+@media (max-height: 500px) and (hover: none) and (pointer: coarse) {
+  .visibility { display: none; }
+}
+
+.visibility[data-qr-device="tablet"],
+.visibility[data-qr-device="desktop"] { display: contents; }
+.visibility[data-qr-device="phone"] { display: none; }

@@ -12,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#e91e7b",
     icons: [
       {
-        src: "/dreamduo_logo.webp",
-        sizes: "any",
+        src: "/dreamduo-logo.webp",
+        sizes: "512x512",
         type: "image/webp",
         purpose: "any",
       },

@@ -11,6 +11,8 @@ import { Testimonials } from "@/components/testimonials";
 import { WaitlistStrip } from "@/components/waitlist-strip";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { GOOGLE_PLAY_URL, APP_STORE_URL } from "@/lib/store-links";
+import heroStyles from "@/components/hero.module.css";
+import "./home.css";
 
 export default function Home() {
   const jsonLd = [
@@ -49,7 +51,7 @@ export default function Home() {
       "@id": "https://dreamduo.app/#organization",
       name: "DreamDuo",
       url: "https://dreamduo.app",
-      logo: "https://dreamduo.app/dreamduo_logo.webp",
+      logo: "https://dreamduo.app/dreamduo-logo.webp",
       description:
         "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
       sameAs: [GOOGLE_PLAY_URL, APP_STORE_URL],
@@ -62,7 +64,7 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <div className="home-page">
       <a
         href="#main-content"
         className="sr-only z-[70] rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
@@ -88,8 +90,10 @@ export default function Home() {
 
       {/* Scrollable page content - padding matches frame inset */}
       <main id="main-content" className="px-2 pb-2 sm:px-3 sm:pb-3 lg:px-4 lg:pb-4">
-        <Navbar />
-        <Hero />
+        <div className={heroStyles.surface}>
+          <Navbar />
+          <Hero />
+        </div>
         <GoalCategories />
         <Quote />
         {WAITLIST_ENABLED ? <WaitlistStrip /> : null}
@@ -101,6 +105,6 @@ export default function Home() {
       </main>
 
       <StickyInstallBar />
-    </>
+    </div>
   );
 }

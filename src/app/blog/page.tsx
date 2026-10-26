@@ -51,7 +51,7 @@ export default function BlogIndexPage() {
         "@id": "https://dreamduo.app/#organization",
         name: "DreamDuo",
         url: "https://dreamduo.app",
-        logo: "https://dreamduo.app/dreamduo_logo.webp",
+        logo: "https://dreamduo.app/dreamduo-logo.webp",
       },
       blogPost: posts.map((post) => ({
         "@type": "BlogPosting",

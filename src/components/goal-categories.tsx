@@ -234,7 +234,7 @@ const categories: Category[] = [
     modalBtnText: "text-rose-950",
     headline: "Deepen Your Connection",
     description:
-      "Daily questions, weekly check-ins, and shared reflections - build emotional intimacy with simple daily rituals.",
+      "Stay close with quick nudges, daily questions, and shared reflections. Make a little space for each other, wherever you are.",
     features: [
       {
         icon: MessageCircle,
@@ -354,7 +354,7 @@ function CategoryModal({
             {category.headline}
           </h3>
           <p
-            className={`mt-2 text-sm leading-relaxed ${category.modalTextMuted} sm:mt-3 sm:text-base`}
+            className={`home-modal-body mt-2 text-sm leading-relaxed ${category.modalTextMuted} sm:mt-3 sm:text-base`}
           >
             {category.description}
           </p>
@@ -378,11 +378,11 @@ function CategoryModal({
                       />
                     </div>
                     <div>
-                      <div className={`text-sm font-bold ${category.modalText}`}>
+                      <div className={`home-modal-label text-sm font-bold ${category.modalText}`}>
                         {feature.title}
                       </div>
                       <div
-                        className={`mt-0.5 text-xs leading-relaxed ${category.modalTextMuted} sm:text-[13px]`}
+                        className={`home-modal-small mt-0.5 text-xs leading-relaxed ${category.modalTextMuted} sm:text-[13px]`}
                       >
                         {feature.description}
                       </div>
@@ -399,11 +399,6 @@ function CategoryModal({
           <div className="flex justify-center">
             <StoreCTARow variant="light" placement="dream_modal" />
           </div>
-          <p
-            className={`mt-2.5 text-[11px] ${category.modalTextMuted} sm:mt-3 sm:text-xs`}
-          >
-            Built for real couples with synced dreams, daily check-ins, and private shared planning.
-          </p>
         </div>
 
         {/* COMMENTED OUT: Original download button - restore when app is live
@@ -452,21 +447,20 @@ export function GoalCategories() {
 
   return (
     <>
-      <section id="dreams" className="scroll-mt-16 bg-slate-50/50 py-16 sm:py-20 md:py-24 lg:py-28">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section id="dreams" className="home-section scroll-mt-16 bg-slate-50/50 py-16 sm:py-20 md:py-24 lg:py-28">
+        <div className="site-container">
           {/* Header */}
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-serif text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl">
+            <h2 className="home-heading font-serif text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl">
               What are you dreaming of?
             </h2>
-            <p className="mt-3 text-base text-slate-500 sm:mt-4 sm:text-lg">
-              Tap a dream to preview the experience. Track progress with 4 dream
-              types: amount, checklist, habit, and time.
+            <p className="home-body mt-3 sm:mt-4">
+              Pick a dream to see how it works.
             </p>
           </div>
 
           {/* Category grid - outline cards */}
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-3 lg:gap-5">
             {categories.map((cat) => {
               const CatIcon = cat.icon;
               return (
@@ -477,7 +471,7 @@ export function GoalCategories() {
                   aria-label={`Open details for ${cat.label}`}
                   className={`group flex items-center justify-between rounded-xl border bg-white ${cat.color} px-4 py-3.5 text-left transition-all duration-200 ${cat.hoverBorder} hover:shadow-md sm:rounded-2xl sm:px-5 sm:py-4 md:px-6 md:py-5`}
                 >
-                  <span className="text-sm font-semibold text-slate-700 sm:text-base md:text-lg">
+                  <span className="home-label text-sm font-semibold text-slate-700 sm:text-base md:text-lg">
                     {cat.label}
                   </span>
                   <div className="flex items-center gap-1.5 sm:gap-2">

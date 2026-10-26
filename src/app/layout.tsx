@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import { Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import "./globals.css";
 
 // Only the weights the page actually renders. Every extra weight is another
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [{ url: "/dreamduo_logo.webp", type: "image/webp" }],
-    shortcut: [{ url: "/dreamduo_logo.webp", type: "image/webp" }],
-    apple: [{ url: "/dreamduo_logo.webp", type: "image/webp" }],
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
   },
   keywords: [
     "couples goal tracker",
@@ -110,6 +111,7 @@ export default function RootLayout({
       >
         {children}
         <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -74,8 +74,8 @@ export default function TermsPage() {
       >
         <Navbar />
 
-        <section className="bg-white px-6 py-10 sm:px-10 sm:py-14 lg:px-16">
-          <div className="mx-auto max-w-3xl">
+        <section className="bg-white py-10 sm:py-14">
+          <div className="site-container">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-rose-500">
               Legal
             </span>
@@ -89,7 +89,7 @@ export default function TermsPage() {
               Last updated: {lastUpdated}
             </p>
 
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
+            <div className="mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-slate-600 sm:text-lg">
               <p>
                 These Terms and Conditions (&quot;Terms&quot;) govern your access to and use
                 of the DreamDuo website, mobile application, and related services

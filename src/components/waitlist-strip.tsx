@@ -109,7 +109,7 @@ function EnabledWaitlistStrip() {
       <div className="relative w-full overflow-hidden border-y border-white/10 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-300/60 to-transparent" />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="site-container">
           <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             <div className="flex flex-col items-center px-6 py-6 text-center sm:px-8 sm:py-7">
               <div

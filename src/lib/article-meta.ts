@@ -86,7 +86,7 @@ export function articleJsonLd(entry: Post, path: string, crumbs: Crumb[]) {
         "@id": `${SITE_URL}/#organization`,
         name: "DreamDuo",
         url: SITE_URL,
-        logo: { "@type": "ImageObject", url: `${SITE_URL}/dreamduo_logo.webp` },
+        logo: { "@type": "ImageObject", url: `${SITE_URL}/dreamduo-logo.webp` },
       },
       image: `${SITE_URL}${previewImage(entry).url}`,
       ...(entry.tags?.length ? { keywords: entry.tags.join(", ") } : {}),
