@@ -43,6 +43,7 @@ export default function BlogIndexPage() {
     {
       "@context": "https://schema.org",
       "@type": "Blog",
+      "@id": "https://dreamduo.app/blog#blog",
       name: title,
       description,
       url: "https://dreamduo.app/blog",

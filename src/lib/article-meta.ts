@@ -30,12 +30,16 @@ export function articleMetadata(entry: Post, path: string): Metadata {
   return {
     title: entry.seoTitle ?? entry.title,
     description: entry.description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      types: { "application/rss+xml": "/blog/rss.xml" },
+    },
     // A draft reachable by direct URL must never enter the index, even though
     // it is already absent from the sitemap and every listing.
     ...(entry.draft ? { robots: { index: false, follow: false } } : {}),
     authors: entry.author ? [{ name: entry.author }] : undefined,
     keywords: entry.tags,
+    ...(entry.adult ? { other: { rating: "adult" } } : {}),
     openGraph: {
       title: entry.seoTitle ?? entry.title,
       description: entry.description,
@@ -66,15 +70,23 @@ export function articleJsonLd(entry: Post, path: string, crumbs: Crumb[]) {
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
+      "@id": `${url}#article`,
       headline: entry.title,
       description: entry.description,
       datePublished: entry.date,
       dateModified: entry.updated ?? entry.date,
       url,
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      inLanguage: "en-US",
+      isAccessibleForFree: true,
+      ...(entry.adult ? { isFamilyFriendly: false } : {}),
+      ...(path.startsWith("/blog/") ? {
+        isPartOf: { "@type": "Blog", "@id": `${SITE_URL}/blog#blog`, name: "The DreamDuo Blog", url: `${SITE_URL}/blog` },
+      } : {}),
       author: author
         ? {
             "@type": "Person",
+            ...(author.url ? { "@id": new URL(author.url, SITE_URL).href } : {}),
             name: author.name,
             jobTitle: author.role,
             ...(author.avatar ? { image: new URL(author.avatar, SITE_URL).href } : {}),

@@ -77,11 +77,22 @@ for (const route of routes) {
     assert(Date.parse(article.dateModified) >= Date.parse(article.datePublished), `${route} cannot be modified before publication`);
     assert.equal(article.mainEntityOfPage?.["@id"], `${origin}${route}`, `${route} schema must use its canonical URL`);
     assert(article.author.name && article.author.url, `${route} needs an identifiable author`);
+    assert.equal(article.author.name, "MJ Baruah", `${route} must use the requested public author name`);
+    assert(!article.author.image, `${route} must not publish the disabled author portrait in its schema`);
+    assert(!html.includes('class="editorial-author-portrait"'), `${route} must not retain an empty author-photo slot`);
     assert.equal(article.publisher?.["@id"], `${origin}/#organization`, `${route} needs consistent publisher identity`);
-    if (route.startsWith("/blog/")) {
-      const titleSlug = article.headline.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      assert.equal(route, `/blog/${titleSlug}`, `${route} must match the full article title`);
+    assert.equal(article["@id"], `${origin}${route}#article`, `${route} needs a stable article identity`);
+    assert.equal(article.inLanguage, "en-US", `${route} schema must identify the article language`);
+    assert.equal(article.isAccessibleForFree, true, `${route} must describe its freely readable article accurately`);
+    if (route === "/blog/dirty-questions-to-ask-your-partner-over-text") {
+      assert.match(html, /name="rating" content="adult"/, "The explicit article needs page-specific adult metadata");
+      assert.equal(article.isFamilyFriendly, false, "The explicit article must be classified accurately in its schema");
+    } else {
+      assert(!meta.some(([ , name, value]) => name === "rating" && value === "adult"), `${route} must not inherit another article's adult rating`);
     }
+    if (route.startsWith("/blog/")) assert.equal(article.isPartOf?.["@id"], `${origin}/blog#blog`, `${route} must belong to the canonical blog`);
+    // A descriptive slug may be shorter than the headline and should remain
+    // stable when the title changes. Canonical, schema and sitemap agree above.
     assert(html.includes(article.headline.replaceAll("&", "&amp;").replaceAll("'", "&#x27;").replaceAll('"', "&quot;")), `${route} schema headline must be visible in server HTML`);
     const imageResponse = await fetch(new URL(`${route}/opengraph-image`, base));
     assert.equal(imageResponse.status, 200, `${route} generated social card must render`);
@@ -89,7 +100,16 @@ for (const route of routes) {
     const png = Buffer.from(await imageResponse.arrayBuffer());
     assert.equal(png.readUInt32BE(16), 1200);
     assert.equal(png.readUInt32BE(20), 630);
-    assert(html.includes(`${origin}${route}/opengraph-image`), `${route} must reference its own social card`);
+    const socialImage = meta.find(match => match[1] === "og:image")?.[2];
+    assert.equal(socialImage, article.image, `${route} schema and social preview must identify the same representative image`);
+    if (socialImage !== `${origin}${route}/opengraph-image`) {
+      const coverPath = new URL(socialImage).pathname;
+      assert(coverPath.startsWith("/blog/") || coverPath.startsWith("/compare/"), `${route} cover must be a local editorial asset`);
+      const cover = await fetch(new URL(coverPath, base));
+      assert.equal(cover.status, 200, `${route} representative cover must load`);
+      assert.match(cover.headers.get("content-type") ?? "", /^image\//);
+      assert(html.includes(encodeURIComponent(coverPath)), `${route} representative cover must also appear in the article`);
+    }
     images++;
   }
 }
@@ -121,7 +141,29 @@ assert.match(robots, /Allow: \//i);
 assert.match(robots, /Sitemap: https:\/\/dreamduo.app\/sitemap.xml/i);
 const feed = await fetch(new URL("/blog/rss.xml", base));
 assert.equal(feed.status, 200);
-assert.match(await feed.text(), /<rss version="2.0"/);
+const feedText = await feed.text();
+assert.match(feedText, /<rss version="2.0"/);
+const directory = await fetch(new URL("/llms.txt", base));
+assert.equal(directory.status, 200, "Optional text directory must load without JavaScript");
+assert.match(directory.headers.get("content-type") ?? "", /text\/plain/);
+const directoryText = await directory.text();
+for (const route of articlePages.filter(route => route.startsWith("/blog/"))) {
+  assert(directoryText.includes(`${origin}${route}`), `${route} must be discoverable in the text directory`);
+  assert(feedText.includes(`${origin}${route}`), `${route} must be discoverable in RSS`);
+  assert(pageHtml.get("/blog").includes(`href="${route}"`), `${route} must have a crawlable link from the blog index`);
+}
+// Interactive tools must also expose their complete useful content to readers
+// and crawlers that do not execute JavaScript, rather than only a picker shell.
+for (const [file, route, field] of [
+  ["texting-questions.json", "/blog/dirty-questions-to-ask-your-partner-over-text", "questions"],
+  ["daily-question-calendar.json", "/blog/30-daily-questions-for-long-distance-couples-when-you-run-out-of-things-to-say", "prompts"],
+]) {
+  const groups = JSON.parse(await fs.readFile(new URL(`../src/content/assets/${file}`, import.meta.url), "utf8"));
+  for (const text of (file === "texting-questions.json" ? groups : groups.flatMap(group => group[field]))) {
+    const escaped = text.replaceAll("&", "&amp;").replaceAll("'", "&#x27;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    assert(pageHtml.get(route).includes(escaped), `${route} must server-render question: ${text}`);
+  }
+}
 // These are application-level UA checks, not proof that a deployed WAF permits
 // the providers' real IPs. OAI-SearchBot is deliberately distinct from GPTBot.
 const agents = ["Googlebot", "bingbot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User", "Claude-SearchBot", "Claude-User", "GPTBot", "ClaudeBot"];
@@ -146,7 +188,13 @@ for (const name of downloads) {
   assert.match(html, /name="robots" content="noindex,follow"/, `${name} must retain its printable-only indexing policy`);
 }
 for (const image of pageHtml.get("/").matchAll(/<img\b[^>]*>/g)) {
-  assert.match(image[0], /\balt="[^"]+"/, "Homepage images must have descriptive alt text");
+  // The decorative mark sits next to visible DreamDuo text. Empty alt avoids
+  // repeating that accessible name; the HTML optimizer may serialize it bare.
+  if (image[0].includes('/optimized/brand-mark.webp')) {
+    assert.match(image[0], /\balt(?:[\s=>])/, "Decorative brand marks must declare an alt attribute");
+  } else {
+    assert.match(image[0], /\balt="[^"]+"/, "Homepage content images must have descriptive alt text");
+  }
 }
 console.log(`Bing scan checks passed: titles below 70 characters, ${downloads.length} printable descriptions, descriptive homepage image alt text.`);
 console.log(`Crawler checks passed: ${agents.length} user agents across ${articlePages.length} articles, without executing JavaScript.`);

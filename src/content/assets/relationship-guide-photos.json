@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "30-daily-questions-for-long-distance-couples-when-you-run-out-of-things-to-say",
+    "file": "daily-questions-video-call.webp",
+    "replaces": "daily-questions-long-distance-couples.webp",
+    "photoId": "4474047",
+    "credit": "Ketut Subiyanto",
+    "source": "https://www.pexels.com/photo/woman-working-at-home-and-making-video-call-on-laptop-4474047/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Woman smiling toward a laptop during a video call at home",
+    "crop": "centre"
+  },
+  {
+    "slug": "how-to-plan-your-next-long-distance-visit-free-checklist-budget",
+    "file": "long-distance-visit-travel-plan.webp",
+    "replaces": "long-distance-visit-planning-checklist.webp",
+    "photoId": "20259891",
+    "credit": "Rukiye Ağaçayak",
+    "source": "https://www.pexels.com/photo/a-couple-looking-at-the-map-20259891/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Young adult couple looking at a map together outdoors",
+    "crop": "centre"
+  },
+  {
+    "slug": "25-things-to-do-on-facetime-with-your-partner-when-you-re-bored",
+    "file": "facetime-cooking-activity.webp",
+    "replaces": "things-to-do-on-facetime-with-partner.webp",
+    "photoId": "6517191",
+    "credit": "RDNE Stock project",
+    "source": "https://www.pexels.com/photo/woman-cooking-while-holding-a-notebook-and-looking-at-her-laptop-6517191/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Woman cooking while looking toward a laptop and holding a notebook",
+    "crop": "centre",
+    "extract": {
+      "left": 0,
+      "top": 500,
+      "width": 1600,
+      "height": 900
+    }
+  },
+  {
+    "slug": "long-distance-relationships-in-different-time-zones-3-weekly-routines",
+    "file": "long-distance-time-zone-evening.webp",
+    "replaces": "long-distance-relationship-time-zones.webp",
+    "photoId": "6578426",
+    "credit": "Andres Ayrton",
+    "source": "https://www.pexels.com/photo/focused-black-man-using-laptop-in-evening-at-home-6578426/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Man using a laptop beside a desk lamp and window at home",
+    "crop": "centre"
+  },
+  {
+    "slug": "15-minute-weekly-relationship-check-in-12-questions-template",
+    "file": "weekly-couple-conversation.webp",
+    "replaces": "weekly-relationship-check-in-questions.webp",
+    "photoId": "5699824",
+    "credit": "Alex Green",
+    "source": "https://www.pexels.com/photo/happy-young-ethnic-couple-chatting-while-sitting-on-couch-at-home-5699824/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Young adult couple talking together on a sofa with a book and laptop",
+    "crop": "centre"
+  }
+]

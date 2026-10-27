@@ -8,6 +8,9 @@ import { BucketListStarter } from "@/components/bucket-list-starter";
 import { DailyQuestionCTA } from "@/components/daily-question-cta";
 import { EditorialPhoto } from "@/components/editorial-photo";
 import { ArticleDownload } from "@/components/article-download";
+import { CheckInWorksheet, GuideDownloads, GuideProduct, GuideVisual, QuestionCalendar, VisitChecklist } from "@/components/guide-toolkit";
+import { VisitBudget } from "@/components/visit-budget";
+import { TextingQuestionPicker, TextingQuestions, TextingStockPhoto } from "@/components/texting-guide";
 
 /**
  * Element styling for rendered MDX. Posts are plain markdown, so everything a
@@ -67,7 +70,7 @@ function Anchor({ href = "", children, ...props }: ComponentPropsWithoutRef<"a">
  * Full /paths still work, for sharing an image between posts.
  */
 export function createMdxComponents(assetBase: string) {
-  return { ...baseComponents, BucketListPhoto, EditorialPhoto, ArticleDownload, BucketListStarter, DailyQuestionCTA, img: (props: ComponentPropsWithoutRef<"img">) => <MdxImage {...props} assetBase={assetBase} /> };
+  return { ...baseComponents, TextingQuestionPicker, TextingQuestions, TextingStockPhoto, CheckInWorksheet, GuideDownloads, GuideProduct, GuideVisual, QuestionCalendar, VisitChecklist, VisitBudget, BucketListPhoto, EditorialPhoto, ArticleDownload, BucketListStarter, DailyQuestionCTA, img: (props: ComponentPropsWithoutRef<"img">) => <MdxImage {...props} assetBase={assetBase} /> };
 }
 
 const baseComponents = {

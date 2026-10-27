@@ -28,6 +28,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  async headers() {
+    return [{ source: "/downloads/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] }];
+  },
   async redirects() {
     return [
       ...Object.entries(BLOG_SLUG_REDIRECTS).flatMap(([previous, current]) => [
