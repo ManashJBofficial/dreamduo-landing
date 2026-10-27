@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { track } from "@vercel/analytics";
+import { trackDownload } from "@/lib/download-analytics";
+import { useCampaign } from "@/lib/campaign-attribution";
 
 const DISMISS_KEY = "install_bar_dismissed";
 
@@ -23,6 +24,7 @@ function wasDismissedThisSession(): boolean {
  * rest of the page.
  */
 export function StickyInstallBar() {
+  const campaign = useCampaign("sticky_bar");
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
@@ -80,7 +82,7 @@ export function StickyInstallBar() {
 
         <Link
           href="/download"
-          onClick={() => track("download_page_click", { placement: "sticky_bar" })}
+          onClick={() => trackDownload("download_page_click", campaign, { placement: "sticky_bar" })}
           className="home-button-compact inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-4 font-semibold text-slate-950 transition-colors hover:bg-rose-50"
         >
           Try for free

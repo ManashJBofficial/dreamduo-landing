@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useCampaign } from "@/lib/campaign-attribution";
 import { StoreCTARow } from "@/components/store-cta-row";
 import { DownloadQrCode } from "@/components/download-qr-code";
 import { QrVisibility } from "@/components/qr-visibility";
@@ -6,7 +9,7 @@ import { getDownloadQrUrl } from "@/lib/download-links";
 import styles from "@/components/hero.module.css";
 
 export function Hero() {
-  const qrUrl = getDownloadQrUrl({ utm_campaign: "hero" });
+  const qrUrl = getDownloadQrUrl(useCampaign("hero"));
 
   return (
     <section aria-labelledby="hero-heading" className={styles.hero}>

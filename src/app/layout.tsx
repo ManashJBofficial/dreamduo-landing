@@ -3,6 +3,8 @@ import { Bricolage_Grotesque } from "next/font/google";
 import { Manrope } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/google-analytics";
+import { Suspense } from "react";
+import { CampaignCapture } from "@/components/campaign-capture";
 import "./globals.css";
 
 // Only the weights the page actually renders. Every extra weight is another
@@ -109,6 +111,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
       >
+        <Suspense fallback={null}><CampaignCapture /></Suspense>
         {children}
         <Analytics />
         <GoogleAnalytics />

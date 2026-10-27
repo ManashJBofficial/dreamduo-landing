@@ -7,6 +7,7 @@ import { DownloadQrCode } from "@/components/download-qr-code";
 import { QrVisibility } from "@/components/qr-visibility";
 import { detectDownloadPlatform, getDownloadQrUrl, getDownloadStoreUrl, readCampaign } from "@/lib/download-links";
 import { trackDownload } from "@/lib/download-analytics";
+import { currentCampaign, useCampaign } from "@/lib/campaign-attribution";
 import styles from "@/components/download-page.module.css";
 
 export function DownloadActions() {
@@ -15,7 +16,8 @@ export function DownloadActions() {
 }
 
 export function DownloadPanel({ query = "", ready = false }: { query?: string; ready?: boolean }) {
-  const campaign = useMemo(() => readCampaign(new URLSearchParams(query)), [query]);
+  const sessionCampaign = useCampaign();
+  const campaign = useMemo(() => ({ ...sessionCampaign, ...readCampaign(new URLSearchParams(query)) }), [query, sessionCampaign]);
   const viaQr = new URLSearchParams(query).get("via") === "qr";
   const lastVisit = useRef<string | null>(null);
 
@@ -32,7 +34,7 @@ export function DownloadPanel({ query = "", ready = false }: { query?: string; r
     // Fallback for an iPad using a desktop UA without its usual Mobile token.
     // Standard phone/tablet scans redirect in Proxy before this page renders.
     trackDownload("download_redirect", campaign, { platform, via: "qr" });
-    window.location.replace(getDownloadStoreUrl(platform, campaign));
+    window.location.replace(getDownloadStoreUrl(platform, { ...campaign, ...currentCampaign() }));
   }, [campaign, query, ready, viaQr]);
 
   return (

@@ -3,11 +3,13 @@ import { ArrowRight, Instagram } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import { getComparisons } from "@/lib/blog";
 import { getAppStoreUrl, getPlayStoreUrl } from "@/lib/store-links";
+import { StoreTextLink } from "@/components/store-text-link";
 
 interface FooterLink {
   label: string;
   href: string;
   external?: boolean;
+  store?: "ios" | "android";
 }
 
 /**
@@ -28,8 +30,8 @@ export function Footer() {
         { label: "Our story", href: "/#story" },
         { label: "FAQ", href: "/#faq" },
         { label: "Download DreamDuo", href: "/download" },
-        { label: "Get it on Google Play", href: getPlayStoreUrl("footer"), external: true },
-        { label: "Download on the App Store", href: getAppStoreUrl("footer"), external: true },
+        { label: "Get it on Google Play", href: getPlayStoreUrl("footer"), store: "android" },
+        { label: "Download on the App Store", href: getAppStoreUrl("footer"), store: "ios" },
       ],
     },
     {
@@ -99,7 +101,9 @@ export function Footer() {
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.href}>
-                    {link.external ? (
+                    {link.store ? (
+                      <StoreTextLink platform={link.store} className={linkClass}>{link.label}</StoreTextLink>
+                    ) : link.external ? (
                       <a href={link.href} target="_blank" rel="noopener" className={linkClass}>
                         {link.label}
                       </a>
@@ -127,7 +131,7 @@ export function Footer() {
         </div>
 
         <div className="home-footer-bottom home-small flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} DreamDuo Inc. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} DreamDuo. All rights reserved.</p>
           <a href="mailto:support@dreamduo.app" className="transition-colors hover:text-slate-300">
             support@dreamduo.app
           </a>

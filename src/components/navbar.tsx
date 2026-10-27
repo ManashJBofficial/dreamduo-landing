@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import styles from "@/components/navbar.module.css";
+import { useCampaign } from "@/lib/campaign-attribution";
+import { trackDownload } from "@/lib/download-analytics";
 
 const links = [
   { label: "Dreams", href: "/#dreams" },
@@ -15,6 +17,7 @@ const links = [
 ];
 
 export function Navbar() {
+  const campaign = useCampaign("navbar");
   const [open, setOpen] = useState(false);
   const frameRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -82,7 +85,10 @@ export function Navbar() {
             ))}
           </div>
 
-          <Link href="/download" onClick={() => setOpen(false)} className={`home-button-compact ${styles.cta}`}>
+          <Link href="/download" onClick={() => {
+            setOpen(false);
+            trackDownload("download_page_click", campaign, { placement: "navbar" });
+          }} className={`home-button-compact ${styles.cta}`}>
             Try for free
           </Link>
         </div>

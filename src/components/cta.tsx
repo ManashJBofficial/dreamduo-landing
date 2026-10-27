@@ -1,3 +1,6 @@
+"use client";
+
+import { useCampaign } from "@/lib/campaign-attribution";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { StoreCTARow } from "@/components/store-cta-row";
 import { WaitlistForm } from "@/components/waitlist-form";
@@ -7,7 +10,7 @@ import { QrVisibility } from "@/components/qr-visibility";
 import { getDownloadQrUrl } from "@/lib/download-links";
 
 export function CTA() {
-  const qrUrl = getDownloadQrUrl({ utm_campaign: "footer_cta" });
+  const qrUrl = getDownloadQrUrl(useCampaign("footer_cta"));
 
   return (
     <section

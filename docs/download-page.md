@@ -24,6 +24,52 @@ on the page gradient on the left, with artwork on the right and no enclosing car
 
 ## Analytics options
 
+Campaign attribution now covers all homepage/blog store badges, footer store
+links, and every generated QR, as well as the download page. The five supported
+incoming UTMs are kept in session storage across internal navigation and reloads.
+A newly tagged arrival replaces the previous campaign; untagged navigation keeps
+it. Without storage, in-memory attribution still works during client navigation.
+Current URL tags take priority; `dreamduo_landing`/`web` and the placement are only
+defaults for untagged visitors. Placement is sent separately from the campaign so
+clicking a different CTA does not overwrite the external campaign name.
+The initial referrer hostname is retained separately from UTMs across navigation.
+
+### Set up GA4
+
+1. Open Google Analytics and create an account/property for DreamDuo. Choose the
+   reporting timezone and currency, then add a **Web** stream for
+   `https://dreamduo.app`.
+2. Copy the stream's **Measurement ID** (`G-...`). No extra tag snippet or Tag
+   Manager container is needed: `google-analytics.tsx` already installs the tag.
+3. Add `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the landing frontend Vercel project's
+   **Settings > Environment Variables**, selecting **Production**, then redeploy.
+   For local checks, add it to `.env.local` and restart the development server.
+4. Open a tagged URL such as
+   `https://dreamduo.app/download?utm_source=instagram&utm_medium=bio&utm_campaign=launch`.
+   In GA4 **Reports > Realtime**, verify `page_view`, `download_view`, and (after
+   tapping a badge) `download_store_click`. Use Tag Assistant/DebugView to inspect
+   parameters. A store click measures an outbound click, not an installation.
+5. Under **Admin > Custom definitions**, register event-scoped dimensions for
+   `placement`, `store`, `platform`, `via`, `utm_source`, `utm_medium`,
+   `utm_campaign`, `utm_content`, and `utm_term` to break down custom events.
+   Standard acquisition reports already use tagged landing URLs. Mark
+   `download_store_click` as a key event if desired. These dimensions only help
+   future reporting, so configure them before sharing campaign links.
+
+The measurement ID and Apple provider token were not configured locally during
+this change. Production environment settings and actual dashboard ingestion
+cannot be verified from the repository. Enable Vercel Web Analytics separately
+if using its dashboard. Immediate QR redirects still use Vercel server events,
+not GA4 browser events, because they do not render a web page.
+
+Attribution regression checks: `npm run test:download-tracking` covers navigation
+retention, campaign replacement, blocked storage, store/QR query encoding,
+input bounds, and both analytics sinks. Browser checks passed Instagram homepage
+to blog to download navigation, an untagged reload, replacement by a Reddit
+campaign, and emitted GA4 event payloads with external navigation prevented.
+Direct QR HTTP checks passed for eight user-agent profiles. Live GA4/Vercel
+dashboard ingestion still requires deployment and account configuration.
+
 | Option | Best fit | Setup |
 | --- | --- | --- |
 | Existing Vercel Analytics | Least work if the hosting plan supports custom events | Enable Web Analytics on the production Vercel project. Custom events require Pro/Enterprise; the built-in UTM dashboard filter requires Web Analytics Plus/Enterprise. Campaign properties are also sent explicitly with our custom events. |
@@ -47,6 +93,7 @@ or database is required. Prefetches and HEAD requests do not emit scan events.
 | `download_view` | The download page initialized; includes campaign, device platform, referrer hostname, and `via` (`link` or `qr`). |
 | `download_qr_visit` | A visit with `via=qr`; server-side on a recognized mobile/tablet redirect, browser-side on the desktop fallback. This is not proof of a physical scan. |
 | `download_store_click` | A visitor chose a store; includes `store`, platform, and campaign. |
+| `download_page_click` | Navbar or sticky-bar CTA opened the download page; includes placement and campaign. |
 | `download_redirect` | Automatic QR routing to a store, recorded server-side in Vercel; separate from a button click. |
 
 In Vercel, open the project's **Analytics** tab, select `/download`, and inspect
