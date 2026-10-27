@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { EditorialBanner } from "@/components/editorial-banner";
@@ -24,19 +23,18 @@ export default function EditorialPolicyPage() {
     </EditorialBanner>
     <div className="editorial-shell py-12"><div className="editorial-prose mx-auto max-w-3xl space-y-8 text-base leading-8 text-slate-600">
       <section id="author" className="scroll-mt-28">
-        <div className="relative mb-6 mt-10 flex min-h-28 items-center rounded-2xl bg-[#f2d7da] py-4 pl-28 pr-4 sm:pl-44">
-          <div className="absolute bottom-0 left-1 h-32 w-24 sm:left-3 sm:h-40 sm:w-36"><Image src="/blog/authors/manash-jyoti-baruah-cutout.webp" alt="Portrait of Manash Jyoti Baruah" width={400} height={400} sizes="(max-width: 640px) 96px, 144px" className="h-full w-full object-cover object-bottom" /></div>
-          <div><h2 className="font-display text-xl font-bold leading-tight text-slate-900 sm:text-2xl">Manash Jyoti Baruah</h2><p className="mt-1 text-sm text-slate-600">Founder, DreamDuo</p></div>
+        <div className="mb-6 flex items-center rounded-2xl bg-[#f2d7da] px-6 py-5">
+          <div><h2 className="font-display text-xl font-bold leading-tight text-slate-900 sm:text-2xl">MJ Baruah</h2><p className="mt-1 text-sm text-slate-600">Founder, DreamDuo</p></div>
         </div>
         <h3 className="font-display text-xl font-bold text-slate-900">Who publishes the blog</h3>
-        <p className="mt-3">DreamDuo publishes this journal. Its articles are attributed to Manash Jyoti Baruah, founder of DreamDuo. We make the app that appears in our guides and comparisons, so these are publisher-owned resources rather than independent reviews.</p>
+        <p className="mt-3">DreamDuo publishes this journal. Its articles are attributed to MJ Baruah, founder of DreamDuo. We make the app that appears in our guides and comparisons, so these are publisher-owned resources rather than independent reviews.</p>
       </section>
       <section><h2 className="font-display text-2xl font-bold text-slate-900">Product facts and prices</h2>
         <p className="mt-3">Our current app comparisons link to official product pages, help centres and store listings, and state when the sources were checked. They describe published features; they do not claim hands-on testing of every competitor. “Not listed” means a feature was not found in the cited sources, not that it cannot exist.</p>
         <p className="mt-3">Prices can vary by region, platform, offer and billing period. The price and renewal terms shown at checkout apply to your purchase. Source dates and article update dates help you judge how current a comparison is.</p>
       </section>
       <section><h2 className="font-display text-2xl font-bold text-slate-900">Examples, photographs and intimacy content</h2>
-        <p className="mt-3">Savings plans and completed planning examples are illustrative, not customer results or estimates of travel costs. Stock photographs illustrate a topic and are credited; they are not presented as DreamDuo users or testimonials. Product screenshots are labelled separately.</p>
+        <p className="mt-3">Savings plans and completed planning examples are illustrative, not customer results or estimates of travel costs. Stock photographs illustrate a topic; they are not presented as DreamDuo users or testimonials. Product screenshots are labelled separately.</p>
         <p className="mt-3">Adult intimacy questions are identified as 18+ content. Both partners can skip a question, set a boundary or stop. The article explains question-bank access requirements rather than promising every question is available in a daily session.</p>
       </section>
       <section><h2 className="font-display text-2xl font-bold text-slate-900">Report a correction</h2>

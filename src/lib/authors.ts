@@ -1,12 +1,4 @@
-/**
- * Bylines for the article sidebar and the Person schema. A real name, role and
- * photo next to an article is one of the clearest trust signals a small site
- * can give, to readers and to Google alike.
- *
- * To add a photo: put a small image at public/blog/authors/<name>.webp
- * (400px wide is plenty) and set `avatar` to its path. Until then the card shows
- * initials.
- */
+/** Shared public bylines and author identities for editorial pages. */
 
 export interface Author {
   name: string;
@@ -17,10 +9,10 @@ export interface Author {
 }
 
 const AUTHORS: Record<string, Author> = {
-  "Manash Jyoti Baruah": {
-    name: "Manash Jyoti Baruah",
+  "MJ Baruah": {
+    name: "MJ Baruah",
     role: "Founder, DreamDuo",
-    avatar: "/blog/authors/manash-jyoti-baruah-cutout.webp",
+    // avatar: "/blog/authors/manash-jyoti-baruah-cutout.webp",
     url: "/editorial-policy#author",
   },
 };

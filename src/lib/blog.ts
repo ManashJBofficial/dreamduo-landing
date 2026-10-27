@@ -43,6 +43,8 @@ export interface PostFrontmatter {
   image?: string;
   /** Describes the cover for screen readers and Google. Defaults to the title. */
   imageAlt?: string;
+  /** Page-specific explicit-content classification; never applied site-wide. */
+  adult?: boolean;
   /**
    * Comparison pages only: the other app's name, e.g. "Paired". Drives the
    * "DreamDuo vs. Paired" link text in the footer and on /compare.

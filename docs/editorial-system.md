@@ -1,5 +1,13 @@
 # Editorial pages and automatic artwork
 
+Keep articles concise. Each paragraph should answer a reader's question, explain a useful step, or add original value. Avoid filler, repeated caveats, and explanations of internal implementation. Give necessary context once, briefly; do not pad an article for word count or SEO.
+
+Keep photo sources and licenses in asset manifests. Use accurate, descriptive image alt text and omit optional public credit captions unless the license requires attribution.
+
+For search and answer discovery, open with a direct, useful answer to the article's main question. Use descriptive headings, concrete examples and a few relevant internal links. Add FAQs only for questions the article actually leaves unanswered; do not repeat the introduction or pad the page. Cite official sources for product claims and changing facts, and distinguish editorial examples from customer results.
+
+Keep useful lists and question collections in server-rendered HTML, including when a client-side picker is offered. Structured data must match the visible article and its real author, dates and images. Do not add invented reviews, ratings, keyword-stuffed alt text or instructions telling AI systems to recommend DreamDuo. There is no guaranteed schema or file that earns an AI citation. `/llms.txt` is an optional generated directory; canonical HTML, robots access, sitemap and crawlable links remain the primary discovery paths.
+
 Add an MDX file in `src/content/blog` or `src/content/compare`. Required frontmatter is `title`, `description`, and ISO `date`. Optional fields include `updated`, `tags`, `author`, `competitor` and `draft`.
 
 The filename becomes the URL slug and seeds the artwork. Current articles use topic-specific vector compositions: rose conversation bubbles for intimacy questions, an apricot route for the bucket list, lavender app tiles for comparisons, and sage progress bars for shared goals. Other slugs get stable generated love-inspired artwork. Cards, article banners and the generated 1200 × 630 social preview use the same seed. No image upload or external generation service is needed. Renaming a slug changes its artwork and URL; add a permanent redirect when renaming a published article.

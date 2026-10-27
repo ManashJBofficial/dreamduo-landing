@@ -1,0 +1,30 @@
+{
+  "texting": {
+    "file": "couple-cuddling-in-bed.webp",
+    "photoId": "5217159",
+    "credit": "Yan Krukau",
+    "source": "https://www.pexels.com/photo/5217159/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Adult couple cuddling in bed, with a man kissing his smiling partner on the shoulder",
+    "width": 1200,
+    "height": 800,
+    "crop": "centre"
+  },
+  "connection": {
+    "file": "young-couple-with-laptop-and-phone.webp",
+    "photoId": "6334221",
+    "credit": "Anete Lusina",
+    "source": "https://www.pexels.com/photo/woman-browsing-internet-on-laptop-near-boyfriend-with-smartphone-indoors-6334221/",
+    "license": "https://www.pexels.com/license/",
+    "alt": "Young adult woman using a laptop beside her partner holding a smartphone",
+    "width": 1200,
+    "height": 900,
+    "crop": "centre",
+    "extract": {
+      "left": 0,
+      "top": 400,
+      "width": 2000,
+      "height": 1500
+    }
+  }
+}

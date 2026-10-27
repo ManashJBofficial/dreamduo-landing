@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ChevronRight, Clock3 } from "lucide-react";
 import { formatDate, type Heading } from "@/lib/blog";
-import { getAuthor, initials } from "@/lib/authors";
+import { getAuthor } from "@/lib/authors";
 import { getLocalImageSize } from "@/lib/images";
 import { EditorialBanner } from "@/components/editorial-banner";
 import { MobileTableOfContents, TableOfContents } from "@/components/table-of-contents";
@@ -43,11 +43,11 @@ export function ArticleLayout({ crumbs, artworkSeed, title, description, date, u
         {draft && <p className="mb-4 text-sm font-bold text-amber-800">Draft · Preview only</p>}
         <h1 className="editorial-title">{title}</h1>
         <p className="editorial-deck">{description}</p>
-        <div className="editorial-byline">
-          {byline && <div className="editorial-author-card">
-            <div className="editorial-author-portrait">
-              {byline.avatar ? <Image src={byline.avatar} alt={`Portrait of ${byline.name}`} {...getLocalImageSize(byline.avatar)} sizes="112px" className="h-full w-full object-contain object-bottom" /> : <span aria-hidden="true" className="text-xl font-bold text-rose-900">{initials(byline.name)}</span>}
-            </div>
+        <div className={`editorial-byline ${byline?.avatar ? "" : "editorial-byline-text"}`}>
+          {byline && <div className={`editorial-author-card ${byline.avatar ? "" : "editorial-author-card-text"}`}>
+            {byline.avatar && <div className="editorial-author-portrait">
+              <Image src={byline.avatar} alt={`Portrait of ${byline.name}`} {...getLocalImageSize(byline.avatar)} sizes="112px" className="h-full w-full object-contain object-bottom" />
+            </div>}
             <div className="min-w-0 py-3 pr-5"><p className="text-sm font-bold leading-snug text-slate-900 sm:text-base">{byline.url ? <a href={byline.url} className="decoration-rose-300 underline-offset-4 hover:text-rose-700 hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-700">{byline.name}</a> : byline.name}</p><p className="mt-1 text-xs text-slate-600">{byline.role}</p></div>
           </div>}
           <div className="editorial-dateline">
@@ -68,7 +68,9 @@ export function ArticleLayout({ crumbs, artworkSeed, title, description, date, u
         <div className="min-w-0">
           {archived && <p className="mb-6 rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-600">From our archive. <Link href="/blog" className="font-semibold text-rose-700 underline underline-offset-4">Browse the latest articles</Link>.</p>}
           <div className="mb-8 lg:hidden"><MobileTableOfContents key={artworkSeed} headings={headings} /></div>
-          {image && <Image src={image} alt={imageAlt ?? title} {...getLocalImageSize(image)} sizes="(max-width: 1024px) 100vw, 48rem" className="mb-8 h-auto w-full rounded-2xl" />}
+          {image && <figure className="mb-8">
+            <Image src={image} alt={imageAlt ?? title} {...getLocalImageSize(image)} sizes="(max-width: 1024px) 100vw, 48rem" className="h-auto w-full rounded-2xl" />
+          </figure>}
           <div className="editorial-prose">{children}</div>
           {footer}
         </div>

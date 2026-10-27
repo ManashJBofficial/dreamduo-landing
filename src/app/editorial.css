@@ -39,6 +39,8 @@
   .editorial-reading-grid { padding-top: 32px; padding-bottom: 56px; }
   .editorial-card-art { aspect-ratio: 1.65; }
 }
+.editorial-byline.editorial-byline-text { margin-top: 28px; }
+.editorial-author-card.editorial-author-card-text { width: auto; min-height: 64px; padding-left: 20px; border-radius: 16px; }
 @media (prefers-reduced-motion: reduce) { .editorial-card-pattern { transition: none; } .group:hover .editorial-card-pattern { transform: none; } }
 
 /* Article artwork has a real layout column instead of sitting outside the hero. */
