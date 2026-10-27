@@ -1,5 +1,3 @@
-"use client";
-
 interface BrandMarkProps {
   className?: string;
   iconClassName?: string;
@@ -10,10 +8,10 @@ export function BrandMark({ className = "", glow = false }: BrandMarkProps) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/dreamduo-mark.webp"
-      alt="DreamDuo"
-      width={256}
-      height={256}
+      src="/optimized/brand-mark.webp"
+      alt=""
+      width={112}
+      height={112}
       className={[
         "object-contain",
         glow ? "animate-pulse-glow" : "",

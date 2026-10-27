@@ -71,7 +71,7 @@ export function Footer() {
       <div className="site-container">
         <div className="home-footer-top flex flex-col gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5">
+            <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
               <BrandMark className="h-9 w-9" iconClassName="h-4 w-4" />
               <span className="text-lg font-bold tracking-tight text-white">DreamDuo</span>
             </Link>
@@ -84,7 +84,7 @@ export function Footer() {
             href="https://www.instagram.com/dreamduoapp"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="DreamDuo on Instagram"
+            aria-label="@dreamduoapp on Instagram"
             className="home-footer-link inline-flex min-h-11 items-center gap-2 self-start rounded-lg text-sm text-slate-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-400 sm:self-auto"
           >
             <Instagram size={20} aria-hidden="true" />
@@ -108,7 +108,7 @@ export function Footer() {
                         {link.label}
                       </a>
                     ) : (
-                      <Link href={link.href} className={linkClass}>
+                      <Link prefetch={false} href={link.href} className={linkClass}>
                         {link.label}
                       </Link>
                     )}
@@ -117,6 +117,7 @@ export function Footer() {
                 {column.more && (
                   <li>
                     <Link
+                      prefetch={false}
                       href={column.more.href}
                       className="home-footer-link home-footer-more inline-flex items-center gap-1.5 text-sm font-semibold text-rose-300 transition-colors hover:text-rose-200"
                     >
@@ -130,7 +131,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="home-footer-bottom home-small flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="home-footer-bottom home-small flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} DreamDuo. All rights reserved.</p>
           <a href="mailto:support@dreamduo.app" className="transition-colors hover:text-slate-300">
             support@dreamduo.app

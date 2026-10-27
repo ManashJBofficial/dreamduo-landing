@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { DeferredFeatureImage } from "@/components/deferred-feature-image";
 import styles from "@/components/showcase.module.css";
 
 const chapters = [
@@ -154,13 +154,12 @@ export function FeatureTour({ supporting }: { supporting: ReactNode }) {
           </div>
           <figure className={`${styles.figure} ${styles[chapter.id]}`}>
             <div className={styles.imageStage}>
-              <Image
+              <DeferredFeatureImage
+                id={chapter.id}
                 src={chapter.image}
                 alt={chapter.alt}
                 width={chapter.width}
                 height={chapter.height}
-                sizes="(max-width: 767px) 340px, (max-width: 1023px) 400px, 480px"
-                loading="lazy"
                 className={styles.phone}
               />
             </div>

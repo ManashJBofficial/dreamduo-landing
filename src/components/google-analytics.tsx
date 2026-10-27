@@ -10,7 +10,8 @@ export function GoogleAnalytics() {
         id="google-analytics-init"
         dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('js',new Date());window.gtag('config','${id}');` }}
       />
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="afterInteractive" />
+      {/* Events queue immediately above; load Google's library after page assets. */}
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} strategy="lazyOnload" />
     </>
   );
 }

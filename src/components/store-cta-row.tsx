@@ -2,7 +2,6 @@
 
 import { AppStoreCTA } from "@/components/app-store-cta";
 import { PlayStoreCTA } from "@/components/playstore-cta";
-import { cn } from "@/lib/utils";
 
 interface StoreCTARowProps {
   /** `hero` for light sections, `light` for dark ones. Mirrors the CTA props. */
@@ -22,10 +21,10 @@ export function StoreCTARow({
 }: StoreCTARowProps) {
   return (
     <div
-      className={cn(
+      className={[
         "flex w-full flex-wrap items-center justify-center gap-3 sm:w-auto sm:gap-4",
         className
-      )}
+      ].filter(Boolean).join(" ")}
     >
       <AppStoreCTA variant={variant} placement={placement} />
       <PlayStoreCTA variant={variant} placement={placement} />

@@ -81,6 +81,7 @@ export function StickyInstallBar() {
         </div>
 
         <Link
+          prefetch={false}
           href="/download"
           onClick={() => trackDownload("download_page_click", campaign, { placement: "sticky_bar" })}
           className="home-button-compact inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-4 font-semibold text-slate-950 transition-colors hover:bg-rose-50"

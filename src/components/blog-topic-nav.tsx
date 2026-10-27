@@ -12,12 +12,12 @@ export function BlogTopicNav({ activeHref = "/blog" }: { activeHref?: string }) 
   const moreActive = more.some(({ tag }) => activeHref === `/blog/tag/${tag}`);
   return (
     <nav className="journal-topic-nav" aria-label="Journal topics">
-      <Link href="/blog" className="journal-topic-link" aria-current={activeHref === "/blog" ? "page" : undefined}>All stories</Link>
-      {main.map(({ tag, label }) => <Link key={tag} href={`/blog/tag/${tag}`} className="journal-topic-link" aria-current={activeHref === `/blog/tag/${tag}` ? "page" : undefined}>{label}</Link>)}
+      <Link prefetch={false} href="/blog" className="journal-topic-link" aria-current={activeHref === "/blog" ? "page" : undefined}>All stories</Link>
+      {main.map(({ tag, label }) => <Link prefetch={false} key={tag} href={`/blog/tag/${tag}`} className="journal-topic-link" aria-current={activeHref === `/blog/tag/${tag}` ? "page" : undefined}>{label}</Link>)}
       {more.length > 0 && <details className="journal-topic-more" open={moreActive || undefined}>
         <summary>More topics <ChevronDown size={14} aria-hidden="true" /></summary>
         <div className="journal-topic-dropdown">
-          {more.map(({ tag }) => <Link key={tag} href={`/blog/tag/${tag}`} aria-current={activeHref === `/blog/tag/${tag}` ? "page" : undefined}>{getBlogTopic(tag).label}</Link>)}
+          {more.map(({ tag }) => <Link prefetch={false} key={tag} href={`/blog/tag/${tag}`} aria-current={activeHref === `/blog/tag/${tag}` ? "page" : undefined}>{getBlogTopic(tag).label}</Link>)}
         </div>
       </details>}
     </nav>

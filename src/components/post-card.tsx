@@ -10,7 +10,7 @@ export function PostCard({ post, collection = "blog" }: { post: PostSummary; col
   const art = getArticleArt(post.slug);
   return (
     <article className="group">
-      <Link href={`/${collection}/${post.slug}`} className="block rounded-2xl">
+      <Link prefetch={false} href={`/${collection}/${post.slug}`} className="block rounded-2xl">
         <div className="editorial-card-art" style={{ backgroundColor: art.background }}>
           {post.image ? <Image src={post.image} alt={post.imageAlt ?? post.title} {...getLocalImageSize(post.image)} sizes="(max-width: 768px) 100vw, 34rem" className="h-full w-full object-cover" /> : <>
             <AbstractPattern seed={post.slug} className="editorial-card-pattern" />

@@ -49,6 +49,7 @@ export function Navbar() {
       <nav aria-label="Primary" className={styles.nav}>
         <div ref={frameRef} className={styles.frame}>
           <Link
+            prefetch={false}
             href="/"
             aria-label="DreamDuo home"
             onClick={() => setOpen(false)}
@@ -75,6 +76,7 @@ export function Navbar() {
           <div id="primary-nav-links" className={styles.links} data-open={open}>
             {links.map((link) => (
               <Link
+                prefetch={false}
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
@@ -85,7 +87,7 @@ export function Navbar() {
             ))}
           </div>
 
-          <Link href="/download" onClick={() => {
+          <Link prefetch={false} href="/download" onClick={() => {
             setOpen(false);
             trackDownload("download_page_click", campaign, { placement: "navbar" });
           }} className={`home-button-compact ${styles.cta}`}>

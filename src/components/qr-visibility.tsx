@@ -16,12 +16,16 @@ function getServerSnapshot() {
   return "unknown" as const;
 }
 
-export function QrVisibility({ children }: { children: ReactNode }) {
-  const device = useSyncExternalStore<ReturnType<typeof detectQrDevice> | "unknown">(
+export function useQrDevice() {
+  return useSyncExternalStore<ReturnType<typeof detectQrDevice> | "unknown">(
     subscribe,
     getDeviceSnapshot,
     getServerSnapshot,
   );
+}
 
-  return <div className={styles.visibility} data-qr-device={device}>{children}</div>;
+export function QrVisibility({ children }: { children: ReactNode }) {
+  const device = useQrDevice();
+
+  return <div className={styles.visibility} data-qr-device={device}>{device === "phone" ? null : children}</div>;
 }

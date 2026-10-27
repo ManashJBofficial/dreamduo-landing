@@ -32,6 +32,7 @@
 .milestones .imageStage { background: #f2eee9; }
 .conversations .imageStage { background: #f9e9ec; }
 .phone { display: block; width: auto; height: 400px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 14px 14px #35212d1a); }
+.imageStage > picture { display: contents; }
 .supporting { margin-top: 24px; }
 .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 18px; }
 .notes svg { flex-shrink: 0; margin-top: 3px; color: #a46c85; }

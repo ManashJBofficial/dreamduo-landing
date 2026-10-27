@@ -7,15 +7,6 @@
     linear-gradient(180deg, #fff9f9, #ffffff 55%, #fff9fb);
 }
 
-.surface::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: radial-gradient(#ec489926 1px, transparent 1px);
-  background-size: 22px 22px;
-}
-
 .hero { position: relative; overflow: hidden; }
 
 .layout {
@@ -37,7 +28,7 @@
 .storeRow { flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; width: 100%; }
 .storeRow > a { --store-badge-height: 56px; }
 .qrCard { display: flex; flex: none; flex-direction: column; align-items: center; gap: 8px; border-radius: 12px; }
-.qrCard > svg { display: block; width: clamp(168px, 16vw, 208px); height: auto; aspect-ratio: 1; border-radius: 12px; }
+.qrCard > :global(.download-qr) { width: clamp(168px, 16vw, 208px) !important; border-radius: 12px; overflow: hidden; }
 .qrCard:focus-visible { outline: 2px solid #e11d48; outline-offset: 4px; }
 
 .artwork { min-width: 0; align-self: center; justify-self: center; width: min(100%, 640px); }

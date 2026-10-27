@@ -1,26 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
-import { Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { Suspense } from "react";
 import { CampaignCapture } from "@/components/campaign-capture";
 import "./globals.css";
 
-// Only the weights the page actually renders. Every extra weight is another
-// font file on the critical path.
-const bricolageGrotesque = Bricolage_Grotesque({
+// Two self-hosted Latin WOFF2 files cover every weight used by the site.
+// Keep text visible while loading; builds never need Google Fonts access.
+const bricolageGrotesque = localFont({
+  src: "./fonts/bricolage-latin-bold.woff2",
   variable: "--font-bricolage-grotesque",
-  subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: "700",
   display: "swap",
   fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
-const manrope = Manrope({
+const manrope = localFont({
+  src: "./fonts/manrope-latin-variable.woff2",
   variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
   display: "swap",
   fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
@@ -113,7 +112,7 @@ export default function RootLayout({
       >
         <Suspense fallback={null}><CampaignCapture /></Suspense>
         {children}
-        <Analytics />
+        {process.env.VERCEL === "1" && <Analytics />}
         <GoogleAnalytics />
       </body>
     </html>

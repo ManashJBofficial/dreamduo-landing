@@ -1,17 +1,10 @@
-"use client";
-
-import { useCampaign } from "@/lib/campaign-attribution";
 import { WAITLIST_ENABLED } from "@/lib/feature-flags";
 import { StoreCTARow } from "@/components/store-cta-row";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { BrandMark } from "@/components/brand-mark";
-import { DownloadQrCode } from "@/components/download-qr-code";
-import { QrVisibility } from "@/components/qr-visibility";
-import { getDownloadQrUrl } from "@/lib/download-links";
+import { CampaignQrLink } from "@/components/campaign-qr-link";
 
 export function CTA() {
-  const qrUrl = getDownloadQrUrl(useCampaign("footer_cta"));
-
   return (
     <section
       id="download"
@@ -50,16 +43,7 @@ export function CTA() {
 
 
                 {/* One code routes each scanned device directly to its store. */}
-                <QrVisibility>
-                  <div className="mt-6 flex flex-col items-center">
-                    <a href={qrUrl} aria-label="Download DreamDuo for iPhone or Android" className="rounded-2xl bg-white p-2 shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-300">
-                      <DownloadQrCode value={qrUrl} size={152} />
-                    </a>
-                    <p className="home-small mt-4">
-                      Scan to get the app.
-                    </p>
-                  </div>
-                </QrVisibility>
+                <CampaignQrLink placement="footer_cta" size={152} className="mt-6 flex flex-col items-center gap-4 rounded-2xl p-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-300" label="Scan to get the app." />
               </div>
             )}
           </div>

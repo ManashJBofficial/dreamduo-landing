@@ -51,7 +51,7 @@ export function ArticleLayout({ crumbs, artworkSeed, title, description, date, u
             <div className="min-w-0 py-3 pr-5"><p className="text-sm font-bold leading-snug text-slate-900 sm:text-base">{byline.url ? <a href={byline.url} className="decoration-rose-300 underline-offset-4 hover:text-rose-700 hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-700">{byline.name}</a> : byline.name}</p><p className="mt-1 text-xs text-slate-600">{byline.role}</p></div>
           </div>}
           <div className="editorial-dateline">
-            <div><p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{showUpdated ? "Last updated" : "Published"}</p><time className="block text-xs font-semibold text-slate-700" dateTime={showUpdated ? updated : date}>{formatDate(showUpdated ? updated : date)}</time></div>
+            <div><p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600">{showUpdated ? "Last updated" : "Published"}</p><time className="block text-xs font-semibold text-slate-700" dateTime={showUpdated ? updated : date}>{formatDate(showUpdated ? updated : date)}</time></div>
             <p className="flex items-center gap-1.5 whitespace-nowrap text-xs text-slate-600"><Clock3 size={14} aria-hidden="true" />{readingMinutes} min read</p>
           </div>
         </div>

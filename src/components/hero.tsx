@@ -1,16 +1,9 @@
-"use client";
-
-import Image from "next/image";
-import { useCampaign } from "@/lib/campaign-attribution";
+import { ResponsiveArtwork } from "@/components/responsive-artwork";
 import { StoreCTARow } from "@/components/store-cta-row";
-import { DownloadQrCode } from "@/components/download-qr-code";
-import { QrVisibility } from "@/components/qr-visibility";
-import { getDownloadQrUrl } from "@/lib/download-links";
+import { CampaignQrLink } from "@/components/campaign-qr-link";
 import styles from "@/components/hero.module.css";
 
 export function Hero() {
-  const qrUrl = getDownloadQrUrl(useCampaign("hero"));
-
   return (
     <section aria-labelledby="hero-heading" className={styles.hero}>
       <div className={`site-container ${styles.layout}`}>
@@ -26,16 +19,7 @@ export function Hero() {
             sync.
           </p>
           <div className={styles.install}>
-            <QrVisibility>
-              <a
-                href={qrUrl}
-                aria-label="Download DreamDuo: one QR code for iPhone and Android"
-                className={styles.qrCard}
-              >
-                <DownloadQrCode value={qrUrl} size={208} />
-                <span className="home-small">iPhone &amp; Android</span>
-              </a>
-            </QrVisibility>
+            <CampaignQrLink placement="hero" size={208} className={styles.qrCard} label="iPhone & Android" />
 
             <div className={styles.stores}>
               <StoreCTARow
@@ -48,14 +32,11 @@ export function Hero() {
         </div>
 
         <div className={styles.artwork}>
-          <Image
-            src="/dreamduo-hero.svg"
+          <ResponsiveArtwork
+            name="hero"
             alt="DreamDuo app screens showing the Nudge Hub and shared trip planning"
-            width={1548}
-            height={1555}
-            unoptimized
             priority
-            fetchPriority="high"
+            sizes="(max-width: 639px) min(360px, calc(100vw - 48px)), (max-width: 1023px) 520px, (max-width: 1279px) 44vw, 566px"
             className={styles.phone}
           />
         </div>

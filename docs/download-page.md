@@ -113,8 +113,9 @@ mobile attribution platform if install attribution becomes necessary.
 
 ## Assets and previews
 
-- Hero: `public/dreamduo-hand-phone.webp`, converted from the supplied hand-and-phone
-  PNG, preserving transparency and its full 1080 × 1350 framing.
+- Hero and download artwork are supplied SVG sources with responsive transparent
+  AVIF/WebP derivatives in `public/optimized`. See `docs/performance.md` for the
+  mobile delivery sizes and regeneration command.
 - Transparent mark: `public/dreamduo-mark.webp`, trimmed and compressed from
   `frontend/assets/images/dreamduo_logo.webp`.
 - App icon and Apple touch icon: `public/dreamduo-logo.webp` and
@@ -202,18 +203,16 @@ redirects worked with page JavaScript disabled. TypeScript and ESLint pass.
 Shared-width checks passed for 12 page types at 1440, 1024, 768, 390, and 320 px:
 all navbar and outer content edges align within one pixel, without horizontal
 overflow or runtime exceptions. The mobile menu, hero badge/QR placement, and
-gradient heading were also checked. ESLint passes. The production build still
-cannot fetch the configured Google Fonts in this environment.
+gradient heading were also checked. ESLint and the production build pass with
+the new self-hosted fonts, without fetching Google Fonts during builds.
 
 Run `npm run lint` and `npm run build`. Check `/` and `/download` at desktop and
 mobile widths. Test a tagged link, scan its QR on both platforms, check that the
 QR retains its tags, and verify the store click event in the chosen production
 analytics dashboard. With JavaScript disabled, confirm the store buttons work.
 
-Latest transparent-artwork verification: ESLint and responsive browser checks
-passed. Production builds currently fail in the existing Bricolage Grotesque
-`next/font/google` loader with both Turbopack and webpack; the SVG renders
-correctly in the running site.
+Latest artwork verification: ESLint, production build, and responsive browser
+checks pass. Source SVGs are retained; browsers receive optimized derivatives.
 
 Implementation checks completed: production build and ESLint; responsive browser
 checks at 320, 390, 768, 1024 and 1440 px; both store click events; emulated iPhone

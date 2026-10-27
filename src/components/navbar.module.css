@@ -6,8 +6,8 @@
 .links[data-open="true"] { display: flex; }
 .link { padding: 10px 12px; border-radius: 8px; white-space: nowrap; }
 .link:hover { background: #fff1f5; }
-.cta { display: inline-flex; align-items: center; justify-content: center; justify-self: end; min-height: 44px; padding-inline: 14px; border-radius: 999px; background: #ff4f8b; color: #ffffff; font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 150ms; }
-.cta:hover { background: #ec3b78; }
+.cta { display: inline-flex; align-items: center; justify-content: center; justify-self: end; min-height: 44px; padding-inline: 14px; border-radius: 999px; background: #d91464; color: #ffffff; font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 150ms; }
+.cta:hover { background: #bf1056; }
 .brand:focus-visible, .toggle:focus-visible, .link:focus-visible, .cta:focus-visible { outline: 2px solid #f43f5e; outline-offset: 4px; }
 .spacer { height: calc(68px + var(--site-frame)); }
 

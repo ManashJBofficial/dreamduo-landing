@@ -3,7 +3,6 @@
 import { useCampaign } from "@/lib/campaign-attribution";
 import { getDownloadStoreUrl } from "@/lib/download-links";
 import { trackDownload } from "@/lib/download-analytics";
-import { cn } from "@/lib/utils";
 import { StoreBadge } from "@/components/store-badge";
 import styles from "@/components/store-badge.module.css";
 
@@ -22,7 +21,7 @@ export function AppStoreCTA({ className, variant = "hero", placement }: AppStore
       rel="noopener noreferrer"
       onClick={() => trackDownload("download_store_click", campaign, { placement, store: "app_store", platform: "ios" })}
       aria-label="Download DreamDuo on the App Store"
-      className={cn(styles.link, styles.apple, variant === "compact" && styles.compact, className)}
+      className={[styles.link, styles.apple, variant === "compact" && styles.compact, className].filter(Boolean).join(" ")}
     >
       <StoreBadge store="app_store" />
     </a>
