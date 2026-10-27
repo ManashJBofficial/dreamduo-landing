@@ -13,6 +13,13 @@ const waitlistApiBaseUrl =
 const smartLinkBaseUrl = "https://api.dreamduo.app/api/v1/email/open";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    resolveAlias: {
+      // Next's supported browsers already implement the legacy methods.
+      // Retain URL.canParse for Safari 16.4 / Firefox 111 compatibility.
+      "../build/polyfills/polyfill-module": "./src/lib/browser-polyfills.ts",
+    },
+  },
   images: {
     // AVIF first, WebP fallback. Both beat the raw asset by a wide margin.
     formats: ["image/avif", "image/webp"],

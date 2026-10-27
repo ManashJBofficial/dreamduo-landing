@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --port 4100",
     "build": "next build",
+    "postbuild": "node scripts/inline-critical-css.mjs",
     "start": "next start --port 4100",
     "lint": "eslint",
     "indexnow": "node scripts/indexnow.mjs",
@@ -12,6 +13,12 @@
     "test:download-tracking": "node --test scripts/download-tracking.test.mjs",
     "optimize:artwork": "node scripts/optimize-landing-artwork.mjs"
   },
+  "browserslist": [
+    "Chrome >= 111",
+    "Edge >= 111",
+    "Firefox >= 111",
+    "Safari >= 16.4"
+  ],
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
@@ -33,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "beasties": "0.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",

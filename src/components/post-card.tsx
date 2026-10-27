@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "@/app/editorial.css";
 import Image from "next/image";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { AbstractPattern } from "@/components/abstract-pattern";

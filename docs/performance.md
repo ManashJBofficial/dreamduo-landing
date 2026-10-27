@@ -37,6 +37,37 @@
 
 ## Measurement
 
+### Remaining PageSpeed warnings
+
+The follow-up build removes both the legacy-JavaScript finding and all
+render-blocking stylesheet requests in Lighthouse. Global CSS no longer carries
+editorial/blog styles or utilities extracted from retired components; the main
+stylesheet shrank from 100,625 to 75,822 bytes before compression.
+
+`npm run build` now runs `postbuild` automatically. The build-only Beasties
+optimizer inlines the CSS used by each of the 29 static HTML pages, defers full
+stylesheets, and retains a no-JavaScript fallback. The original CSS files and RSC
+payloads remain intact for interactive states and client navigation. Font URLs
+are rebased from stylesheet-relative to `/_next/static/media/` URLs. The script
+assumes the existing `.next` build directory and default `/_next/` asset prefix.
+Keep the Vercel build command as `npm run build` so this step executes.
+
+The Turbopack alias replaces Next 16.1.6's legacy shims with the remaining
+`URL.canParse` fallback. The browser floor matches Next's own targets: Chrome,
+Edge and Firefox 111, and Safari 16.4. Those versions already implement the other
+Array/Object/String/Promise methods. Review the alias when upgrading Next.js.
+This removes the audit finding; its 14 KiB heuristic was not the actual size of
+the 1.4 KiB uncompressed shim module.
+
+Follow-up cold mobile audits measured 99 for home/download/article and 100 for
+home desktop, with the other three categories at 100. Home FCP/LCP measured
+approximately 1.0/2.0 s; download 0.8/1.7 s; CLS remained 0. Tests also held all
+external CSS requests open and verified that custom fonts and initial layouts
+were already correct, then unchanged after those requests completed. Menus,
+feature tabs, dialogs, QR routing, click tracking, and no-JavaScript styles passed.
+
+### Earlier optimization baseline
+
 Use a production build, not `next dev`, for Lighthouse. The user's deployed
 PageSpeed screenshot showed 71 mobile performance, 5.7 s LCP, and 97 accessibility.
 A separate Lighthouse 13 run against that unchanged deployment scored 88 mobile;

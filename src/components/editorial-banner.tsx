@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "@/app/editorial.css";
 import { AbstractPattern } from "@/components/abstract-pattern";
 import { getArticleArt } from "@/lib/article-art";
 
