@@ -9,7 +9,8 @@ export function BrandMark({ className = "", glow = false }: BrandMarkProps) {
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src="/optimized/brand-mark.webp"
-      alt=""
+      alt="DreamDuo logo"
+      aria-hidden="true"
       width={112}
       height={112}
       className={[

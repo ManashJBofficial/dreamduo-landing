@@ -6,6 +6,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 // creates and closes only its own tab; it never touches the user's tabs.
 const port = Number(process.argv[2] ?? 9225);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const available = ["daily-question-calendar", "long-distance-visit-planner", "facetime-date-menu", "time-zone-weekly-planner", "weekly-relationship-check-in"];
+const names = process.argv.length > 3 ? process.argv.slice(3) : available;
+if (names.some(name => !available.includes(name))) throw Error("Unknown printable guide");
 const target = await (await fetch(`http://127.0.0.1:${port}/json/new?about:blank`, { method: "PUT" })).json();
 const socket = new WebSocket(target.webSocketDebuggerUrl);
 await new Promise(resolve => socket.addEventListener("open", resolve, { once: true }));
@@ -26,7 +29,6 @@ socket.addEventListener("message", ({ data }) => {
   if (response.error) call.reject(Error(JSON.stringify(response.error)));
   else call.resolve(response.result);
 });
-const names = ["daily-question-calendar", "long-distance-visit-planner", "facetime-date-menu", "time-zone-weekly-planner", "weekly-relationship-check-in"];
 try {
   await send("Page.enable");
   for (const name of names) {

@@ -184,19 +184,41 @@ for (const name of downloads) {
   const response = await fetch(new URL(`/downloads/${name}`, base));
   assert.equal(response.status, 200, `${name} printable download must work`);
   const html = await response.text();
+  pageHtml.set(`/downloads/${name}`, html);
   assert.match(html, /name="description" content="[^"]+"/, `${name} needs a description`);
   assert.match(html, /name="robots" content="noindex,follow"/, `${name} must retain its printable-only indexing policy`);
 }
-for (const image of pageHtml.get("/").matchAll(/<img\b[^>]*>/g)) {
-  // The decorative mark sits next to visible DreamDuo text. Empty alt avoids
-  // repeating that accessible name; the HTML optimizer may serialize it bare.
-  if (image[0].includes('/optimized/brand-mark.webp')) {
-    assert.match(image[0], /\balt(?:[\s=>])/, "Decorative brand marks must declare an alt attribute");
-  } else {
-    assert.match(image[0], /\balt="[^"]+"/, "Homepage content images must have descriptive alt text");
+// Optionally replay the exact URLs (including tracking parameters) from a
+// Bing issue export against this build. CSV contents are data, not commands.
+let reportedUrls = 0;
+if (process.argv[3]) {
+  const csv = await fs.readFile(process.argv[3], "utf8");
+  const urls = [...csv.matchAll(/^"(https?:\/\/[^"\r\n]+)"/gm)].map(match => new URL(match[1]));
+  assert(urls.length > 0, "Issue CSV must contain affected page URLs");
+  for (const url of urls) {
+    assert.equal(url.origin, origin, "Issue URLs must belong to the canonical website");
+    const route = url.pathname + url.search;
+    const response = await fetch(new URL(route, base), { redirect: "manual" });
+    assert.equal(response.status, 200, `Reported page must load: ${route}`);
+    pageHtml.set(route, await response.text());
+    reportedUrls++;
   }
 }
-console.log(`Bing scan checks passed: titles below 70 characters, ${downloads.length} printable descriptions, descriptive homepage image alt text.`);
+let auditedHtml = 0;
+let auditedImages = 0;
+for (const [route, html] of pageHtml) {
+  if (!/<html(?:\s|>)/i.test(html)) continue;
+  const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1];
+  assert(head, `${route} needs an explicit document head`);
+  assert.match(head, /<meta\b[^>]*name="description"[^>]*content="[^"]+"/i, `${route} needs its description inside the head`);
+  assert.equal([...html.matchAll(/<h1(?:\s|>)/gi)].length, 1, `${route} needs exactly one H1, including multi-page printables`);
+  for (const [tag] of html.matchAll(/<img\b[^>]*>/gi)) {
+    assert.match(tag, /\balt="[^"]+"/i, `${route} image needs a descriptive alt: ${tag.slice(0, 150)}`);
+    auditedImages++;
+  }
+  auditedHtml++;
+}
+console.log(`Bing issue checks passed: ${auditedHtml} HTML documents, ${auditedImages} images, ${reportedUrls} reported URLs; no missing descriptions, missing/empty image alts or repeated H1s.`);
 console.log(`Crawler checks passed: ${agents.length} user agents across ${articlePages.length} articles, without executing JavaScript.`);
 console.log(`Metadata and conversion checks passed: unique titles/descriptions, ${fragments.length} section links and ${storeLinks} correctly targeted app-store links.`);
 console.log(`SEO checks passed: ${routes.length} sitemap pages, ${internal.size} internal destinations, ${images} generated social cards, privacy redirect, real 404s, robots and RSS.`);
