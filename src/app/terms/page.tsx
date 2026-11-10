@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 const effectiveDate = "March 22, 2026";
-const lastUpdated = "March 22, 2026";
+const lastUpdated = "November 10, 2026";
 
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
@@ -240,6 +240,22 @@ export default function TermsPage() {
                   DreamDuo may offer free and paid plans, including one-time
                   purchases, recurring subscriptions, promotional access, founder
                   access, or other premium features.
+                </p>
+                <p>
+                  The Free plan includes up to 2 non-archived dreams and 50 MB of
+                  storage per person. Completed and failed dreams count toward
+                  this limit until archived. Pro includes unlimited dreams and
+                  1 GB of storage per person, with one subscription covering both
+                  connected partners (2 GB total, allocated as 1 GB each).
+                  Any different allowance expressly offered to you remains
+                  subject to that offer.
+                </p>
+                <p>
+                  If your existing data exceeds your current allowance, it is
+                  not automatically deleted because of the quota change. You
+                  may need to archive dreams, free storage, or upgrade before
+                  creating additional dreams or uploading more files. Existing
+                  data remains subject to our account and data retention terms.
                 </p>
                 <p>If you purchase a subscription or paid feature:</p>
                 <ul className="list-disc space-y-1.5 pl-5">

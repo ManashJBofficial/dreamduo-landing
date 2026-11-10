@@ -14,7 +14,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is DreamDuo free to use?",
     answer:
-      "Yes. Start free with 3 active dreams and 100MB of storage per person. Pro adds unlimited dreams, more storage, and extra features.",
+      "Yes. Start free with 2 non-archived dreams and 50 MB of storage per person. Pro adds unlimited dreams, 1 GB of storage per person, and extra features. One Pro plan covers both partners.",
   },
   {
     question: "What if my partner doesn't have the app yet?",
