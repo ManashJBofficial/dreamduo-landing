@@ -6,8 +6,10 @@ import { PlayStoreCTA } from "@/components/playstore-cta";
 interface StoreCTARowProps {
   /** `hero` for light sections, `light` for dark ones. Mirrors the CTA props. */
   variant?: "hero" | "light";
-  /** Tags the Play referrer and names the analytics events for both buttons. */
-  placement: string;
+  /** Placement reported with the download_store_click event. */
+  placement?: string;
+  /** Existing attribution placement used to build the store URL. */
+  campaignPlacement?: string;
   className?: string;
 }
 
@@ -16,7 +18,8 @@ interface StoreCTARowProps {
  */
 export function StoreCTARow({
   variant = "hero",
-  placement,
+  placement = "unknown",
+  campaignPlacement = placement,
   className,
 }: StoreCTARowProps) {
   return (
@@ -26,8 +29,8 @@ export function StoreCTARow({
         className
       ].filter(Boolean).join(" ")}
     >
-      <AppStoreCTA variant={variant} placement={placement} />
-      <PlayStoreCTA variant={variant} placement={placement} />
+      <AppStoreCTA variant={variant} placement={campaignPlacement} analyticsPlacement={placement} />
+      <PlayStoreCTA variant={variant} placement={campaignPlacement} analyticsPlacement={placement} />
     </div>
   );
 }

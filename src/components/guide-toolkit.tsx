@@ -75,7 +75,7 @@ export function GuideProduct({ screen, title, children, placement }: { screen: k
     <div><p className="!mt-0 !text-xs font-bold uppercase tracking-widest !text-rose-700">In DreamDuo</p>
       <h3 className="font-display mt-3 text-2xl font-bold leading-tight text-slate-900">{title}</h3>
       <div className="text-slate-700">{children}</div>
-      <div className="mt-5"><StoreCTARow placement={placement} /></div>
+      <div className="mt-5"><StoreCTARow placement="mid_article" campaignPlacement={placement} /></div>
     </div>
     <figure className="mx-auto w-full max-w-[160px]">
       <Image src={image.file} alt={image.alt} {...getLocalImageSize(image.file)} sizes="160px" loading="lazy" className="h-auto w-full" />

@@ -32,7 +32,7 @@ export function BlogAppCTA({ placement = "blog_article" }: { placement?: string 
         </p>
 
         <div className="mt-7 flex justify-center">
-          <StoreCTARow variant="light" placement={placement} />
+          <StoreCTARow variant="light" placement="end_article" campaignPlacement={placement} />
         </div>
       </div>
     </aside>

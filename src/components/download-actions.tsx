@@ -42,7 +42,7 @@ export function DownloadPanel({ query = "", ready = false }: { query?: string; r
       <div className={styles.storeButtons}>
         <a
           href={getDownloadStoreUrl("ios", campaign)}
-          onClick={() => trackDownload("download_store_click", campaign, { store: "app_store", platform: "ios", via: viaQr ? "qr" : "link" })}
+          onClick={() => trackDownload("download_store_click", campaign, { store: "app_store", platform: "ios", via: viaQr ? "qr" : "link", placement: "download_page" })}
           className={styles.storeButton}
           aria-label="Download DreamDuo on the App Store"
         >
@@ -50,7 +50,7 @@ export function DownloadPanel({ query = "", ready = false }: { query?: string; r
         </a>
         <a
           href={getDownloadStoreUrl("android", campaign)}
-          onClick={() => trackDownload("download_store_click", campaign, { store: "google_play", platform: "android", via: viaQr ? "qr" : "link" })}
+          onClick={() => trackDownload("download_store_click", campaign, { store: "google_play", platform: "android", via: viaQr ? "qr" : "link", placement: "download_page" })}
           className={styles.storeButton}
           aria-label="Get DreamDuo on Google Play"
         >

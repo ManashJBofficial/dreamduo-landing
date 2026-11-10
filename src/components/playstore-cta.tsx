@@ -10,16 +10,17 @@ interface PlayStoreCTAProps {
   className?: string;
   variant?: "hero" | "light" | "compact";
   placement: string;
+  analyticsPlacement?: string;
 }
 
-export function PlayStoreCTA({ className, variant = "hero", placement }: PlayStoreCTAProps) {
+export function PlayStoreCTA({ className, variant = "hero", placement, analyticsPlacement }: PlayStoreCTAProps) {
   const campaign = useCampaign(placement);
   return (
     <a
       href={getDownloadStoreUrl("android", campaign)}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackDownload("download_store_click", campaign, { placement, store: "google_play", platform: "android" })}
+      onClick={() => trackDownload("download_store_click", campaign, { placement: analyticsPlacement ?? placement, store: "google_play", platform: "android" })}
       aria-label="Download DreamDuo free on Google Play"
       className={[styles.link, styles.google, variant === "compact" && styles.compact, className].filter(Boolean).join(" ")}
     >

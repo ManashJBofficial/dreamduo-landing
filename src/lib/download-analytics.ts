@@ -13,7 +13,14 @@ export function trackDownload(
   const articleSlug = typeof window !== "undefined"
     ? /^\/blog\/([^/]+)\/?$/.exec(window.location.pathname)?.[1]
     : undefined;
-  const data = { ...campaign, ...currentCampaign(), ...details, referrer, ...(articleSlug ? { article_slug: articleSlug } : {}) };
+  const eventDetails = event === "download_store_click"
+    ? {
+        ...details,
+        placement: details.placement ?? "unknown",
+        ...(typeof window !== "undefined" ? { page_path: window.location.pathname } : {}),
+      }
+    : details;
+  const data = { ...campaign, ...currentCampaign(), ...eventDetails, referrer, ...(articleSlug ? { article_slug: articleSlug } : {}) };
   try {
     track(event, data);
   } catch { /* Store navigation must still work when analytics is unavailable. */ }
