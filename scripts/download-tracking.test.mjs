@@ -13,7 +13,7 @@ function environment({ blockedStorage = false, brokenAnalytics = false } = {}) {
   const values = new Map();
   const events = [];
   const window = Object.assign(new EventTarget(), {
-    location: { search: "", hostname: "dreamduo.app" },
+    location: { search: "", hostname: "dreamduo.app", pathname: "/" },
     gtag: (...args) => { if (brokenAnalytics) throw Error("blocked"); events.push(["ga4", ...args]); },
   });
   const sessionStorage = {
@@ -106,7 +106,7 @@ test("store clicks reach both analytics sinks with campaign and separate placeme
   window.location.search = "?utm_source=instagram&utm_campaign=reels";
   const analytics = load("src/lib/download-analytics.ts");
   analytics.trackDownload("download_store_click", { utm_source: "dreamduo_landing" }, { placement: "hero", store: "google_play" });
-  assert.equal(events.length, 2);
+  assert.equal(events.length, 4);
   const vercel = events.find(([sink]) => sink === "vercel");
   assert.equal(vercel[1], "download_store_click");
   assert.equal(vercel[2].utm_source, "instagram");
@@ -115,9 +115,58 @@ test("store clicks reach both analytics sinks with campaign and separate placeme
   const ga = events.find(([sink]) => sink === "ga4");
   assert.equal(ga[2], "download_store_click");
   assert.equal(ga[3].transport_type, "beacon");
+  assert.equal(ga[3].store, "google_play");
+  assert.equal(ga[3].page_path, "/");
+  const conversion = events.filter(([sink, command, event]) => sink === "ga4" && command === "event" && event === "app_store_click");
+  assert.equal(conversion.length, 1);
+  assert.deepEqual({ ...conversion[0][3] }, { source_page: "/", cta_position: "hero", cta_variant: "store_badge", store: "android", transport_type: "beacon" });
+});
+
+test("article store clicks carry context once per sink and retain legacy store names", () => {
+  const { window, events, load } = environment();
+  window.location.pathname = "/blog/example-article";
+  load("src/lib/download-analytics.ts").trackDownload("download_store_click", {}, {
+    placement: "mid_article", cta_variant: "daily_question_inline", store: "app_store", platform: "ios",
+  });
+  for (const sink of ["ga4", "vercel"]) {
+    assert.equal(events.filter(entry => entry[0] === sink).length, 2);
+  }
+  const conversion = events.find(entry => entry[0] === "ga4" && entry[2] === "app_store_click")[3];
+  assert.deepEqual({ ...conversion }, {
+    source_page: "/blog/example-article", article_slug: "example-article", cta_position: "mid_article",
+    cta_variant: "daily_question_inline", store: "ios", transport_type: "beacon",
+  });
+  assert.equal(events.find(entry => entry[0] === "ga4" && entry[2] === "download_store_click")[3].store, "app_store");
+});
+
+test("unknown placements work and non-store download events emit no conversion event", () => {
+  const { events, load } = environment();
+  const analytics = load("src/lib/download-analytics.ts");
+  analytics.trackDownload("download_store_click", {}, { store: "google_play" });
+  assert.equal(events.find(entry => entry[0] === "ga4" && entry[2] === "app_store_click")[3].cta_position, "unknown");
+  events.length = 0;
+  for (const event of ["download_view", "download_qr_visit", "download_page_click", "download_redirect"]) analytics.trackDownload(event, {});
+  assert.equal(events.filter(entry => entry[0] === "ga4").length, 4);
+  assert(!events.some(entry => entry.includes("app_store_click")));
+});
+
+test("a page-view scope deduplicates remounts; a later page view records a new impression", () => {
+  const { events, load } = environment();
+  const { createCtaImpressionScope } = load("src/lib/app-conversion-analytics.ts");
+  const firstPageView = createCtaImpressionScope();
+  const inline = { cta_position: "mid_article", cta_variant: "daily_question_inline" };
+  firstPageView.record("example-article", inline);
+  firstPageView.record("example-article", { ...inline });
+  firstPageView.record("example-article", { cta_position: "end_article", cta_variant: "daily_question_closing" });
+  const secondPageView = createCtaImpressionScope();
+  secondPageView.record("example-article", inline);
+  const views = events.filter(entry => entry[0] === "ga4" && entry[2] === "app_cta_view");
+  assert.equal(views.length, 3);
+  assert.deepEqual({ ...views[0][3] }, { article_slug: "example-article", ...inline, transport_type: "beacon" });
 });
 
 test("analytics blocking never throws into store navigation", () => {
   const { load } = environment({ brokenAnalytics: true });
-  assert.doesNotThrow(() => load("src/lib/download-analytics.ts").trackDownload("download_store_click", {}));
+  assert.doesNotThrow(() => load("src/lib/download-analytics.ts").trackDownload("download_store_click", {}, { store: "app_store" }));
+  assert.doesNotThrow(() => load("src/lib/app-conversion-analytics.ts").createCtaImpressionScope().record("article", { cta_position: "mid_article", cta_variant: "inline" }));
 });

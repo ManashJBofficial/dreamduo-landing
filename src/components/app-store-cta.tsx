@@ -11,16 +11,17 @@ interface AppStoreCTAProps {
   variant?: "hero" | "light" | "compact";
   placement: string;
   analyticsPlacement?: string;
+  ctaVariant?: string;
 }
 
-export function AppStoreCTA({ className, variant = "hero", placement, analyticsPlacement }: AppStoreCTAProps) {
+export function AppStoreCTA({ className, variant = "hero", placement, analyticsPlacement, ctaVariant }: AppStoreCTAProps) {
   const campaign = useCampaign(placement);
   return (
     <a
       href={getDownloadStoreUrl("ios", campaign)}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackDownload("download_store_click", campaign, { placement: analyticsPlacement ?? placement, store: "app_store", platform: "ios" })}
+      onClick={() => trackDownload("download_store_click", campaign, { placement: analyticsPlacement ?? placement, store: "app_store", platform: "ios", ...(ctaVariant ? { cta_variant: ctaVariant } : {}) })}
       aria-label="Download DreamDuo on the App Store"
       className={[styles.link, styles.apple, variant === "compact" && styles.compact, className].filter(Boolean).join(" ")}
     >

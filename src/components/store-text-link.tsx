@@ -12,6 +12,6 @@ export function StoreTextLink({ platform, className, children }: {
   const campaign = useCampaign("footer");
   return <a href={getDownloadStoreUrl(platform, campaign)} target="_blank" rel="noopener" className={className}
     onClick={() => trackDownload("download_store_click", campaign, {
-      placement: "footer", platform, store: platform === "ios" ? "app_store" : "google_play",
+      placement: "footer", platform, store: platform === "ios" ? "app_store" : "google_play", cta_variant: "store_text",
     })}>{children}</a>;
 }

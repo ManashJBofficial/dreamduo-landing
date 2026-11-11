@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { Suspense } from "react";
 import { CampaignCapture } from "@/components/campaign-capture";
+import { CtaImpressionProvider } from "@/components/cta-impression";
 import "./globals.css";
 
 // Two self-hosted Latin WOFF2 files cover every weight used by the site.
@@ -111,7 +112,7 @@ export default function RootLayout({
         className={`${manrope.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
       >
         <Suspense fallback={null}><CampaignCapture /></Suspense>
-        {children}
+        <CtaImpressionProvider>{children}</CtaImpressionProvider>
         {process.env.VERCEL === "1" && <Analytics />}
         <GoogleAnalytics />
       </body>

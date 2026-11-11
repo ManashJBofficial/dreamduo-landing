@@ -1,0 +1,25 @@
+.cta {
+  color: #2b1830;
+  background: #fff9f6;
+  border: 1px solid #eadce2;
+  border-radius: 16px;
+  padding: 24px;
+}
+.inline { margin: 36px 0; border-left: 3px solid #b4486d; }
+.closing { margin-top: 40px; display: grid; gap: 28px; align-items: center; }
+.copy { min-width: 0; }
+.cta .headline { margin: 0; font-family: var(--font-bricolage-grotesque), sans-serif; font-size: 24px; line-height: 1.25; color: #2b1830; text-wrap: balance; }
+.cta .body { margin: 12px 0 0; font-size: 16px; line-height: 1.7; color: #55334b; }
+.cta .supporting { margin: 16px 0 0; font-size: 16px; font-weight: 700; color: #7c3252; }
+.cta .action { margin: 20px 0 12px; font-size: 14px; line-height: 1.6; color: #55334b; }
+.cta .stores { justify-content: flex-start; gap: 12px; }
+.stores > a { --store-badge-height: 40px; }
+.cta .note { margin: 16px 0 0; font-size: 12px; line-height: 1.6; color: #6d5665; }
+.cta .screenshot { margin: 0 auto; width: 180px; max-width: 100%; }
+.screenshot img { display: block; width: 100%; height: auto; }
+.screenshot figcaption { margin-top: 12px; font-size: 12px; line-height: 1.5; color: #6d5665; }
+@media (min-width: 640px) {
+  .cta { padding: 32px; }
+  .closing { grid-template-columns: minmax(0, 1fr) 180px; }
+  .closing .headline { font-size: 28px; }
+}

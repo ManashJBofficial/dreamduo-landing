@@ -10,6 +10,7 @@ interface StoreCTARowProps {
   placement?: string;
   /** Existing attribution placement used to build the store URL. */
   campaignPlacement?: string;
+  ctaVariant?: string;
   className?: string;
 }
 
@@ -20,6 +21,7 @@ export function StoreCTARow({
   variant = "hero",
   placement = "unknown",
   campaignPlacement = placement,
+  ctaVariant,
   className,
 }: StoreCTARowProps) {
   return (
@@ -29,8 +31,8 @@ export function StoreCTARow({
         className
       ].filter(Boolean).join(" ")}
     >
-      <AppStoreCTA variant={variant} placement={campaignPlacement} analyticsPlacement={placement} />
-      <PlayStoreCTA variant={variant} placement={campaignPlacement} analyticsPlacement={placement} />
+      <AppStoreCTA variant={variant} placement={campaignPlacement} analyticsPlacement={placement} ctaVariant={ctaVariant} />
+      <PlayStoreCTA variant={variant} placement={campaignPlacement} analyticsPlacement={placement} ctaVariant={ctaVariant} />
     </div>
   );
 }

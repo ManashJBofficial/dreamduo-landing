@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { PostCard } from "@/components/post-card";
 import { BlogAppCTA } from "@/components/blog-app-cta";
+import { ArticleAppCTA } from "@/components/article-app-cta";
 import { MdxBody } from "@/components/mdx-body";
 import { ArticleLayout, type Crumb } from "@/components/article-layout";
 import { getHeadings, getPost, getPublicPosts, getRelatedPosts } from "@/lib/blog";
@@ -90,7 +91,9 @@ export default async function BlogPostPage({
                 </div>
               )}
 
-              <BlogAppCTA placement={`blog_${post.slug}_footer`} />
+              {post.slug === "30-spicy-questions-to-ask-your-long-distance-partner"
+                ? <ArticleAppCTA articleSlug={post.slug} position="end_article" variant="closing" campaignPlacement={`blog_${post.slug}_footer`} />
+                : <BlogAppCTA placement={`blog_${post.slug}_footer`} />}
 
               {related.length > 0 && (
                 <section className="mt-14 border-t border-slate-200 pt-10">

@@ -6,6 +6,7 @@ import { getLocalImageSize } from "@/lib/images";
 import { BucketListPhoto } from "@/components/bucket-list-photo";
 import { BucketListStarter } from "@/components/bucket-list-starter";
 import { DailyQuestionCTA } from "@/components/daily-question-cta";
+import { ArticleAppCTA } from "@/components/article-app-cta";
 import { EditorialPhoto } from "@/components/editorial-photo";
 import { ArticleDownload } from "@/components/article-download";
 import { CheckInWorksheet, GuideDownloads, GuideProduct, GuideVisual, QuestionCalendar, VisitChecklist } from "@/components/guide-toolkit";
@@ -70,7 +71,7 @@ function Anchor({ href = "", children, ...props }: ComponentPropsWithoutRef<"a">
  * Full /paths still work, for sharing an image between posts.
  */
 export function createMdxComponents(assetBase: string) {
-  return { ...baseComponents, TextingQuestionPicker, TextingQuestions, TextingStockPhoto, CheckInWorksheet, GuideDownloads, GuideProduct, GuideVisual, QuestionCalendar, VisitChecklist, VisitBudget, BucketListPhoto, EditorialPhoto, ArticleDownload, BucketListStarter, DailyQuestionCTA, img: (props: ComponentPropsWithoutRef<"img">) => <MdxImage {...props} assetBase={assetBase} /> };
+  return { ...baseComponents, ArticleAppCTA, TextingQuestionPicker, TextingQuestions, TextingStockPhoto, CheckInWorksheet, GuideDownloads, GuideProduct, GuideVisual, QuestionCalendar, VisitChecklist, VisitBudget, BucketListPhoto, EditorialPhoto, ArticleDownload, BucketListStarter, DailyQuestionCTA, img: (props: ComponentPropsWithoutRef<"img">) => <MdxImage {...props} assetBase={assetBase} /> };
 }
 
 const baseComponents = {
