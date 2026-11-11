@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     url: "/download",
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Download DreamDuo for iPhone and Android",
+    description: "A shared space for your big dreams and everyday love. Free to start on iPhone and Android.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function DownloadPage() {

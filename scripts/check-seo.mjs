@@ -32,6 +32,11 @@ for (const route of routes) {
   const ogUrl = meta.find(match => match[1] === "og:url")?.[2];
   assert.equal(new URL(ogUrl).pathname, route, `${route} social URL must match the page`);
   assert.equal(new URL(ogUrl).origin, origin, `${route} social URL must use the production host`);
+  if (route === "/download") {
+    for (const field of ["title", "description"]) {
+      assert.equal(meta.find(match => match[1] === `twitter:${field}`)?.[2], meta.find(match => match[1] === `og:${field}`)?.[2], `Download Twitter ${field} must describe the download page`);
+    }
+  }
   assert.match(html, /<html[^>]*lang="en"/, `${route} must declare its content language`);
   assert.match(html, /name="viewport" content="[^"]*width=device-width/, `${route} needs a mobile viewport`);
   for (const [label, value, seen] of [
@@ -84,7 +89,7 @@ for (const route of routes) {
     assert.equal(article["@id"], `${origin}${route}#article`, `${route} needs a stable article identity`);
     assert.equal(article.inLanguage, "en-US", `${route} schema must identify the article language`);
     assert.equal(article.isAccessibleForFree, true, `${route} must describe its freely readable article accurately`);
-    if (route === "/blog/dirty-questions-to-ask-your-partner-over-text") {
+    if (["/blog/dirty-questions-to-ask-your-partner-over-text", "/blog/30-spicy-questions-to-ask-your-long-distance-partner"].includes(route)) {
       assert.match(html, /name="rating" content="adult"/, "The explicit article needs page-specific adult metadata");
       assert.equal(article.isFamilyFriendly, false, "The explicit article must be classified accurately in its schema");
     } else {
