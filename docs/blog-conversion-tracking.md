@@ -2,7 +2,7 @@
 
 ## P0 scope and product evidence
 
-Only `/blog/30-spicy-questions-to-ask-your-long-distance-partner` receives the new inline and closing CTA designs. The inline component is written explicitly after question 10 in MDX; the closing component replaces that article's existing generic footer CTA. All 30 questions, the URL, title, canonical, metadata, downloads, and other articles' CTA designs are retained.
+Only `/blog/30-spicy-questions-to-ask-your-long-distance-partner` receives the new contextual CTA designs. Following placement review, the image card is written explicitly after question 10 in MDX; the text-only card replaces that article's existing generic footer CTA. All 30 questions, the URL, title, canonical, metadata, downloads, and other articles' CTA designs are retained.
 
 The answer-reveal claim is supported by `backend/src/api/v1/services/daily-questions/daily-questions.service.ts`: partner answers are returned only when both `myAnswer` and `partnerAnswer` exist. The existing public `/dreamduo-daily-conversations.webp` is a real product screenshot showing both answers. It illustrates a general daily question, not a guarantee that a particular adult pack is available. Blog conversion copy follows the repository's editorial guidance.
 
@@ -15,7 +15,7 @@ The repository initializes one GA4 Google tag in `src/components/google-analytic
 | `app_cta_view` | `article_slug`, `cta_position`, `cta_variant` | At least 25% of a contextual CTA intersects the viewport, once per CTA per page view. |
 | `app_store_click` | `source_page` (pathname only), optional `article_slug`, `cta_position`, `cta_variant`, `store` (`ios` or `android`) | A tracked DreamDuo store link is clicked. |
 
-The contextual variants are `daily_question_inline` / `mid_article` and `daily_question_closing` / `end_article`. Existing store badges use their existing placement and `store_badge`; footer text links use `store_text`. Direct store references in editorial citations are not conversion CTAs and are not instrumented by this change.
+The contextual variants are `daily_question_image` / `mid_article` and `daily_question_text` / `end_article`. Variant labels describe appearance independently of page position. Existing store badges use their existing placement and `store_badge`; footer text links use `store_text`. Direct store references in editorial citations are not conversion CTAs and are not instrumented by this change.
 
 `trackDownload()` is the single dispatch point for `app_store_click`, including existing hero, footer, article, modal and `/download` badges. It retains the existing `download_store_click` event and its `app_store` / `google_play` store values. The two event names are different reporting contracts for the same tap: never sum them to count conversions. Other `download_*` behavior is unchanged. The new CTA context is passed independently of URL campaign placement, preserving existing Apple campaign tokens and Google Play referrer UTMs.
 

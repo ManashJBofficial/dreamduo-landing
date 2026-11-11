@@ -92,7 +92,7 @@ export default async function BlogPostPage({
               )}
 
               {post.slug === "30-spicy-questions-to-ask-your-long-distance-partner"
-                ? <ArticleAppCTA articleSlug={post.slug} position="end_article" variant="closing" campaignPlacement={`blog_${post.slug}_footer`} />
+                ? <ArticleAppCTA articleSlug={post.slug} position="end_article" variant="text" campaignPlacement={`blog_${post.slug}_footer`} />
                 : <BlogAppCTA placement={`blog_${post.slug}_footer`} />}
 
               {related.length > 0 && (
