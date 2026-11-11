@@ -36,7 +36,6 @@ export function ArticleAppCTA({ articleSlug, position, variant = "inline", campa
         <p className={styles.supporting}>{supportingLine ?? "One question. Two answers."}</p>
         <p className={styles.action}>Try DreamDuo. Free to start on iPhone and Android.</p>
         <StoreCTARow placement={position} campaignPlacement={campaignPlacement} ctaVariant={ctaVariant} className={styles.stores} />
-        <p className={styles.note}>Adult questions require both partners to be age verified. Pack access depends on your settings, streak, or Pro.</p>
       </div>
       {closing && <figure className={styles.screenshot}>
         <Image src="/dreamduo-daily-conversations.webp" alt="DreamDuo daily question screen showing a question and both partners' revealed answers" width={635} height={1280} sizes="180px" loading="lazy" />

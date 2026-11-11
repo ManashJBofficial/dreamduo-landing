@@ -4,7 +4,7 @@
 
 Only `/blog/30-spicy-questions-to-ask-your-long-distance-partner` receives the new inline and closing CTA designs. The inline component is written explicitly after question 10 in MDX; the closing component replaces that article's existing generic footer CTA. All 30 questions, the URL, title, canonical, metadata, downloads, and other articles' CTA designs are retained.
 
-The answer-reveal claim is supported by `backend/src/api/v1/services/daily-questions/daily-questions.service.ts`: partner answers are returned only when both `myAnswer` and `partnerAnswer` exist. The existing public `/dreamduo-daily-conversations.webp` is a real product screenshot showing both answers. It illustrates a general daily question, not a guarantee that a particular adult pack is available. Adult verification and pack-access requirements remain explicit.
+The answer-reveal claim is supported by `backend/src/api/v1/services/daily-questions/daily-questions.service.ts`: partner answers are returned only when both `myAnswer` and `partnerAnswer` exist. The existing public `/dreamduo-daily-conversations.webp` is a real product screenshot showing both answers. It illustrates a general daily question, not a guarantee that a particular adult pack is available. Blog conversion copy follows the repository's editorial guidance.
 
 ## Analytics path
 
