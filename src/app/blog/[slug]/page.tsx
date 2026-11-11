@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { PostCard } from "@/components/post-card";
 import { BlogAppCTA } from "@/components/blog-app-cta";
 import { ArticleAppCTA } from "@/components/article-app-cta";
+import { CtaImpressionProvider } from "@/components/cta-impression";
 import { MdxBody } from "@/components/mdx-body";
 import { ArticleLayout, type Crumb } from "@/components/article-layout";
 import { getHeadings, getPost, getPublicPosts, getRelatedPosts } from "@/lib/blog";
@@ -42,7 +43,7 @@ export default async function BlogPostPage({
   const jsonLd = articleJsonLd(post, `/blog/${post.slug}`, CRUMBS);
 
   return (
-    <>
+    <CtaImpressionProvider>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
@@ -115,6 +116,6 @@ export default async function BlogPostPage({
 
         <Footer />
       </main>
-    </>
+    </CtaImpressionProvider>
   );
 }
