@@ -1,5 +1,13 @@
 # Landing performance
 
+## November 12 verification
+
+The latest paired local checks after the blog CTA work are documented in
+`quality-review.md`. SEO, accessibility and best practices scored 100 on all six
+page/device cases; desktop performance was 100. Mobile performance was 98 for
+home and 99 for the target article and download page. The earlier measurements
+below remain historical snapshots, not guarantees for every later run.
+
 ## Delivery changes
 
 - The supplied SVGs remain editable sources. Browsers receive transparent AVIF
