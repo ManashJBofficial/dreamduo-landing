@@ -45,6 +45,13 @@ yarn-error.log*
 next-env.d.ts
 
 # Local pre-publication reports and research outputs
+/docs/dream-modal-review/
+/docs/footer-seo-audit/
+/docs/founder-story-review/
+/docs/homepage-dreams-review/
+/docs/homepage-launch-review/
+/docs/inside-dreamduo-layout-review/
+/docs/inside-dreamduo-review/
 /docs/prepublication-*.md
 /docs/prepublication-*.json
 /docs/*-audit.md
