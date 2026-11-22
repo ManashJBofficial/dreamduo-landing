@@ -7,6 +7,16 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
+    question: "What is DreamDuo?",
+    answer:
+      "DreamDuo is an app for couples. Answer a daily question, send a hug or a quick “miss you,” and keep a shared bucket list or trip plan you can both update.",
+  },
+  {
+    question: "How do daily questions work in DreamDuo?",
+    answer:
+      "You each answer the same question privately. Once you’ve both replied, you can see both answers.",
+  },
+  {
     question: "Is DreamDuo available right now?",
     answer:
       "Yes. Download it free on iPhone or Android.",
@@ -14,7 +24,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is DreamDuo free to use?",
     answer:
-      "Yes. Start free with 2 non-archived dreams and 50 MB of storage per person. Pro adds unlimited dreams, 1 GB of storage per person, and extra features. One Pro plan covers both partners.",
+      "Yes. You can start with the free plan. Pro adds unlimited dreams, more storage, and extra features. One Pro plan covers both partners. Check the app for current limits and plan details.",
   },
   {
     question: "What if my partner doesn't have the app yet?",
@@ -34,7 +44,7 @@ const faqs: FAQItem[] = [
   {
     question: "Can we keep some dreams private?",
     answer:
-      "Yes. Any dream can be shared or private, and you can switch anytime. Private dreams are visible only to you.",
+      "Yes. You can create shared or private dreams. Private dreams are visible only to you.",
   },
   {
     question: "How do Hidden Surprises and Milestone Messages work?",
@@ -59,10 +69,9 @@ export function FAQ() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <div className="site-container">
         <div className="text-center">
-          <span className="home-eyebrow text-xs font-bold uppercase tracking-widest text-rose-500 sm:text-sm">Questions?</span>
-          <h2 className="home-heading mt-3 font-serif text-3xl font-bold tracking-tight text-slate-800 sm:mt-4 sm:text-4xl md:text-5xl">Frequently Asked</h2>
+          <h2 className="home-heading font-serif text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl md:text-5xl">Frequently asked questions</h2>
         </div>
-        <div className="mt-6 rounded-2xl border border-slate-100 bg-white px-5 shadow-sm sm:mt-8 sm:rounded-3xl sm:px-7 md:px-8">
+        <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-slate-100 bg-white px-5 shadow-sm sm:mt-8 sm:rounded-3xl sm:px-7 md:px-8">
           {faqs.map((faq, index) => (
             <details key={faq.question} name="dreamduo-faq" open={index === 0} className="group border-b border-slate-100 last:border-0">
               <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-left sm:py-5 [&::-webkit-details-marker]:hidden">

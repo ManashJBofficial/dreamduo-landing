@@ -1,109 +1,90 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useRef, useState, useSyncExternalStore, type KeyboardEvent } from "react";
 import { DeferredFeatureImage } from "@/components/deferred-feature-image";
 import styles from "@/components/showcase.module.css";
 
 const chapters = [
   {
-    id: "dreams",
-    label: "Dreams",
-    title: "Start with a someday.",
-    description:
-      "Plan a trip, save for a home, or work on something just for you.",
-    details: [
-      "Amount, checklist, habit, or time",
-      "Templates for shared or private dreams",
-    ],
-    image: "/dreamduo-dreams-phone.webp",
-    width: 691,
-    height: 864,
-    alt: "DreamDuo Dreams screen with templates, collections, and shared plans",
+    id: "milestones",
+    label: "Dreams & milestones",
+    mobileLabel: "Dreams",
+    description: "Make a shared checklist for anything from dinners to big plans. See what's next and what you've finished.",
+    image: "/app-screens/food-checklist.webp",
+    optimizedId: "food-checklist",
+    width: 640,
+    height: 1321,
+    alt: "DreamDuo Food to Try checklist showing shared cooking tasks and progress",
   },
   {
-    id: "milestones",
-    label: "Milestones",
-    title: "See the steps. Celebrate the progress.",
-    description:
-      "Track each step, add progress photos, and celebrate the wins together.",
-    details: [
-      "Notes that unlock at milestones",
-      "Hidden contributions for a surprise later",
-    ],
-    image: "/dreamduo-milestones-phone.webp",
-    width: 635,
-    height: 1280,
-    alt: "DreamDuo Food to Try dream with a progress bar and milestone timeline",
+    id: "files",
+    label: "Files & links",
+    mobileLabel: "Files",
+    description: "Keep saved links, photos, and files with the plan they belong to.",
+    image: "/app-screens/trip-resources.webp",
+    optimizedId: "trip-resources",
+    width: 640,
+    height: 1322,
+    alt: "DreamDuo trip resources tab showing saved Pinterest and YouTube links for Japan",
   },
   {
     id: "nudges",
-    label: "Nudge Hub",
-    title: "Miss them? Send a little love.",
-    description:
-      "Send a hug, kiss, or 'miss you' whenever your partner's on your mind.",
-    details: [
-      "Shake your phone to send a nudge",
-      "Soundboard and image nudges",
-      "Quick polls for your next decision",
-    ],
-    image: "/dreamduo-nudge-hub.webp",
-    width: 596,
-    height: 1200,
-    alt: "DreamDuo Nudge Hub showing Miss you, Hug, Kiss, Love you, and Poke",
+    label: "Nudges",
+    mobileLabel: "Nudges",
+    description: "Send a hug, a quick poll, or a little “miss you” when you're apart.",
+    image: "/app-screens/nudge-hub.webp",
+    optimizedId: "nudge-hub",
+    width: 640,
+    height: 1321,
+    alt: "DreamDuo Nudge Hub with Miss you, Hug, Kiss, photo, sound, and poll options",
   },
   {
     id: "conversations",
     label: "Conversations",
-    title: "Go beyond 'how was your day?'",
-    description:
-      "One question a day. Answer privately, then reveal your answers together.",
-    details: [
-      "Light, medium, or deep questions",
-      "More question packs as your streak grows",
-    ],
+    mobileLabel: "Questions",
+    description: "Answer a daily question privately, then see both answers once you've both replied.",
     image: "/dreamduo-daily-conversations.webp",
+    optimizedId: "conversations",
     width: 633,
     height: 1280,
     alt: "DreamDuo daily conversation showing a question and both partners' answers",
   },
-  {
-    id: "files",
-    label: "Files",
-    title: "Keep the good stuff together.",
-    description:
-      "Keep photos, links, and documents with the dream they belong to.",
-    details: [
-      "Save from Pinterest, YouTube, and other apps",
-      "Hold and drag to reorder",
-    ],
-    image: "/dreamduo-files-phone.webp",
-    width: 389,
-    height: 768,
-    alt: "DreamDuo Files screen with photos and saved Pinterest and YouTube links",
-  },
 ] as const;
 
-export function FeatureTour({ supporting }: { supporting: ReactNode }) {
+function subscribeLayout(listener: () => void) {
+  const query = window.matchMedia("(min-width: 768px)");
+  query.addEventListener("change", listener);
+  return () => query.removeEventListener("change", listener);
+}
+
+function isVerticalLayout() {
+  return window.matchMedia("(min-width: 768px)").matches;
+}
+
+function serverLayout() {
+  return true;
+}
+
+export function FeatureTour() {
   const [active, setActive] = useState(0);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  const vertical = useSyncExternalStore(subscribeLayout, isVerticalLayout, serverLayout);
 
   function selectChapter(index: number, focus = false) {
     setActive(index);
     const button = buttons.current[index];
-    const list = button?.parentElement;
-    if (!button || !list) return;
-    if (focus) button.focus({ preventScroll: true });
-    const tabBounds = button.getBoundingClientRect();
-    const listBounds = list.getBoundingClientRect();
-    if (tabBounds.left < listBounds.left) list.scrollBy({ left: tabBounds.left - listBounds.left - 8 });
-    else if (tabBounds.right > listBounds.right) list.scrollBy({ left: tabBounds.right - listBounds.right + 8 });
+    if (!button) return;
+    if (focus) {
+      button.focus({ preventScroll: true });
+      if (vertical) button.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
   }
 
   function onTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next: number;
-    if (event.key === "ArrowRight") next = (index + 1) % chapters.length;
-    else if (event.key === "ArrowLeft") next = (index - 1 + chapters.length) % chapters.length;
+    if (event.key === (vertical ? "ArrowDown" : "ArrowRight")) next = (index + 1) % chapters.length;
+    else if (event.key === (vertical ? "ArrowUp" : "ArrowLeft")) next = (index - 1 + chapters.length) % chapters.length;
+    else if (!vertical && (event.key === "ArrowDown" || event.key === "ArrowUp")) next = (index + 2) % chapters.length;
     else if (event.key === "Home") next = 0;
     else if (event.key === "End") next = chapters.length - 1;
     else return;
@@ -113,7 +94,8 @@ export function FeatureTour({ supporting }: { supporting: ReactNode }) {
 
   return (
     <div className={styles.tour}>
-      <div className={styles.tabs} style={{ gridTemplateColumns: `repeat(${chapters.length}, minmax(0, 1fr))` }} role="tablist" aria-label="Explore DreamDuo features">
+      <div className={styles.tabs} role="tablist" aria-label="Explore DreamDuo features"
+        aria-orientation={vertical ? "vertical" : "horizontal"}>
         {chapters.map((chapter, index) => (
           <button
             key={chapter.id}
@@ -121,51 +103,55 @@ export function FeatureTour({ supporting }: { supporting: ReactNode }) {
             type="button"
             role="tab"
             id={`feature-tab-${chapter.id}`}
+            aria-label={chapter.label}
+            aria-describedby={vertical && active === index ? `feature-description-${chapter.id}` : undefined}
             aria-controls={`feature-panel-${chapter.id}`}
             aria-selected={active === index}
             tabIndex={active === index ? 0 : -1}
             onClick={() => selectChapter(index)}
             onKeyDown={(event) => onTabKeyDown(event, index)}
-            className={`${styles.tab} home-tab`}
+            className={styles.tab}
           >
-            <span>{chapter.label}</span>
-            <ArrowUpRight size={17} strokeWidth={1.5} aria-hidden="true" />
+            <span className={styles.tabLabel}>{chapter.label}</span>
+            <span className={styles.mobileLabel} aria-hidden="true">{chapter.mobileLabel}</span>
+            <span id={`feature-description-${chapter.id}`} hidden={active !== index} className={styles.rowDescription}>
+              {chapter.description}
+            </span>
           </button>
         ))}
       </div>
 
-      {chapters.map((chapter, index) => (
-        <div
-          key={chapter.id}
-          role="tabpanel"
-          id={`feature-panel-${chapter.id}`}
-          aria-labelledby={`feature-tab-${chapter.id}`}
-          hidden={active !== index}
-          tabIndex={0}
-          className={styles.panel}
-        >
-          <div className={styles.copy}>
-            <h3 className="home-subheading">{chapter.title}</h3>
-            <p className={`${styles.description} home-body`}>{chapter.description}</p>
-            <ul className={styles.details}>
-              {chapter.details.map((detail) => <li key={detail} className="home-body">{detail}</li>)}
-            </ul>
-            <div className={styles.supporting}>{supporting}</div>
-          </div>
-          <figure className={`${styles.figure} ${styles[chapter.id]}`}>
-            <div className={styles.imageStage}>
-              <DeferredFeatureImage
-                id={chapter.id}
-                src={chapter.image}
-                alt={chapter.alt}
-                width={chapter.width}
-                height={chapter.height}
-                className={styles.phone}
-              />
+      <div className={styles.panels}>
+        {chapters.map((chapter, index) => (
+          <div
+            key={chapter.id}
+            role="tabpanel"
+            id={`feature-panel-${chapter.id}`}
+            aria-labelledby={`feature-tab-${chapter.id}`}
+            hidden={active !== index}
+            tabIndex={0}
+            className={styles.panel}
+          >
+            <div className={styles.mobileCopy}>
+              <p className={styles.mobileDescription}>{chapter.description}</p>
             </div>
-          </figure>
-        </div>
-      ))}
+            {active === index && (
+              <figure className={styles.figure}>
+                <div className={styles.imageStage}>
+                  <DeferredFeatureImage
+                    id={chapter.optimizedId}
+                    src={chapter.image}
+                    alt={chapter.alt}
+                    width={chapter.width}
+                    height={chapter.height}
+                    className={styles.phone}
+                  />
+                </div>
+              </figure>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

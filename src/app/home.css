@@ -25,7 +25,6 @@
 .home-page .home-title { font-size: var(--home-h1); }
 .home-page :is(.home-heading, .home-quote) { font-size: var(--home-h2); }
 .home-page .home-subheading { font-size: var(--home-h3); }
-.home-page .home-note-heading { font-family: var(--font-bricolage-grotesque), sans-serif; font-size: 1.25rem; line-height: 1.4; font-weight: 700; color: var(--home-heading); }
 .home-page .home-body {
   font-size: var(--home-body);
   line-height: 1.75;
@@ -44,16 +43,14 @@
 .home-page .home-tab[aria-selected="true"] { color: var(--home-heading); }
 .home-page .home-footer-link { font-size: .875rem; line-height: 1.65; color: var(--home-text); }
 .home-page .home-footer-link:hover { color: #ffffff; }
-.home-page .home-modal-body { font-size: 1rem; line-height: 1.65; }
-.home-page .home-modal-small { font-size: var(--home-small); line-height: 1.6; }
-.home-page .home-modal-label { font-size: 1rem; line-height: 1.5; font-weight: 600; }
 .home-page .home-section { padding-block: clamp(2.5rem, 4vw, 4rem); }
+.home-page :is(#dreams, #features, #story, #faq, #download) { scroll-margin-top: 0; }
 .home-page .home-footer {
   --home-text: #94a3b8;
   --home-muted: #7c8da5;
   --home-accent: #94a3b8;
-  padding-top: 40px;
-  padding-bottom: 32px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 .home-page .home-footer .home-body { font-size: .875rem; }
 .home-page .home-footer .home-eyebrow,
@@ -61,8 +58,8 @@
 .home-page .home-footer-link.home-footer-more { color: #fda4af; }
 .home-page .home-footer-link.home-footer-more:hover { color: #fecdd3; }
 .home-page .home-footer-top { padding-bottom: 24px; }
-.home-page .home-footer-columns { padding-block: 32px; }
-.home-page .home-footer-bottom { padding-top: 24px; }
+.home-page .home-footer-columns { padding-block: 24px; }
+.home-page .home-footer-bottom { padding-top: 20px; }
 @media (min-width: 768px) {
   .home-page { --home-body: 1.125rem; }
 }

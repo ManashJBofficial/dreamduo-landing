@@ -12,6 +12,7 @@ export function StoreBadge({ store }: { store: "app_store" | "google_play" }) {
       height={apple ? 40 : 168}
       alt={apple ? "Download on the App Store" : "Get it on Google Play"}
       decoding="async"
+      fetchPriority="low"
       className={styles.image}
     />
   );

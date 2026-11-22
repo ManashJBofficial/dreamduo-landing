@@ -1,0 +1,35 @@
+.overlay { position: fixed; inset: 0; z-index: 100; background: #24132270; }
+.dialog { position: fixed; top: 50%; left: 50%; z-index: 101; display: flex; flex-direction: column; width: min(880px, calc(100vw - 32px)); max-height: calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); transform: translate(-50%, -50%); overflow: hidden; border: 1px solid #e7dce1; border-radius: 24px; background: #fff; color: #1e293b; box-shadow: 0 16px 64px #24132226; font-family: var(--font-manrope), sans-serif; }
+.dialog:focus { outline: none; }
+.close { position: absolute; top: 12px; right: 12px; z-index: 1; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #e7dce1; border-radius: 50%; background: #fff; color: #475569; cursor: pointer; }
+.close:hover { background: #fff1f5; color: #be185d; }
+.close:focus-visible { outline: 2px solid #e11d48; outline-offset: 3px; }
+.body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "copy visual" "actions visual"; align-items: center; gap: 24px 32px; flex: 1; min-height: 0; padding: 48px 32px 32px; overflow-y: auto; overscroll-behavior: contain; }
+.copy { grid-area: copy; align-self: end; min-width: 0; }
+.category { display: flex; align-items: center; gap: 8px; font-size: .875rem; font-weight: 600; line-height: 1.5; color: #64748b; }
+.category > svg { flex: none; }
+.title { margin-top: 16px; font-family: var(--font-bricolage-grotesque), sans-serif; font-size: clamp(1.75rem, 2.4vw, 2rem); line-height: 1.15; font-weight: 700; letter-spacing: -.03em; text-wrap: balance; }
+.description { margin-top: 16px; color: #475569; font-size: 1rem; line-height: 1.65; }
+.figure { grid-area: visual; min-width: 0; margin: 0; }
+.stage { display: flex; align-items: center; justify-content: center; height: 500px; padding: 16px; border-radius: 16px; background: #fff5f7; }
+.phone { display: block; width: auto; height: 100%; max-width: 100%; object-fit: contain; }
+.caption { margin-top: 10px; color: #64748b; font-size: .75rem; line-height: 1.5; text-align: center; }
+.stores { grid-area: actions; align-self: start; justify-content: flex-start; flex-wrap: wrap; gap: 10px; }
+.stores > a { --store-badge-height: 48px; }
+.overlay[data-state="open"], .dialog[data-state="open"] { animation: dream-open 180ms ease-out; }
+.overlay[data-state="closed"], .dialog[data-state="closed"] { animation: dream-close 150ms ease-in; }
+@keyframes dream-open { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dream-close { from { opacity: 1; } to { opacity: 0; } }
+@media (max-width: 767px) {
+  .dialog { width: calc(100vw - 24px); border-radius: 20px; max-height: calc(100dvh - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
+  .body { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "visual" "actions"; align-items: start; gap: 20px; padding: 60px 20px max(20px, env(safe-area-inset-bottom, 0px)); }
+  .copy { align-self: start; }
+  .title { margin-top: 12px; font-size: 1.75rem; }
+  .description { margin-top: 12px; }
+  .stage { height: 420px; padding: 12px; }
+  .stores { justify-content: center; gap: 8px; }
+  .stores > a { --store-badge-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overlay, .dialog { animation: none !important; }
+}

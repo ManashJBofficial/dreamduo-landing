@@ -67,16 +67,16 @@ export function Footer() {
   const linkClass = "home-footer-link text-sm text-slate-400 transition-colors hover:text-white";
 
   return (
-    <footer className="home-footer home-dark rounded-b-2xl bg-slate-950 pb-10 pt-14 sm:rounded-b-3xl lg:pt-16">
+    <footer className="home-footer home-dark rounded-b-2xl bg-slate-950 px-0 py-6 sm:rounded-b-3xl">
       <div className="site-container">
-        <div className="home-footer-top flex flex-col gap-6 border-b border-white/10 pb-10 sm:flex-row sm:items-center sm:justify-between">
+        <div className="home-footer-top flex flex-col gap-6 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
               <BrandMark className="h-9 w-9" iconClassName="h-4 w-4" />
               <span className="text-lg font-bold tracking-tight text-white">DreamDuo</span>
             </Link>
             <p className="home-body mt-3 max-w-xs text-sm leading-relaxed text-slate-400">
-              Plan your future together. Shared goals, savings and daily check-ins for couples.
+              Daily questions, little surprises, and plans for your future together.
             </p>
           </div>
 
@@ -92,13 +92,13 @@ export function Footer() {
           </a>
         </div>
 
-        <div className="home-footer-columns grid grid-cols-2 gap-x-6 gap-y-10 py-12 md:grid-cols-4">
+        <div className="home-footer-columns grid grid-cols-2 gap-x-6 gap-y-6 py-6 md:grid-cols-4">
           {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
               <h2 className="home-eyebrow text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
                 {column.title}
               </h2>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-4 space-y-2">
                 {column.links.map((link) => (
                   <li key={link.href}>
                     {link.store ? (
@@ -131,7 +131,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="home-footer-bottom home-small flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+        <div className="home-footer-bottom home-small flex flex-col gap-3 border-t border-white/10 pt-5 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} DreamDuo. All rights reserved.</p>
           <a href="mailto:support@dreamduo.app" className="transition-colors hover:text-slate-300">
             support@dreamduo.app

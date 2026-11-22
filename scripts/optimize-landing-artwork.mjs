@@ -34,6 +34,11 @@ await sharp(path.join(publicDir, "dreamduo-mark.webp"))
   .resize({ width: 112 }).webp({ quality: 85, effort: 6 })
   .toFile(path.join(output, "brand-mark.webp"));
 
+// The mobile install bar displays a fixed 36px square. Keep it crisp at 3x.
+await sharp(path.join(publicDir, "dreamduo-logo.webp"))
+  .resize({ width: 108 }).webp({ quality: 85, effort: 6 })
+  .toFile(path.join(output, "install-bar-logo.webp"));
+
 for (const [id, file] of [
   ["dreams", "dreamduo-dreams-phone.webp"],
   ["milestones", "dreamduo-milestones-phone.webp"],

@@ -41,6 +41,7 @@
   --site-shell-width: 1280px;
   --site-shell-gutter: 16px;
   --site-frame: 8px;
+  --site-header-height: 68px;
   --radius: 0.625rem;
   --marquee-duration: 200s;
   --background: #fff9f9;
@@ -68,7 +69,7 @@
 }
 
 @media (min-width: 1024px) {
-  :root { --site-shell-gutter: 32px; --site-frame: 16px; }
+  :root { --site-shell-gutter: 32px; --site-frame: 16px; --site-header-height: 72px; }
 }
 
 /* Shared outer shell; smaller text measures stay inside this aligned container. */
@@ -97,7 +98,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(80px + var(--site-frame));
+  scroll-padding-top: calc(var(--site-header-height) + env(safe-area-inset-top, 0px) + 12px);
   /* clip, not just hidden: hidden on both html and body turns body into a
      scroll container that never scrolls, which silently breaks every
      position: sticky element (the blog sidebar). hidden stays as the
@@ -251,44 +252,6 @@ body {
   transform: translateY(-0.02em);
 }
 
-/* Soft dark modal backgrounds - muted, easy on the eyes */
-.modal-emerald {
-  background-color: #1a2e2a;
-}
-.modal-emerald-d {
-  background-color: #152623;
-}
-.modal-sky {
-  background-color: #1a2635;
-}
-.modal-sky-d {
-  background-color: #15202e;
-}
-.modal-amber {
-  background-color: #2a2418;
-}
-.modal-amber-d {
-  background-color: #231e14;
-}
-.modal-pink {
-  background-color: #2e1a28;
-}
-.modal-pink-d {
-  background-color: #261522;
-}
-.modal-rose {
-  background-color: #2e1a1e;
-}
-.modal-rose-d {
-  background-color: #26151a;
-}
-.modal-violet {
-  background-color: #221a30;
-}
-.modal-violet-d {
-  background-color: #1c1528;
-}
-
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
@@ -351,25 +314,4 @@ select:focus-visible {
 
 .animate-install-bar-in {
   animation: install-bar-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes modal-in {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-modal-in {
-  animation: modal-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-modal-in {
-    animation: none;
-  }
 }

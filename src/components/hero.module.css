@@ -15,12 +15,21 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
   align-items: center;
   gap: 24px;
-  min-height: 700px;
-  padding-block: 96px 32px;
+  min-height: 640px;
+  padding-block: 96px 40px;
 }
 
-.copy { min-width: 0; padding-block: 32px 48px; }
-.copy h1 > span { display: block; }
+.copy { min-width: 0; }
+.copy h1:global(.home-title) {
+  max-width: 550px;
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  text-wrap: balance;
+}
+
+@media (forced-colors: active) {
+  .headlineAccent { background-image: none; color: inherit; }
+}
+
 .description { max-width: 440px; margin-top: 24px; }
 .install { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; width: 100%; max-width: 540px; margin-top: 28px; }
 .stores { width: 100%; min-width: 0; }
@@ -28,10 +37,10 @@
 .storeRow { flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; width: 100%; }
 .storeRow > a { --store-badge-height: 56px; }
 .qrCard { display: flex; flex: none; flex-direction: column; align-items: center; gap: 8px; border-radius: 12px; }
-.qrCard > :global(.download-qr) { width: clamp(168px, 16vw, 208px) !important; border-radius: 12px; overflow: hidden; }
+.qrCard > :global(.download-qr) { width: 128px !important; border-radius: 12px; overflow: hidden; }
 .qrCard:focus-visible { outline: 2px solid #e11d48; outline-offset: 4px; }
 
-.artwork { min-width: 0; align-self: center; justify-self: center; width: min(100%, 640px); }
+.artwork { min-width: 0; align-self: center; justify-self: center; width: min(100%, 566px); }
 .phone { display: block; width: 100%; height: auto; }
 
 @media (max-width: 1150px) and (min-width: 1024px) {
@@ -40,25 +49,23 @@
 }
 
 @media (max-width: 1023px) {
-  .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; min-height: 0; padding-top: 72px; }
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; min-height: 0; padding-top: 48px; }
   .copy { padding: 0; text-align: center; }
-  .copy h1 > span { margin-inline: auto; }
+  .copy h1 { margin-inline: auto; }
   .description { margin-inline: auto; margin-top: 20px; }
-  .install { align-items: center; margin-inline: auto; }
+  .install { display: block; margin-inline: auto; }
+  .qrCard { display: none; }
   .storeRow { justify-content: center; }
   .artwork { width: min(100%, 520px); }
 }
 
 @media (max-width: 639px) {
-  .layout { padding-block: 64px 0; gap: 24px; }
-  .install { gap: 20px; }
+  .layout { padding-block: 32px 24px; gap: 24px; }
+  .install { margin-top: 24px; }
   .stores { width: 100%; }
-  .storeRow { gap: 8px; }
-  .storeRow > a { --store-badge-height: 48px; }
+  .storeRow { display: grid; grid-template-columns: minmax(0, 2.9916fr) minmax(0, 3.3571fr); gap: 8px; max-width: 312px; margin-inline: auto; }
+  .storeRow > a { width: 100%; min-width: 0; height: 48px; align-items: center; aspect-ratio: auto; }
   .artwork { width: min(100%, 360px); }
-}
-
-@media (max-width: 374px) {
-  .storeRow { flex-direction: column; }
-  .storeRow > a { --store-badge-height: 56px; }
+  .copy h1:global(.home-title) { font-size: clamp(1.5rem, 6.6vw, 1.75rem); }
+  .description { min-height: 5.25rem; display: grid; align-items: center; }
 }

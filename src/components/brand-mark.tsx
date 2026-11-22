@@ -13,6 +13,7 @@ export function BrandMark({ className = "", glow = false }: BrandMarkProps) {
       aria-hidden="true"
       width={112}
       height={112}
+      fetchPriority="low"
       className={[
         "object-contain",
         glow ? "animate-pulse-glow" : "",

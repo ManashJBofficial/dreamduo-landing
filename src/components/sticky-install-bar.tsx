@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { trackDownload } from "@/lib/download-analytics";
@@ -29,23 +28,30 @@ export function StickyInstallBar() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    function onScroll() {
+    if (dismissed || wasDismissedThisSession()) return;
+    const desktop = window.matchMedia("(min-width: 768px)");
+    let wasVisible = false;
+
+    function updateVisibility() {
       // Show once the hero button has scrolled away, so the two never compete.
-      setVisible(
-        window.scrollY > window.innerHeight * 0.6 && !wasDismissedThisSession()
-      );
+      const nextVisible = !desktop.matches && window.scrollY > window.innerHeight * 0.6;
+      if (wasVisible === nextVisible) return;
+      wasVisible = nextVisible;
+      setVisible(nextVisible);
     }
 
     // Deferred so a deep link that lands mid-page still gets the bar, without
     // setting state synchronously inside the effect body.
-    const frame = requestAnimationFrame(onScroll);
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const frame = requestAnimationFrame(updateVisibility);
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
 
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
     };
-  }, []);
+  }, [dismissed]);
 
   function dismiss() {
     setDismissed(true);
@@ -64,17 +70,19 @@ export function StickyInstallBar() {
       style={{ bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))" }}
     >
       <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/95 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.9)] backdrop-blur">
-        <Image
-          src="/dreamduo-logo.webp"
+        {/* eslint-disable-next-line @next/next/no-img-element -- Sized at build time for the fixed 36px icon. */}
+        <img
+          src="/optimized/install-bar-logo.webp"
           alt="DreamDuo app icon"
           aria-hidden="true"
-          width={40}
-          height={40}
+          width={108}
+          height={108}
+          decoding="async"
           className="h-9 w-9 shrink-0 rounded-xl"
         />
 
         <div className="min-w-0 flex-1">
-          <div className="home-label truncate text-sm font-bold text-white">DreamDuo</div>
+          <div className="truncate text-sm font-bold text-white">DreamDuo</div>
           <div className="home-small truncate">
             Free to start
           </div>
@@ -84,16 +92,16 @@ export function StickyInstallBar() {
           prefetch={false}
           href="/download"
           onClick={() => trackDownload("download_page_click", campaign, { placement: "sticky_bar" })}
-          className="home-button-compact inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-4 font-semibold text-slate-950 transition-colors hover:bg-rose-50"
+          className="home-button-compact inline-flex min-h-11 shrink-0 items-center justify-center rounded-full bg-white px-3 font-semibold text-slate-950 transition-colors hover:bg-rose-50"
         >
-          Try for free
+          Get app
         </Link>
 
         <button
           type="button"
           onClick={dismiss}
           aria-label="Dismiss install bar"
-          className="-mr-1 flex h-9 w-7 shrink-0 items-center justify-center text-slate-500 transition-colors hover:text-slate-300"
+          className="-mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:text-slate-300"
         >
           <X className="h-4 w-4" />
         </button>

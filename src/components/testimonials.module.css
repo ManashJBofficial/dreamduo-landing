@@ -1,0 +1,5 @@
+.section { background: #fff; }
+.note { max-width: 720px; margin-inline: auto; text-align: center; }
+.heading { text-wrap: balance; }
+.description { max-width: 640px; margin: 20px auto 0; }
+.signature { margin-top: 24px; color: var(--home-muted); font-size: .875rem; line-height: 1.6; }
