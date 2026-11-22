@@ -7,10 +7,11 @@ import { Footer } from "@/components/footer";
 import { PostCard } from "@/components/post-card";
 import { BlogTopicNav } from "@/components/blog-topic-nav";
 import { getPosts } from "@/lib/blog";
+import { HOMEPAGE_IMAGE } from "@/lib/homepage-copy";
 
 const title = "Couples Blog: Gifts, Goals & Relationship Guides";
 const description =
-  "Practical guides for couples: shared goals, bucket list ideas, long-distance conversations and app comparisons with features, pricing and source links.";
+  "Practical guides for couples to get to know each other, make memories, and plan a future together. Find conversation starters, date ideas, and app comparisons.";
 
 export const metadata: Metadata = {
   title,
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
     siteName: "DreamDuo",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
+    images: [HOMEPAGE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: ["/opengraph-image"],
+    images: [HOMEPAGE_IMAGE],
   },
 };
 
@@ -96,7 +97,7 @@ export default function BlogIndexPage() {
         <EditorialBanner seed="dreamduo-journal" className="journal-hero">
           <p className="editorial-eyebrow mb-6">The DreamDuo journal</p>
           <h1 className="editorial-title">A little closer.<br />A little more together.</h1>
-          <p className="editorial-deck">Practical guides for couples, from shared goals and bucket lists to long-distance conversations and clear app comparisons.</p>
+          <p className="editorial-deck">{description}</p>
           <div className="journal-hero-actions">
             <a href="#journal-stories" className="journal-primary-link">Explore the journal <span aria-hidden="true">&darr;</span></a>
             <Link href="/compare" className="journal-secondary-link">Compare couples apps <span aria-hidden="true">&rarr;</span></Link>

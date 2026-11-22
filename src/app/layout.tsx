@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { Suspense } from "react";
 import { CampaignCapture } from "@/components/campaign-capture";
+import { HOMEPAGE_DESCRIPTION, HOMEPAGE_IMAGE, HOMEPAGE_TITLE } from "@/lib/homepage-copy";
 import "./globals.css";
 
 // Two self-hosted Latin WOFF2 files cover every weight used by the site.
@@ -36,11 +37,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "DreamDuo - Build Your Dreams Together",
+    default: HOMEPAGE_TITLE,
     template: "%s | DreamDuo",
   },
-  description:
-    "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
+  description: HOMEPAGE_DESCRIPTION,
   applicationName: "DreamDuo",
   alternates: {
     canonical: "/",
@@ -52,40 +52,29 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
   },
   keywords: [
-    "couples goal tracker",
-    "relationship goals",
-    "shared savings",
     "couples app",
-    "couples budgeting",
-    "shared habits",
-    "dream together",
+    "daily questions for couples",
+    "couples nudges",
+    "shared goals for couples",
+    "couples bucket list",
   ],
   authors: [{ name: "DreamDuo" }],
   creator: "DreamDuo",
   publisher: "DreamDuo",
   openGraph: {
-    title: "DreamDuo - Build Your Dreams Together",
-    description:
-      "The goal tracker designed for couples who want more from life.",
+    title: HOMEPAGE_TITLE,
+    description: HOMEPAGE_DESCRIPTION,
     url: "/",
     siteName: "DreamDuo",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "DreamDuo - Build Your Dreams Together",
-      },
-    ],
+    images: [HOMEPAGE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DreamDuo - Build Your Dreams Together",
-    description:
-      "The goal tracker designed for couples who want more from life.",
-    images: ["/opengraph-image"],
+    title: HOMEPAGE_TITLE,
+    description: HOMEPAGE_DESCRIPTION,
+    images: [HOMEPAGE_IMAGE],
   },
   robots: {
     index: true,

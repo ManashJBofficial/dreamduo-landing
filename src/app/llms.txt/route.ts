@@ -1,4 +1,5 @@
 import { getComparisons, getPublicPosts } from "@/lib/blog";
+import { HOMEPAGE_DESCRIPTION, HOMEPAGE_TITLE } from "@/lib/homepage-copy";
 
 export const dynamic = "force-static";
 
@@ -11,9 +12,11 @@ export function GET() {
   const text = [
     "# DreamDuo",
     "",
-    "> DreamDuo is an iPhone and Android app for couples, with shared goals, daily questions and a Nudge Hub.",
+    `> ${HOMEPAGE_TITLE}`,
     "",
-    "Shared goals support amount, checklist, habit and time tracking. Savings progress is entered by users; DreamDuo does not connect to bank accounts or move money. A free plan is available, with optional Pro features. Check the app stores for current pricing and availability.",
+    HOMEPAGE_DESCRIPTION,
+    "",
+    "DreamDuo is available on iPhone and Android, with daily questions and a Nudge Hub alongside shared goals. Shared goals support amount, checklist, habit and time tracking. Savings progress is entered by users; DreamDuo does not connect to bank accounts or move money. A free plan is available, with optional Pro features. Check the app stores for current pricing and availability.",
     "",
     "The blog is published by DreamDuo's founder. App comparisons disclose that publisher relationship. Guides include original planning templates and curated conversation questions; they are not independent app rankings or professional counseling. Adult intimacy guides are labeled 18+.",
     "",

@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
+import { HOMEPAGE_DESCRIPTION } from "@/lib/homepage-copy";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "DreamDuo - Build Your Dreams Together",
+    name: "DreamDuo",
     short_name: "DreamDuo",
-    description:
-      "The goal tracker designed for couples who want more from life. Sync your savings, habits, and future in one beautiful space.",
+    description: HOMEPAGE_DESCRIPTION,
     start_url: "/",
     display: "standalone",
     background_color: "#fff9f9",

@@ -4,24 +4,28 @@ import { DownloadActions, DownloadPanel } from "@/components/download-actions";
 import { DownloadBanner } from "@/components/download-banner";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { HOMEPAGE_IMAGE } from "@/lib/homepage-copy";
 import styles from "@/components/download-page.module.css";
 import "../home.css";
 
+const downloadDescription =
+  "Answer daily questions, send little surprises, and make plans together with DreamDuo. Free to start on iPhone and Android.";
+
 export const metadata: Metadata = {
   title: "Download the DreamDuo Couples App",
-  description: "Your shared dreams, daily moments, and a little more us. Download DreamDuo for free on iPhone and Android, or scan one QR code to get started.",
+  description: downloadDescription,
   alternates: { canonical: "/download" },
   openGraph: {
     title: "Download DreamDuo for iPhone and Android",
-    description: "A shared space for your big dreams and everyday love. Free to start on iPhone and Android.",
+    description: downloadDescription,
     url: "/download",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    images: [HOMEPAGE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Download DreamDuo for iPhone and Android",
-    description: "A shared space for your big dreams and everyday love. Free to start on iPhone and Android.",
-    images: ["/opengraph-image"],
+    description: downloadDescription,
+    images: [HOMEPAGE_IMAGE],
   },
 };
 
@@ -32,8 +36,8 @@ export default function DownloadPage() {
       <Navbar />
       <main id="download-content" className={`site-container ${styles.main}`}>
         <section className={styles.copy} aria-labelledby="download-heading">
-          <h1 id="download-heading">Download it now!</h1>
-          <p className={styles.description}>Free to start on iPhone and Android.</p>
+          <h1 id="download-heading">Download DreamDuo</h1>
+          <p className={styles.description}>{downloadDescription}</p>
           <Suspense fallback={<DownloadPanel />}><DownloadActions /></Suspense>
         </section>
         <DownloadBanner />

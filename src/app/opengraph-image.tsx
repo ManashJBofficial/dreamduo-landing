@@ -1,4 +1,7 @@
 import { ImageResponse } from "next/og";
+import { HOMEPAGE_DESCRIPTION, HOMEPAGE_IMAGE, HOMEPAGE_TITLE } from "@/lib/homepage-copy";
+
+export const alt = HOMEPAGE_IMAGE.alt;
 
 export const size = {
   width: 1200,
@@ -41,7 +44,7 @@ export default function OpenGraphImage() {
           DreamDuo
         </div>
         <div style={{ lineHeight: 1.1 }}>
-          Build Your Dreams Together
+          {HOMEPAGE_TITLE}
         </div>
         <div
           style={{
@@ -51,7 +54,7 @@ export default function OpenGraphImage() {
             color: "#475569",
           }}
         >
-          Shared goals, savings, and habits for couples.
+          {HOMEPAGE_DESCRIPTION}
         </div>
       </div>
     ),

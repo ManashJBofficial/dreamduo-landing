@@ -57,7 +57,7 @@ export function articleMetadata(entry: Post, path: string): Metadata {
       card: "summary_large_image",
       title: entry.seoTitle ?? entry.title,
       description: entry.description,
-      images: [image.url],
+      images: [{ url: image.url, alt: image.alt }],
     },
   };
 }

@@ -7,15 +7,16 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { getComparisons } from "@/lib/blog";
 import { SITE_URL } from "@/lib/article-meta";
+import { HOMEPAGE_IMAGE } from "@/lib/homepage-copy";
 
 const title = "Couples App Comparisons";
 const description =
-  "Honest side-by-side comparisons of DreamDuo with Paired, Honeydue, Lasting and Between: features, prices, and which one suits which couple.";
+  "Compare DreamDuo with Paired, Honeydue, Lasting and Between. See features and prices for daily conversations, shared plans, and more.";
 
 export const metadata: Metadata = {
   title,
   description,
-  twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
+  twitter: { card: "summary_large_image", title, description, images: [HOMEPAGE_IMAGE] },
   alternates: { canonical: "/compare" },
   openGraph: {
     title,
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "DreamDuo",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
+    images: [HOMEPAGE_IMAGE],
   },
 };
 

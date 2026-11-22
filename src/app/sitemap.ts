@@ -15,11 +15,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
+      // Homepage content and layout revised on this date; never use build time.
+      lastModified: new Date("2026-11-23"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/download`,
+      lastModified: new Date("2026-11-23"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -59,13 +62,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${SITE_URL}/privacy-policy`,
-      lastModified: new Date("2026-03-22"),
+      lastModified: new Date("2026-08-03"),
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
       url: `${SITE_URL}/terms`,
-      lastModified: new Date("2026-03-22"),
+      lastModified: new Date("2026-11-10"),
       changeFrequency: "yearly",
       priority: 0.6,
     },

@@ -8,6 +8,21 @@ const blogRedirects = JSON.parse(await fs.readFile(new URL("../src/content/blog-
 // Date-only editorial fields use the publisher\'s calendar day, not UTC midnight.
 const today = new Intl.DateTimeFormat("en-CA", { timeZone: process.env.SEO_AUDIT_TIMEZONE ?? "Asia/Kolkata" }).format(new Date());
 const sitemap = await (await fetch(new URL("/sitemap.xml", base))).text();
+const sitemapDates = new Map();
+const sitemapUrls = new Set();
+for (const [, entry] of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+  const location = entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
+  const url = new URL(location);
+  assert.equal(url.origin, origin, "Sitemap must use the canonical HTTPS host");
+  assert.equal(url.search + url.hash, "", "Sitemap must omit query and fragment variants");
+  assert(!sitemapUrls.has(url.href), `Duplicate sitemap URL: ${url.href}`);
+  sitemapUrls.add(url.href);
+  const modified = entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+  if (modified) {
+    assert(Number.isFinite(Date.parse(modified)) && modified.slice(0, 10) <= today, `${url.pathname} needs a valid, non-future lastModified`);
+    sitemapDates.set(url.pathname, modified);
+  }
+}
 const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
 assert(routes.length > 0, "Sitemap must list public pages");
 const internal = new Set();
@@ -18,11 +33,23 @@ const pageHtml = new Map();
 const fragments = [];
 let storeLinks = 0;
 let images = 0;
+let homepageCopy;
+
+function htmlText(markup) {
+  return (markup ?? "").replace(/<[^>]*>/g, "").replace(/&apos;|&#x27;|&#39;/gi, "'").trim();
+}
+
 for (const route of routes) {
   const response = await fetch(new URL(route, base), { redirect: "manual" });
   assert.equal(response.status, 200, `${route} must return 200 directly`);
   const html = await response.text();
   pageHtml.set(route, html);
+  if (["/privacy-policy", "/terms"].includes(route)) {
+    const text = html.replace(/<!--[\s\S]*?-->/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    const updated = text.match(/Last updated:\s*([A-Za-z]+ \d{1,2}, \d{4})/)?.[1];
+    assert(updated, `${route} must expose its meaningful update date`);
+    assert.equal(sitemapDates.get(route)?.slice(0, 10), new Date(`${updated} UTC`).toISOString().slice(0, 10), `${route} sitemap date must match the published update date`);
+  }
   const meta = [...html.matchAll(/<meta (?:name|property)="([^"]+)" content="([^"]*)"/g)];
   for (const name of ["description", "robots", "og:title", "og:description", "og:url", "og:image", "twitter:card", "twitter:title", "twitter:description", "twitter:image"]) {
     const matches = meta.filter(match => match[1] === name);
@@ -55,7 +82,31 @@ for (const route of routes) {
   assert.equal([...html.matchAll(/<h1[ >]/g)].length, 1, `${route} needs one main heading`);
   assert(html.includes(`rel="canonical" href="${origin}${route === "/" ? "" : route}"`) || (route === "/" && html.includes(`rel="canonical" href="${origin}/"`)), `${route} canonical must match the sitemap`);
   assert(!/name="robots" content="[^"]*noindex/.test(html), `${route} must be indexable`);
-  for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
+  const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(match => JSON.parse(match[1]));
+  if (route === "/") {
+    const website = schema.find(item => item["@type"] === "WebSite");
+    const app = schema.find(item => item["@type"] === "SoftwareApplication");
+    const hero = html.match(/<h1\b[^>]*\bid="hero-heading"[^>]*>([\s\S]*?)<\/h1>\s*<p\b[^>]*>([\s\S]*?)<\/p>/);
+    assert(hero, "Homepage must render the hero heading and subtitle");
+    const headline = htmlText(hero[1]);
+    const subtitle = htmlText(hero[2]);
+    homepageCopy = { headline, subtitle };
+    assert.equal(htmlText(html.match(/<title>([^<]+)<\/title>/)?.[1]), headline, "Homepage title must match the hero");
+    for (const name of ["og:title", "twitter:title"]) {
+      assert.equal(htmlText(meta.find(match => match[1] === name)?.[2]), headline, `Homepage ${name} must match the hero`);
+    }
+    for (const name of ["description", "og:description", "twitter:description"]) {
+      assert.equal(htmlText(meta.find(match => match[1] === name)?.[2]), subtitle, `Homepage ${name} must match the hero`);
+    }
+    assert.equal(website?.name, "DreamDuo");
+    assert.equal(website.alternateName, "Dream Duo");
+    assert.equal(website.description, subtitle, "Site schema must match the hero");
+    assert.equal(app?.description, subtitle, "App schema must match the hero");
+    assert.match(app.featureList.join(" "), /daily questions.*nudges.*shared goals/i);
+    const faq = html.match(/<section\b[^>]*\bid="faq"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    assert.match(faq ?? "", />What is DreamDuo\?</, "The homepage must answer what the app is in rendered HTML");
+    assert.match(faq ?? "", /Once you’ve both replied, you can see both answers/, "Daily-question reveal behavior must be in the visible FAQ");
+  }
   for (const match of html.matchAll(/<a[^>]+href="([^"]+)"/g)) {
     const target = new URL(match[1].replace(/&amp;/g, "&"), origin);
     if (target.hostname === "play.google.com" && (target.searchParams.get("id") === "com.dreamduo.app" || target.searchParams.get("referrer")?.includes("dreamduo_landing"))) {
@@ -71,7 +122,6 @@ for (const route of routes) {
   }
   if (/^\/(blog|compare)\/[^/]+$/.test(route) && !route.endsWith("rss.xml")) {
     articlePages.push(route);
-    const schema = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(match => JSON.parse(match[1]));
     const article = schema.find(item => item["@type"] === "BlogPosting");
     assert(article?.headline && article.datePublished && article.author, `${route} needs factual article schema`);
     for (const name of ["datePublished", "dateModified"]) {
@@ -107,6 +157,9 @@ for (const route of routes) {
     assert.equal(png.readUInt32BE(20), 630);
     const socialImage = meta.find(match => match[1] === "og:image")?.[2];
     assert.equal(socialImage, article.image, `${route} schema and social preview must identify the same representative image`);
+    const socialAlt = meta.find(match => match[1] === "og:image:alt")?.[2];
+    assert(socialAlt?.trim(), `${route} needs descriptive social image alt text`);
+    assert.equal(meta.find(match => match[1] === "twitter:image:alt")?.[2], socialAlt, `${route} social image descriptions must agree`);
     if (socialImage !== `${origin}${route}/opengraph-image`) {
       const coverPath = new URL(socialImage).pathname;
       assert(coverPath.startsWith("/blog/") || coverPath.startsWith("/compare/"), `${route} cover must be a local editorial asset`);
@@ -117,6 +170,14 @@ for (const route of routes) {
     }
     images++;
   }
+}
+const flirtyArticle = pageHtml.get("/blog/flirty-questions-to-ask-your-partner-over-text");
+if (flirtyArticle) {
+  // Verify the actual HTML lists so the inline CTA cannot hide or reset the prompts.
+  const lists = [...flirtyArticle.matchAll(/<ol\b([^>]*)>([\s\S]*?)<\/ol>/g)];
+  const questions = lists.filter(([ , , list]) => [...list.matchAll(/<li\b/g)].length === 25);
+  assert.equal(questions.length, 2, "The flirty guide must render all 50 questions in HTML");
+  assert.match(questions[1][1], /\bstart="26"/, "The question list must resume at 26 after the CTA");
 }
 for (const route of internal) {
   const response = await fetch(new URL(route, base));
@@ -152,6 +213,16 @@ const directory = await fetch(new URL("/llms.txt", base));
 assert.equal(directory.status, 200, "Optional text directory must load without JavaScript");
 assert.match(directory.headers.get("content-type") ?? "", /text\/plain/);
 const directoryText = await directory.text();
+assert(homepageCopy, "Homepage copy must be present in the audit");
+assert(directoryText.includes(homepageCopy.headline) && directoryText.includes(homepageCopy.subtitle), "Optional text directory must match the hero");
+const manifest = await (await fetch(new URL("/manifest.webmanifest", base))).json();
+assert.equal(manifest.description, homepageCopy.subtitle, "Manifest must match the hero");
+const homepagePreview = await fetch(new URL("/opengraph-image", base));
+assert.equal(homepagePreview.status, 200, "Homepage social preview must load");
+assert.match(homepagePreview.headers.get("content-type") ?? "", /^image\/png/, "Homepage needs a PNG social preview");
+const homepagePreviewBytes = Buffer.from(await homepagePreview.arrayBuffer());
+assert.equal(homepagePreviewBytes.readUInt32BE(16), 1200, "Homepage social preview width");
+assert.equal(homepagePreviewBytes.readUInt32BE(20), 630, "Homepage social preview height");
 for (const route of articlePages.filter(route => route.startsWith("/blog/"))) {
   assert(directoryText.includes(`${origin}${route}`), `${route} must be discoverable in the text directory`);
   assert(feedText.includes(`${origin}${route}`), `${route} must be discoverable in RSS`);

@@ -9,6 +9,7 @@ import { PostCard } from "@/components/post-card";
 import { getPostsByTag, getTags } from "@/lib/blog";
 import { BlogTopicNav } from "@/components/blog-topic-nav";
 import { getBlogTopic } from "@/lib/blog-topics";
+import { HOMEPAGE_IMAGE } from "@/lib/homepage-copy";
 
 const SITE_URL = "https://dreamduo.app";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
+    twitter: { card: "summary_large_image", title, description, images: [HOMEPAGE_IMAGE] },
     alternates: { canonical: `/blog/tag/${tag}` },
     openGraph: {
       title,
@@ -50,7 +51,7 @@ export async function generateMetadata({
       siteName: "DreamDuo",
       locale: "en_US",
       type: "website",
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
+      images: [HOMEPAGE_IMAGE],
     },
   };
 }
