@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A printable goal planner for couples with space for a shared goal, next actions, a milestone, and a review date.">
+  <meta name="robots" content="noindex,follow">
+  <title>Our shared goal planner | DreamDuo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { max-width: 660px; margin: 2rem auto; padding: 0 1rem; color: #292438; font: 1rem/1.5 system-ui, sans-serif; }
+    h1, h2 { line-height: 1.2; }
+    h2 { font-size: 1.15rem; margin-top: 1.5rem; }
+    label { display: block; margin: .85rem 0; break-inside: avoid; }
+    input { display: block; width: 100%; margin-top: .25rem; padding: .5rem; border: 1px solid #b7a7ad; border-radius: .25rem; font: inherit; }
+    button { background: #a11e44; color: white; border: 0; border-radius: .25rem; padding: .625rem 1rem; font: inherit; cursor: pointer; }
+    :focus-visible { outline: 2px solid #a11e44; outline-offset: 3px; }
+    a { color: #a11e44; }
+    @media print {
+      @page { margin: 14mm; }
+      body { margin: 0; padding: 0; max-width: none; font-size: 11pt; }
+      h2 { margin-top: 1rem; }
+      label { margin: .45rem 0; }
+      input { border: 0; border-bottom: 1px solid #555; border-radius: 0; }
+      button, .instructions { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Our shared goal planner</h1>
+  <p class="instructions">Write by hand or type before printing. Entries stay in this page and clear on reload.</p>
+  <button type="button" onclick="window.print()">Print or save as PDF</button>
+
+  <h2>Our goal</h2>
+  <label>What we want<input type="text" autocomplete="off"></label>
+  <label>Why it matters to me<input type="text" autocomplete="off"></label>
+  <label>Why it matters to my partner<input type="text" autocomplete="off"></label>
+  <label>How we'll know it's done<input type="text" autocomplete="off"></label>
+
+  <h2>Next actions</h2>
+  <label>My action and date<input type="text" autocomplete="off"></label>
+  <label>My partner's action and date<input type="text" autocomplete="off"></label>
+  <label>Our first milestone<input type="text" autocomplete="off"></label>
+  <label>When we'll review<input type="text" autocomplete="off"></label>
+
+  <h2>At the review</h2>
+  <label>What changed<input type="text" autocomplete="off"></label>
+  <label>What we want to try next<input type="text" autocomplete="off"></label>
+  <p><a href="https://dreamduo.app/blog/couples-goals-examples-and-template">See worked examples on DreamDuo</a></p>
+</body>
+</html>

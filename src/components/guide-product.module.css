@@ -1,0 +1,73 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 104px;
+  grid-template-areas: "copy screen" "stores screen";
+  grid-template-rows: auto auto;
+  align-content: center;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 12px;
+  max-width: 38rem;
+  margin-block: 2rem;
+  padding: 18px 22px;
+  border: 1px solid #eadce2;
+  border-radius: 14px;
+  background: #fff9f8;
+}
+
+.copy {
+  grid-area: copy;
+  align-self: end;
+}
+
+.copy h3 {
+  margin: 0;
+  color: #261b2a;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.22;
+}
+
+.copy p {
+  margin: 6px 0 0;
+  color: #475569;
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+
+.screen {
+  grid-area: screen;
+  justify-self: center;
+  width: 100%;
+  height: auto;
+  max-height: 184px;
+  object-fit: contain;
+}
+
+.card .stores {
+  grid-area: stores;
+  align-self: start;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.stores > a { --store-badge-height: 40px; }
+
+@media (max-width: 639px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr) 72px;
+    grid-template-areas: "copy screen" "stores stores";
+    grid-template-rows: auto auto;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .copy { align-self: center; }
+  .screen { max-height: 144px; }
+  .stores > a { --store-badge-height: 38px; }
+}
+
+@media (max-width: 359px) {
+  .card .stores { gap: 6px; }
+  .stores > a { --store-badge-height: 34px; }
+}

@@ -4,6 +4,7 @@ import calendar from "@/content/assets/daily-question-calendar.json";
 import checklist from "@/content/assets/visit-checklist.json";
 import { StoreCTARow } from "@/components/store-cta-row";
 import { getLocalImageSize } from "@/lib/images";
+import productStyles from "@/components/guide-product.module.css";
 
 export function QuestionCalendar() {
   return <div className="my-8 space-y-8">{calendar.map((group, index) => <section key={group.category} aria-label={group.category}>
@@ -64,6 +65,10 @@ export function GuideDownloads({ name, title }: { name: string; title: string })
 }
 
 const screens = {
+  tripResources: { file: "/app-screens/trip-resources.webp", alt: "DreamDuo trip plan with saved Pinterest and YouTube links in its Resources tab", caption: "Example trip resources in DreamDuo." },
+  tripPlan: { file: "/app-screens/trip-onboarding-plan.webp", alt: "DreamDuo Japan trip preview showing dates, flights, budget, stays, and itinerary as shared steps", caption: "A sample trip plan in DreamDuo." },
+  movieList: { file: "/app-screens/movie-checklist.webp", alt: "DreamDuo shared movie watchlist with watched titles checked off and the next movie at the top", caption: "An example shared movie list." },
+  nudges: { file: "/app-screens/nudge-notifications.webp", alt: "iPhone notifications from DreamDuo showing a daily question, a poll, and thinking-of-you nudges", caption: "Examples of DreamDuo notifications on iPhone." },
   questions: { file: "/dreamduo-daily-conversations.webp", alt: "DreamDuo Questions screen with one prompt and both partners' answers", caption: "DreamDuo’s Questions screen. This example shows a different prompt from the 30-day collection." },
   dreams: { file: "/blog/best-couples-apps/dreamduo-dreams-screen.webp", alt: "DreamDuo Dreams screen showing shared plans", caption: "An existing DreamDuo Dreams screen, shown as a product example. Your goals and amounts will differ." },
   milestones: { file: "/dreamduo-milestones-phone.webp", alt: "DreamDuo shared dream with progress, tasks and milestone steps", caption: "An existing DreamDuo shared-dream screen. The example is not a travel budget or a promise of savings." },
@@ -71,16 +76,14 @@ const screens = {
 
 export function GuideProduct({ screen, title, children, placement }: { screen: keyof typeof screens; title: string; children: ReactNode; placement: string }) {
   const image = screens[screen];
-  return <aside aria-label="How this works in DreamDuo" className="my-10 grid items-center gap-6 rounded-2xl bg-[#fff4f6] p-5 sm:grid-cols-[1fr_160px] sm:p-7">
-    <div><p className="!mt-0 !text-xs font-bold uppercase tracking-widest !text-rose-700">In DreamDuo</p>
-      <h3 className="font-display mt-3 text-2xl font-bold leading-tight text-slate-900">{title}</h3>
-      <div className="text-slate-700">{children}</div>
-      <div className="mt-5"><StoreCTARow placement="mid_article" campaignPlacement={placement} /></div>
+  return <aside aria-label="How this works in DreamDuo" className={productStyles.card}>
+    <div className={productStyles.copy}>
+      <h3 className="font-display">{title}</h3>
+      {children}
     </div>
-    <figure className="mx-auto w-full max-w-[160px]">
-      <Image src={image.file} alt={image.alt} {...getLocalImageSize(image.file)} sizes="160px" loading="lazy" className="h-auto w-full" />
-      <figcaption className="mt-3 text-xs leading-relaxed text-slate-600">{image.caption}</figcaption>
-    </figure>
+    <Image src={image.file} alt={image.alt} {...getLocalImageSize(image.file)}
+      sizes="(min-width: 640px) 104px, 72px" loading="lazy" className={productStyles.screen} />
+    <StoreCTARow placement="mid_article" campaignPlacement={placement} className={productStyles.stores} />
   </aside>;
 }
 

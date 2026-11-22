@@ -92,7 +92,12 @@ function parseFile(collection: Collection, fileName: string): Post {
   // Checked here rather than at render so a typo fails the build immediately,
   // with the filename that caused it.
   const image = frontmatter.image ?? findCover(collection, assetSlug);
-  if (image) getLocalImageSize(image);
+  if (image) {
+    getLocalImageSize(image);
+    if (!frontmatter.imageAlt?.trim()) {
+      throw new Error(`${collection}/${fileName}: add imageAlt describing what the cover photo shows.`);
+    }
+  }
 
   return {
     ...frontmatter,
@@ -112,7 +117,7 @@ function readCollection(collection: Collection): Post[] {
     .readdirSync(dir)
     .filter((f) => /\.mdx?$/.test(f))
     .map((f) => parseFile(collection, f))
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug));
 }
 
 /** Drafts are visible in `next dev` for previewing, and dropped from production builds. */

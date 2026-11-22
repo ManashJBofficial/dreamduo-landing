@@ -27,8 +27,7 @@ export function BlogAppCTA({ placement = "blog_article" }: { placement?: string 
         </h2>
 
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-slate-400">
-          DreamDuo keeps your shared goals, savings, habits, and daily check-ins
-          in one place you both actually open. Free to start.
+          Answer daily questions, send little surprises, and make plans together in DreamDuo. Free to start.
         </p>
 
         <div className="mt-7 flex justify-center">
